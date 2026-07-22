@@ -1,0 +1,217 @@
+---
+site: us
+lang: en
+name: GET / Order history (last 3 months)
+method: GET
+path: /api/v5/trade/orders-history-archive
+module: trade
+rest: https://us.okx.com
+ws: wss://wsus.okx.com:8443
+supported: true
+---
+
+### GET / Order history (last 3 months)
+
+Get completed orders which are placed in the last 3 months, including those placed 3 months ago but completed in the last 3 months.  <br>
+
+#### Rate Limit: 20 requests per 2 seconds
+#### Rate limit rule: User ID
+
+#### HTTP Request
+
+`GET /api/v5/trade/orders-history-archive`
+
+> Request Example
+
+```shell
+GET /api/v5/trade/orders-history-archive?ordType=post_only,fok,ioc&instType=SPOT
+
+```
+
+```python
+import okx.Trade as Trade
+
+# API initialization
+apikey = "YOUR_API_KEY"
+secretkey = "YOUR_SECRET_KEY"
+passphrase = "YOUR_PASSPHRASE"
+
+flag = "1"  # Production trading: 0, Demo trading: 1
+
+tradeAPI = Trade.TradeAPI(apikey, secretkey, passphrase, False, flag)
+
+# Get completed SPOT orders which are placed in the last 3 months
+result = tradeAPI.get_orders_history_archive(
+    instType="SPOT",
+    ordType="post_only,fok,ioc"
+)
+print(result)
+```
+
+#### Request Parameters
+
+| Parameter  | Type   | Required | Description                             |
+|:-----------| :----- | :------- |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| instType   | String | yes      | Instrument type<br>`SPOT`<br>`MARGIN`<br>`SWAP`<br>`FUTURES`<br>`OPTION`<br>`EVENTS` |
+| instFamily | String | No       | Instrument family<br>Applicable to `FUTURES`/`SWAP`/`OPTION`                        |      
+| instId     | String | No       | Instrument ID, e.g. `BTC-USD-200927`    |
+| ordType    | String | No       | Order type <br>`market`: Market order <br>`limit`: Limit order <br>`post_only`: Post-only order <br>`fok`: Fill-or-kill order <br>`ioc`: Immediate-or-cancel order  <br>`optimal_limit_ioc`: Market order with immediate-or-cancel order<br>`mmp`: Market Maker Protection (only applicable to Option in Portfolio Margin mode)<br>`mmp_and_post_only`: Market Maker Protection and Post-only order(only applicable to Option in Portfolio Margin mode) <br>`op_fok`: Simple options (fok) <br>`elp`: Enhanced Liquidity Program order |
+| state      | String | No       | State<br>`canceled` <br>`filled`<br>`mmp_canceled`: Order canceled automatically due to Market Maker Protection      |
+| category   | String | No       | Category <br>`twap` <br>`adl`<br>`full_liquidation`<br>`partial_liquidation`<br>`delivery`  <br>`ddh`: Delta dynamic hedge             |
+| after      | String | No       | Pagination of data to return records earlier than the requested `ordId`         |
+| before     | String | No       | Pagination of data to return records newer than the requested `ordId`           |
+| begin   | String | No       | Filter with a begin timestamp `cTime`. Unix timestamp format in milliseconds, e.g. 1597026383085 |
+| end     | String | No       | Filter with an end timestamp `cTime`. Unix timestamp format in milliseconds, e.g. 1597026383085  |
+| limit      | String | No       | Number of results per request. The maximum is `100`; The default is `100`       |
+
+> Response Example
+
+```json
+{
+    "code": "0",
+    "data": [
+        {
+            "accFillSz": "0.00192834",
+            "algoClOrdId": "",
+            "algoId": "",
+            "attachAlgoClOrdId": "",
+            "attachAlgoOrds": [],
+            "avgPx": "51858",
+            "cTime": "1708587373361",
+            "cancelSource": "",
+            "cancelSourceReason": "",
+            "category": "normal",
+            "ccy": "",
+            "clOrdId": "",
+            "fee": "-0.00000192834",
+            "feeCcy": "BTC",
+            "fillPx": "51858",
+            "fillSz": "0.00192834",
+            "fillTime": "1708587373361",
+            "instId": "BTC-USDT",
+            "instType": "SPOT",
+            "lever": "",
+            "ordId": "680800019749904384",
+            "ordType": "market",
+            "pnl": "0",
+            "posSide": "",
+            "px": "",
+            "pxType": "",
+            "pxUsd": "",
+            "pxVol": "",
+            "quickMgnType": "",
+            "rebate": "0",
+            "rebateCcy": "USDT",
+            "reduceOnly": "false",
+            "side": "buy",
+            "slOrdPx": "",
+            "slTriggerPx": "",
+            "slTriggerPxType": "",
+            "source": "",
+            "state": "filled",
+            "stpId": "",
+            "stpMode": "",
+            "sz": "100",
+            "tag": "",
+            "tdMode": "cash",
+            "tgtCcy": "quote_ccy",
+            "tpOrdPx": "",
+            "tpTriggerPx": "",
+            "tpTriggerPxType": "",
+            "tradeId": "744876980",
+            "tradeQuoteCcy": "USDT",
+            "uTime": "1708587373362",
+            "isTpLimit": "false",
+            "linkedAlgoOrd": {
+                "algoId": ""
+            }
+        }
+    ],
+    "msg": ""
+}
+```
+
+#### Response Parameters
+
+| **Parameter**          | **Type**        | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+|:-----------------------|:----------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| instType               | String          | Instrument type<br>`SPOT`<br>`MARGIN`<br>`SWAP`<br>`FUTURES`<br>`OPTION`<br>`EVENTS` |
+| instId                 | String          | Instrument ID                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| tgtCcy                 | String          | Order quantity unit setting for `sz`<br>`base_ccy`: Base currency ,`quote_ccy`: Quote currency  <br>Only applicable to `SPOT` Market Orders<br>Default is `quote_ccy` for buy, `base_ccy` for sell                                                                                                                                                                                                                                                                                         |
+| ccy                    | String          | Margin currency <br>Applicable to all `isolated` `MARGIN` orders and `cross` `MARGIN` orders in `Futures mode`, `FUTURES` and `SWAP` contracts.                                                                                                                                                                                                                                                   |
+| ordId                  | String          | Order ID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| clOrdId                | String          | Client Order ID as assigned by the client                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| tag                    | String          | Order tag                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| px                     | String          | Price <br>For options, use coin as unit (e.g. BTC, ETH)                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| pxUsd                  | String          | Options price in USDOnly applicable to options; return "" for other instrument types                                                                                                                                                                                                                                                                                                                                                                                                       |
+| pxVol                  | String          | Implied volatility of the options orderOnly applicable to options; return "" for other instrument types                                                                                                                                                                                                                                                                                                                                                                                    |
+| pxType                 | String          | Price type of options <br>`px`: Place an order based on price, in the unit of coin (the unit for the request parameter px is BTC or ETH) <br>`pxVol`: Place an order based on pxVol <br>`pxUsd`: Place an order based on pxUsd, in the unit of USD (the unit for the request parameter px is USD)                                                                                                                                                                                          |
+| sz                     | String          | Quantity to buy or sell                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ordType                | String          | Order type <br>`market`: Market order <br>`limit`: Limit order <br>`post_only`: Post-only order <br>`fok`: Fill-or-kill order <br>`ioc`: Immediate-or-cancel order  <br>`optimal_limit_ioc`: Market order with immediate-or-cancel order<br>`mmp`: Market Maker Protection (only applicable to Option in Portfolio Margin mode)<br>`mmp_and_post_only`: Market Maker Protection and Post-only order(only applicable to Option in Portfolio Margin mode) <br>`op_fok`: Simple options (fok) <br>`elp`: Enhanced Liquidity Program order |
+| side                   | String          | Order side                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| posSide                | String          | Position side                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| tdMode                 | String          | Trade mode                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| accFillSz              | String          | Accumulated fill quantity                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| fillPx                 | String          | Last filled price. If none is filled, it will return "".                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| tradeId                | String          | Last trade ID                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| fillSz                 | String          | Last filled quantity                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| fillTime               | String          | Last filled time                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| avgPx                  | String          | Average filled price. If none is filled, it will return "".                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| state                  | String          | State <br>`canceled` <br>`filled` <br>`mmp_canceled`                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| lever                  | String          | Leverage, from `0.01` to `125`. <br>Only applicable to `MARGIN/FUTURES/SWAP`                                                                                                                                                                                                                                                                                                                                                                                                               |
+| attachAlgoClOrdId      | String          | Client-supplied Algo ID when placing order with attached TP/SL or trailing stop.                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| tpTriggerPx            | String          | Take-profit trigger price.                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| tpTriggerPxType        | String          | Take-profit trigger price type. <br>`last`: last price<br>`index`: index price<br>`mark`: mark price                                                                                                                                                                                                                                                                                                                                                                                       |
+| tpOrdPx                | String          | Take-profit order price.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| slTriggerPx            | String          | Stop-loss trigger price.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| slTriggerPxType        | String          | Stop-loss trigger price type. <br>`last`: last price<br>`index`: index price<br>`mark`: mark price                                                                                                                                                                                                                                                                                                                                                                                         |
+| slOrdPx                | String          | Stop-loss order price.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| attachAlgoOrds         | Array of objects | Attached TP/SL or trailing stop order information                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| > attachAlgoId         | String          | The order ID of the attached TP/SL or trailing stop order. It can be used to identify the attached order when amending. It will not be posted to algoId when placing the attached algo order after the general order is filled completely.                                                                                                                                                                                                                                                                                                                                               |
+| > attachAlgoClOrdId    | String          | Client-supplied Algo ID when placing order with attached TP/SL or trailing stop<br>A combination of case-sensitive alphanumerics, all numbers, or all letters of up to 32 characters.<br>It will be posted to `algoClOrdId` when placing the attached algo order once the general order is filled completely.                                                                                                                                                                                                               |
+| > tpOrdKind      | String          | TP order kind<br>`condition`<br>`limit`                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| > tpTriggerPx          | String          | Take-profit trigger price.                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| > tpTriggerRatio       | String          | Take profit trigger ratio, 0.3 represents 30% <br> Only applicable to FUTURES and SWAP.                                                                                                                                                                                                               |
+| > tpTriggerPxType      | String          | Take-profit trigger price type. <br>`last`: last price<br>`index`: index price<br>`mark`: mark price                                                                                                                                                                                                                                                                                                                                                                                       |
+| > tpOrdPx              | String          | Take-profit order price.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| > slTriggerPx          | String          | Stop-loss trigger price.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| > slTriggerRatio       | String          | Stop-loss trigger ratio, 0.3 represents 30% <br> Only applicable to FUTURES and SWAP.                                                                                                                                                                                                               |
+| > slTriggerPxType      | String          | Stop-loss trigger price type. <br>`last`: last price<br>`index`: index price<br>`mark`: mark price                                                                                                                                                                                                                                                                                                                                                                                         |
+| > slOrdPx              | String          | Stop-loss order price.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| > sz                   | String          | Size. Only applicable to TP order of split TPs                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| > amendPxOnTriggerType | String          | Whether to enable Cost-price SL. Only applicable to SL order of split TPs. <br>`0`: disable, the default value <br>`1`: Enable                                                                                                                                                                                                                                                                                                                                                             |
+| > callbackRatio       | String | Callback ratio, e.g. `0.05` represents 5% |
+| > callbackSpread      | String | Callback spread (price distance) |
+| > activePx            | String | Activation price |
+| > failCode      | String          | The error code when failing to place TP/SL order, e.g. 51020 <br>The default is ""                                                                                                                                                                                                                                                                                                                                                                                                        |
+| > failReason  | String          | The error reason when failing to place TP/SL order. <br>The default is ""                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| linkedAlgoOrd  | Object          | Linked SL order detail, only applicable to the order that is placed by one-cancels-the-other (OCO) order that contains the TP limit order.                                                                                                                                                                                                                                                                                                                                                                                              |
+| > algoId | String          | Algo ID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| stpId                  | String          | ~~Self trade prevention ID<br>Return "" if self trade prevention is not applicable~~  (Deprecated)                                                                                                                                                                                                                                                                                                                                                                                          |
+| stpMode                | String          | Self trade prevention mode                                                                                                                                                                                                                                                                                                                                                                                                        |
+| feeCcy                 | String          | Fee currency<br>For maker sell orders of Spot and Margin, this represents the quote currency. For all other cases, it represents the currency in which fees are charged.                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| fee                    | String          | Fee amount<br>For Spot and Margin (excluding maker sell orders): accumulated fee charged by the platform, always negative<br>For maker sell orders in Spot and Margin, Expiry Futures, Perpetual Futures and Options: accumulated fee and rebate (always in quote currency for maker sell orders in Spot and Margin)                                                                                                                                                                                                                                                                                                                                           |
+| rebateCcy              | String          | Rebate currency<br>For maker sell orders of Spot and Margin, this represents the base currency. For all other cases, it represents the currency in which rebates are paid.                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| rebate                 | String          | Rebate amount, only applicable to Spot and Margin<br>For maker sell orders: ~~Accumulated fee and~~ rebate amount in the unit of base currency.<br>For all other cases, it represents the maker rebate amount, always positive, return "" if no rebate.                                                                                                                                                                                                                                                                                                                                                                         |
+| source                 | String          | Order source<br>`6`: The normal order triggered by the `trigger order`<br>`7`:The normal order triggered by the `TP/SL order` <br>`13`: The normal order triggered by the algo order<br>`25`:The normal order triggered by the `trailing stop order`<br>`34`: The normal order triggered by the `chase order`                                                                                                                                                                                                                                       |
+| pnl                    | String          | Profit and loss (excluding the fee).<br> Applicable to orders which have a trade and aim to close position. It always is 0 in other conditions |
+| category               | String          | Category <br>`normal`<br>`twap` <br>`adl`<br>`full_liquidation`<br>`partial_liquidation` <br>`delivery`  <br>`ddh`: Delta dynamic hedge<br>`auto_conversion`                                                                                                                                                                                                                                                                                                                                                    |
+| reduceOnly             | String          | Whether the order can only reduce the position size. Valid options: true or false.                                                                                                                                                                                                                                                                                                                                                                                                         |
+| cancelSource           | String          | Code of the cancellation source.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| cancelSourceReason     | String          | Reason for the cancellation.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| algoClOrdId            | String          | Client-supplied Algo ID. There will be a value when algo order attaching `algoClOrdId` is triggered, or it will be "".                                                                                                                                                                                                                                                                                                                                                                     |
+| algoId                 | String          | Algo ID. There will be a value when algo order is triggered, or it will be "".                                                                                                                                                                                                                                                                                                                                                                                                             |
+| isTpLimit     | String          | Whether it is TP limit order. true or false                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| uTime                  | String          | Update time, Unix timestamp format in milliseconds, e.g. `1597026383085`                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| cTime                  | String          | Creation time, Unix timestamp format in milliseconds, e.g. `1597026383085`                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| quickMgnType           | String          | ~~Quick Margin type, Only applicable to Quick Margin Mode of isolated margin<br>`manual`, `auto_borrow`, `auto_repay`~~  (Deprecated)                                                                                                                                                                                                                                                                                                                                                                    |
+| tradeQuoteCcy | String | The quote currency used for trading.|
+| outcome | String | The market outcome the user traded on.<br>`yes`<br>`no`<br>Only applicable to `EVENTS` |
+
+<aside class="notice">
+This interface does not contain the order data of the `Canceled orders without any fills` type, which can be obtained through the `Get Order History (last 7 days)` interface. <br>
+</aside>
+
+<aside class="notice">
+As far as OPTION orders that are complete, pxVol and pxUsd will update in time for px order, pxVol will update in time for pxUsd order, pxUsd will update in time for pxVol order.  <br>
+</aside>

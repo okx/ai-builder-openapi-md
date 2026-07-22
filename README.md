@@ -1,93 +1,98 @@
-# ai builder openapi md
+# OKX V5 API — Flat Markdown Docs
 
+Machine-friendly, flattened Markdown of the OKX V5 REST/WebSocket API, generated
+from the official documentation source. Built for AI agents and tooling to read
+and to write/verify OKX API integration code across **multiple sites**.
 
+> Generated content — do not edit by hand. `sites.json` and `index.json` each
+> carry a `version` (semver) and a `generated_at` timestamp so you can tell which
+> release you are reading.
 
-## Getting started
+## Versioning
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+`sites.json` and `index.json` carry a `version` field using semver
+`MAJOR.MINOR.PATCH` (a bare string, e.g. `0.1.0` — no `v` prefix):
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+- **MAJOR** — breaking change to the data format (layout/schema). Tooling that
+  consumes these files may need updating.
+- **MINOR** — endpoints added or changed.
+- **PATCH** — documentation fixes.
 
-## Add your files
+`generated_at` records when the build was produced. Use `version` to check
+compatibility and `generated_at` for freshness.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+## What's here
 
 ```
-cd existing_repo
-git remote add origin https://gitlab.okg.com/strategy/ai-builder-openapi-md.git
-git branch -M master
-git push -uf origin master
+sites.json                       # site -> REST/WS domains (+ version, generated_at)
+index/                           # layered lookup tables (primary navigation)
+  modules.md                     #   module list + per-site endpoint counts
+  <module>.md                    #   one table per module: method|path|name|doc|per-site supported
+index.json                       # full machine index (secondary): every endpoint, per-site "supported" + doc path (+ version, generated_at)
+docs/<site>/<lang>/...md         # one self-contained Markdown file per endpoint
+skills/okx-v5-api/               # pure-Markdown skill (SKILL.md only)
 ```
 
-## Integrate with your tools
+- **Sites**: `okex` (Global), `us`, `hongkong` (uses the global domain), `my`
+  (EEA), `turkey`. Each site's docs are **flattened and self-contained** — the
+  domain and the set of supported endpoints already reflect that site. Do not
+  assume the Global site's endpoints or domain apply elsewhere.
+- **Languages**: `en` and `zh`.
+- Each Markdown file carries YAML frontmatter (`method`, `path`, `site`, `lang`,
+  `rest`, `ws`, `module`) so tools can read the essentials without parsing prose.
 
-- [ ] [Set up project integrations](https://gitlab.okg.com/strategy/ai-builder-openapi-md/-/settings/integrations)
+## Navigation (the `index/` layer)
 
-## Collaborate with your team
+`index/` is the primary way to find an endpoint. It is plain Markdown — no code,
+no runtime, all local.
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+- `index/modules.md` lists every module with its total endpoint count and how
+  many are supported per site — a quick overview and jump-off point.
+- `index/<module>.md` is a small table for one module. The **module is the 2nd
+  path segment** (`/api/v5/<module>/...`, e.g. `/api/v5/trade/order` → `trade`).
+  Each row has `method | path | name | doc` plus a per-site `✓ / ✗` column.
+- `index.json` remains available as the full machine index (per-site `doc` is a
+  per-language `{ "en": ..., "zh": ... }` map), but for lookups prefer the
+  `index/` tables — they are smaller and easier to scan.
 
-## Test and Deploy
+## For AI agents
 
-Use the built-in continuous integration in GitLab.
+1. Read `sites.json` to get the target site's `rest` (and `ws`) domain. Use that
+   as the base URL — **never hardcode a single global domain**.
+2. Derive the module from the endpoint path (2nd segment) and open
+   `index/<module>.md`. Confirm the endpoint's column for your site is `✓`.
+   **If it is `✗` (not supported), do not generate that call.**
+3. From the matched row, read the `doc` path and open
+   `docs/<site>/<lang>/<doc>`. Its YAML frontmatter carries `method`/`path`/
+   `rest`/`ws`; the prose covers parameters, response, and rate limits.
+   - The en/zh `doc` path can differ slightly for a few endpoints. If `<doc>` is
+     absent for your site/lang, find the file by name under
+     `docs/<site>/<lang>/`. `index.json` records both relative paths as
+     `sites[id].doc.{en,zh}`; the full path is `<docs_dir>/<lang>/<doc>`, where
+     `docs_dir` comes from `sites.json` (e.g. `docs/us` → `docs/us/en/<doc>`).
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+## Skill & install model
 
-***
+The `skills/okx-v5-api/` skill is **pure Markdown** — just `SKILL.md`, no Python,
+no scripts, no runtime dependency, and **no bundled data**. It does not carry its
+own copy of the routing layer. Instead it reads **everything** — `sites.json`,
+`index/`, and the endpoint doc `docs/` — from **this repository, cloned by you**.
 
-# Editing this README
+Point the skill at your clone once via a fixed config file at
+`~/.okx-v5-api/config.json` with a `docs_path` field naming the checkout. The
+skill then resolves both routing and bodies under that path:
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+1. **Route**: from `docs_path`, read `sites.json` + `index/` to find the site
+   domain, per-site support, and the target `doc` path.
+2. **Read the body**: open `docs_path/docs/<site>/<lang>/<doc>`.
 
-## Suggestions for a good README
+If `~/.okx-v5-api/config.json` or the clone is missing, set up the clone and
+point `docs_path` at it before using the skill.
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+## Provenance & disclaimer
 
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Generated from the upstream OKX V5 API documentation source; see `version` and
+`generated_at` in `sites.json` / `index.json` for the exact release. For the
+authoritative, always-current reference, see the official OKX API documentation.
+This mirror is provided to make the docs consumable by AI tooling; verify against
+the official docs before relying on it in production.

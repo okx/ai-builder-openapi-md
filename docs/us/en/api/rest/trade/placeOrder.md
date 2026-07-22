@@ -1,0 +1,300 @@
+---
+site: us
+lang: en
+name: POST / Place order
+method: POST
+path: /api/v5/trade/order
+module: trade
+rest: https://us.okx.com
+ws: wss://wsus.okx.com:8443
+supported: true
+---
+
+### POST / Place order
+
+You can place an order only if you have sufficient funds.
+
+#### Rate Limit: 60 requests per 2 seconds
+#### Rate Limit of lead trader lead instruments for Copy Trading: 4 requests per 2 seconds
+#### Rate limit rule (except Options): User ID + Instrument ID
+#### Rate limit rule (Options only): User ID + Instrument Family
+
+Rate limit of this endpoint will also be affected by the rules [Sub-account rate limit] (/docs-v5/en/#overview-rate-limits-sub-account-rate-limit) and [Fill ratio based sub-account rate limit] (/docs-v5/en/#overview-rate-limits-fill-ratio-based-sub-account-rate-limit).
+
+#### HTTP Request
+
+`POST /api/v5/trade/order`
+
+> Request Example
+
+```shell
+ place order for SPOT
+ POST /api/v5/trade/order
+ body
+ {
+    "instId":"BTC-USDT",
+    "tdMode":"cash",
+    "clOrdId":"b15",
+    "side":"buy",
+    "ordType":"limit",
+    "px":"2.15",
+    "sz":"2"
+}
+```
+
+```python
+import okx.Trade as Trade
+
+# API initialization
+apikey = "YOUR_API_KEY"
+secretkey = "YOUR_SECRET_KEY"
+passphrase = "YOUR_PASSPHRASE"
+
+flag = "1"  # Production trading: 0, Demo trading: 1
+
+tradeAPI = Trade.TradeAPI(apikey, secretkey, passphrase, False, flag)
+
+# Spot mode, limit order
+result = tradeAPI.place_order(
+    instId="BTC-USDT",
+    tdMode="cash",
+    clOrdId="b15",
+    side="buy",
+    ordType="limit",
+    px="2.15",
+    sz="2"
+)
+print(result)
+```
+
+#### Request Parameters
+
+| Parameter              | Type    | Required    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+|:-----------------------| :------ |:------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| instId                 | String  | Yes         | Instrument ID, e.g. `BTC-USDT`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| tdMode                 | String  | Yes         | Trade mode<br>Margin mode `cross` `isolated` (`isolated` is only applicable to spot margin isolated)<br>Non-Margin mode `cash`<br>`spot_isolated` (only applicable to SPOT lead trading, `tdMode` should be `spot_isolated` for `SPOT` lead trading.)<br>Note: `isolated` (spot margin isolated) is not available in multi-currency margin mode and portfolio margin mode.    <br><br><font color="red">Event contracts symbols only support `isolated`</font>                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ccy                    | String  | No          | Margin currency <br>Applicable to all `isolated` `MARGIN` orders and `cross` `MARGIN` orders in `Futures mode`.                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| clOrdId                | String  | No          | Client Order ID as assigned by the client  <br>A combination of case-sensitive alphanumerics, all numbers, or all letters of up to 32 characters.<br>Only applicable to general order. It will not be posted to algoId when placing TP/SL order after the general order is filled completely.                                                                                                                                                                                                                                                                    |
+| tag                    | String  | No          | Order tag  <br>A combination of case-sensitive alphanumerics, all numbers, or all letters of up to 16 characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| side                   | String  | Yes         | Order side, `buy` `sell`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| posSide                | String  | Conditional | Position side  <br>The default is `net` in the `net` mode <br>It is required in the `long/short` mode, and can only be `long` or `short`. <br>Only applicable to `FUTURES`/`SWAP`. Do not send this field for `SPOT` or `MARGIN` orders. Omitting it for `FUTURES`/`SWAP` in long/short mode returns error 51000.                                                                                                                                                                                                                                                                                                                                                                               |
+| ordType                | String  | Yes         | Order type <br>`market`: Market order, only applicable to `SPOT/MARGIN/FUTURES/SWAP` <br>`limit`: Limit order <br>`post_only`: Post-only order <br>`fok`: Fill-or-kill order <br>`ioc`: Immediate-or-cancel order  <br>`optimal_limit_ioc`: Places a limit order at the maximum buy price (upper price limit) for buy orders, or the minimum sell price (lower price limit) for sell orders, as defined by the exchange's price limit bands. Any unfilled portion is immediately cancelled (IOC). Applicable only to Expiry Futures and Perpetual Futures.<br>`mmp`: Market Maker Protection (only applicable to Option in Portfolio Margin mode) <br>`mmp_and_post_only`: Market Maker Protection and Post-only order(only applicable to Option in Portfolio Margin mode)<br>`elp`: Enhanced Liquidity Program order |
+| sz                     | String  | Yes         | Quantity to buy or sell                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| px                     | String  | Conditional | Order price. Only applicable to `limit`,`post_only`,`fok`,`ioc`,`mmp`,`mmp_and_post_only` order.<br>When placing an option order, one of px/pxUsd/pxVol must be filled in, and only one can be filled in                                                                                                                                                                                                                                                                                                                                                         |
+| speedBump | String | Conditional | Speed bump<br>`1`: Event contract speed bumps (the delay duration will be changed subject to adjustment without prior notice). Required for non-post-only orders of `EVENTS` symbols. |
+| outcome | String | Conditional | The market outcome users trade on.<br>`yes`<br>`no`<br>Only applicable and required for `EVENTS` |
+| pxUsd                  | String | Conditional | Place options orders in `USD` <br>Only applicable to options <br>When placing an option order, one of px/pxUsd/pxVol must be filled in, and only one can be filled in                                                                                                                                                                                                                                                                                                                                                                                            |
+| pxVol                  | String | Conditional | Place options orders based on implied volatility, where 1 represents 100% <br>Only applicable to options <br>When placing an option order, one of px/pxUsd/pxVol must be filled in, and only one can be filled in                                                                                                                                                                                                                                                                                                                                                |
+| reduceOnly             | Boolean | No          | Whether orders can only reduce in position size.  <br>Valid options: `true` or `false`. The default value is `false`.<br>Only applicable to `MARGIN` orders, and `FUTURES`/`SWAP` orders in `net` mode <br>Only applicable to `Futures mode` and `Multi-currency margin`                                                                                                                                                                                                                                                                                |
+| tgtCcy                 | String  | No          | Whether the target currency uses the quote or base currency.<br>`base_ccy`: Base currency ,`quote_ccy`: Quote currency  <br>Only applicable to `SPOT` Market Orders<br>Default is `quote_ccy` for buy, `base_ccy` for sell                                                                                                                                                                                                                                                                                                                                       |
+| banAmend               | Boolean | No          | Whether to disallow the system from automatically reducing the order size when account balance is insufficient for the full SPOT Market Order.<br>Valid options: `true` or `false`. The default value is `false`.<br>If `true`: the entire order is rejected when balance is insufficient. If `false` (default): the system reduces sz to fit the available balance and executes the smaller order.<br>Only applicable to SPOT Market Orders                                                                                                                                                                                                                                                             |
+| pxAmendType            | String  | No          | The price amendment type for orders<br>`0`: Do not allow the system to amend to order price if `px` exceeds the price limit <br>`1`: Allow the system to amend the price to the best available value within the price limit if `px` exceeds the price limit<br> The default value is `0`         |
+| tradeQuoteCcy   | String | No       | The quote currency used for trading. Only applicable to `SPOT`. <br> The default value is the quote currency of the `instId`, for example: for `BTC-USD`, the default is `USD`. |
+| slippagePct     | String | No       | Maximum acceptable slippage for spot and spot margin market-side orders, where `tgtCcy` is the received currency (`base_ccy` for buy, `quote_ccy` for sell).<br>Range: `0` to `0.05` (0% to 5%, inclusive). Up to 2 decimal places of the percentage, e.g., `0.01` (1%) and `0.0123` (1.23%) are accepted; `0.01234` (1.234%) is rejected.<br>If not specified or empty, defaults to `0.00%`.<br>Slippage cannot be modified on an existing order. Cancel and resubmit to change the slippage setting.<br>Only applicable to `SPOT` and `SPOT margin` `market` orders. |
+| stpMode                | String | No          | Self trade prevention mode.  <br>`cancel_maker`,`cancel_taker`, `cancel_both`<br>Cancel both does not support FOK <br><br>The account-level acctStpMode will be used to place orders by default. The default value of this field is `cancel_maker`. Users can log in to the webpage through the master account to modify this configuration. Users can also utilize the stpMode request parameter of the placing order endpoint to determine the stpMode of a certain order. |
+| isElpTakerAccess | Boolean | No | ELP taker access<br>`true`: the request can trade with ELP orders but a speed bump will be applied<br>`false`: the request cannot trade with ELP orders and no speed bump<br><br>The default value is `false` while `true` is only applicable to ioc orders. |
+| attachAlgoOrds         | Array of objects   | No          | Attached TP/SL or trailing stop order information                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| > attachAlgoClOrdId    | String   | No          | Client-supplied Algo ID when placing order with attached TP/SL or trailing stop<br>A combination of case-sensitive alphanumerics, all numbers, or all letters of up to 32 characters.<br>It will be posted to `algoClOrdId` when placing the attached algo order once the general order is filled completely.                                                                                                                                                                                                                                                                                     |
+| > tpTriggerPx          | String | Conditional | Take-profit trigger price<br>For condition TP order, if you fill in this parameter, you should fill in the take-profit order price as well.                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| > tpTriggerRatio       | String | Conditional | Take profit trigger ratio, 0.3 represents 30% <br> Only one of `tpTriggerPx` and `tpTriggerRatio` can be passed <br> Only applicable to FUTURES and SWAP. <br>If the main order is a buy order, it must be greater than 0, and if the main order is a sell order, it must be between -1 and 0.                                                                              |
+| > tpOrdPx              | String | Conditional | Take-profit order price <br><br>For condition TP order, if you fill in this parameter, you should fill in the take-profit trigger price as well. <br>For limit TP order, you need to fill in this parameter, but the take-profit trigger price doesn’t need to be filled. <br>If the price is -1, take-profit will be executed at the market price.                                                                                                                                                                                                                                |
+| > tpOrdKind | String | No       | TP order kind<br>`condition`<br>`limit`<br> The default is `condition`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| > slTriggerPx          | String | Conditional | Stop-loss trigger price<br>If you fill in this parameter, you should fill in the stop-loss order price.                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| > slTriggerRatio       | String | Conditional | Stop-loss trigger ratio, 0.3 represents 30% <br> Only one of `slTriggerPx` and `slTriggerRatio` can be passed <br> Only applicable to FUTURES and SWAP. <br>If the main order is a buy order, it should be between 0 and 1, and if the main order is a sell order, it must be greater than 0.                                                                              |
+| > slOrdPx              | String | Conditional | Stop-loss order price<br>If you fill in this parameter, you should fill in the stop-loss trigger price.<br>If the price is -1, stop-loss will be executed at the market price.                                                                                                                                                                                                                                                                                                                                                                                   |
+| > tpTriggerPxType      | String | No          | Take-profit trigger price type<br>`last`: last price <br>`index`: index price <br>`mark`: mark price <br>The default is last                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| > slTriggerPxType      | String | No          | Stop-loss trigger price type<br>`last`: last price <br>`index`: index price <br>`mark`: mark price <br>The default is last                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| > sz                   | String | Conditional | Size. Only applicable to TP order of split TPs, and it is required for TP order of split TPs                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| > amendPxOnTriggerType | String            | No          | Whether to enable Cost-price SL. Only applicable to SL order of split TPs. Whether `slTriggerPx` will move to `avgPx` when the first TP order is triggered<br>`0`: disable, the default value <br>`1`: Enable                                                                                                                                                                                                                                                                                                                                                    |
+| > callbackRatio       | String | Conditional | Callback ratio, e.g. `0.05` represents 5%.<br>Either `callbackRatio` or `callbackSpread` is required. Only one can be passed.<br>Only applicable when `ordType` = `move_order_stop` |
+| > callbackSpread      | String | Conditional | Callback spread (price distance).<br>Either `callbackRatio` or `callbackSpread` is required. Only one can be passed.<br>Only applicable when `ordType` = `move_order_stop` |
+| > activePx            | String | No          | Activation price.<br>The trailing stop is activated when the market price reaches the activation price. After activation, the system starts calculating the actual trigger price. If not provided, the trailing stop is activated immediately upon order placement.<br>Only applicable when `ordType` = `move_order_stop` |
+
+> Response Example
+
+```json
+{
+  "code": "0",
+  "msg": "",
+  "data": [
+    {
+      "clOrdId": "oktswap6",
+      "ordId": "312269865356374016",
+      "tag": "",
+      "ts":"1695190491421",
+      "sCode": "0",
+      "sMsg": "",
+      "subCode": ""
+    }
+  ],
+  "inTime": "1695190491421339",
+  "outTime": "1695190491423240"
+}
+```
+
+#### Response Parameters
+
+| **Parameter** | **Type** | **Description**    |
+| :------------ | :------- | :--------------------------------------------------------- |
+| code            | String   | The result code, `0` means success |
+| msg             | String   | The error message, empty if the code is 0 |
+| data            | Array of objects | Array of objects contains the response results |
+| > ordId         | String   | Order ID           |
+| > clOrdId       | String   | Client Order ID as assigned by the client                  |
+| > tag           | String   | Order tag          |
+| > ts    | String  | Order creation time. Unix timestamp format in milliseconds, e.g. `1597026383085`. Equivalent to `cTime` in the order channel. |
+| > sCode         | String   | The code of the event execution result, `0` means success. |
+| > sMsg          | String   | Rejection or success message of event execution.          |
+| > subCode    | String   | Sub-code of sCode.<br> Returns `""` when sCode is 0 (request successful).<br> When sCode is not 0 (request failed), returns the sub-code if available; otherwise returns `""`.|
+| inTime | String | Timestamp at REST gateway when the request is received, Unix timestamp format in microseconds, e.g. `1597026383085123` <br>The time is recorded after authentication. |
+| outTime | String | Timestamp at REST gateway when the response is sent, Unix timestamp format in microseconds, e.g. `1597026383085123`|
+
+<aside class="notice">
+tdMode<br>
+Trade Mode, when placing an order, you need to specify the trade mode.<br>
+<strong>Spot mode:</strong><br>
+- SPOT and OPTION buyer: cash<br>
+<strong>Futures mode:</strong><br>
+- Isolated MARGIN (spot margin isolated only): isolated<br>
+- Cross MARGIN: cross<br>
+- SPOT: cash<br>
+- Cross FUTURES/SWAP/OPTION: cross<br>
+<strong>Multi-currency margin mode:</strong><br>
+- Cross SPOT: cross<br>
+- Cross FUTURES/SWAP/OPTION: cross<br>
+<strong>Portfolio margin:</strong><br>
+- Cross SPOT: cross<br>
+- Cross FUTURES/SWAP/OPTION: cross<br>
+</aside>
+
+<aside class="notice">
+clOrdId<br>
+clOrdId is a user-defined unique order identifier at the User ID level. If provided in the request parameters, it will be included in the response and can be used as a request parameter to query, cancel, and amend orders. <br>
+clOrdId must be unique among all currently pending (live or partially_filled) orders in the account. Once an order reaches a terminal state (filled, canceled, mmp_canceled), the same clOrdId may be reused for a new order. Uniqueness is not enforced historically — GET /api/v5/trade/order returns only the latest match when multiple orders share a clOrdId. "General order" means a standard order placed via this endpoint; clOrdId is not forwarded to attached TP/SL algo orders.
+</aside>
+
+<aside class="notice">
+posSide<br>
+Position side, this parameter is not mandatory in <strong>net</strong> mode. If you pass it through, the only valid value is <strong>net</strong>.<br>
+In <strong>long/short</strong> mode, it is mandatory. Valid values are <strong>long</strong> or <strong>short</strong>.<br>
+In <strong>long/short</strong> mode, <strong>side</strong> and <strong>posSide</strong> need to be specified in the combinations below:<br>
+Open long: buy and open long (side: fill in buy; posSide: fill in long)<br>
+Open short: sell and open short (side: fill in sell; posSide: fill in short)<br>
+Close long: sell and close long (side: fill in sell; posSide: fill in long)<br>
+Close short: buy and close short (side: fill in buy; posSide: fill in short)<br>
+Portfolio margin mode: Expiry Futures and Perpetual Futures only support net mode<br>
+Do not send this field for SPOT or MARGIN orders. For FUTURES/SWAP in net mode, omit or explicitly pass `net`.
+</aside>
+
+<aside class="notice">
+ordType <br>
+Order type. When creating a new order, you must specify the order type. The order type you specify will affect: 1) what order parameters are required, and 2) how the matching system executes your order. The following are valid order types: <br>
+limit: Limit order, which requires specified sz and px. <br>
+market: Market order. For SPOT and MARGIN, market order will be filled with market price (by swiping opposite order book). For Expiry Futures and Perpetual Futures, market order will be placed to order book with most aggressive price allowed by Price Limit Mechanism. For OPTION, market order is not supported yet. As the filled price for market orders cannot be determined in advance, OKX reserves/freezes your quote currency by an additional 5% for risk check. <br>
+post_only: Post-only order, which the order can only provide liquidity to the market and be a maker. If the order would have executed on placement, it will be canceled instead. <br>
+fok: Fill or kill order. If the order cannot be fully filled, the order will be canceled. The order would not be partially filled. <br>
+ioc: Immediate or cancel order. Immediately execute the transaction at the order price, cancel the remaining unfilled quantity of the order, and the order quantity will not be displayed in the order book. <br>
+optimal_limit_ioc: Places a limit order at the maximum buy price (upper price limit) for buy orders, or the minimum sell price (lower price limit) for sell orders, as defined by the exchange's price limit bands at the time of submission. Any unfilled portion is immediately cancelled (IOC). Applicable only to Expiry Futures and Perpetual Futures. The order will not execute at a price worse than the current price limit boundary.
+</aside>
+
+<aside class="notice">
+sz<br>
+Quantity to buy or sell. <br>
+For SPOT/MARGIN Buy and Sell Limit Orders, it refers to the quantity in base currency. <br>
+For MARGIN Buy Market Orders, it refers to the quantity in quote currency. <br>
+For MARGIN Sell Market Orders, it refers to the quantity in base currency. <br>
+For SPOT Market Orders, it is set by tgtCcy. <br>
+For FUTURES/SWAP/OPTION orders, it refers to the number of contracts. Notional value = sz × ctVal × markPx (linear contracts) or sz × ctVal (inverse contracts, USD-denominated). Retrieve ctVal and ctType from GET /api/v5/public/instruments.
+</aside>
+
+<aside class="notice">
+reduceOnly<br>
+When placing an order with this parameter set to true, it means that the order will reduce the size of the position only<br>
+For the same MARGIN instrument, the coin quantity of all reverse direction pending orders adds `sz` of new `reduceOnly` order cannot exceed the position assets. After the debt is paid off, if there is a remaining size of orders, the position will not be opened in reverse, but will be traded in SPOT.<br>
+For the same FUTURES/SWAP instrument, the sum of the current order size and all reverse direction reduce-only pending orders which’s price-time priority is higher than the current order, cannot exceed the contract quantity of position.<br>
+Only applicable to `Futures mode` and `Multi-currency margin`<br>
+Only applicable to `MARGIN` orders, and `FUTURES`/`SWAP` orders in `net` mode<br>
+Notice: Under long/short mode of Expiry Futures and Perpetual Futures, all closing orders apply the reduce-only feature which is not affected by this parameter.<br>
+If sz exceeds the current position size, the entire order is rejected — the system does not auto-trim to the position size.
+
+</aside>
+
+<aside class="notice">
+tgtCcy<br>
+This parameter is used to specify the order quantity in the order request is denominated in the quantity of base or quote currency. This is applicable to SPOT Market Orders only.<br>
+Quick reference for BTC-USDT:<br>
+- tgtCcy=`quote_ccy`, sz=100 (buy): spend 100 USDT on BTC.<br>
+- tgtCcy=`base_ccy`, sz=0.001 (buy): buy 0.001 BTC at market price.<br>
+- tgtCcy=`base_ccy`, sz=0.001 (sell, default): sell 0.001 BTC.<br>
+- tgtCcy=`quote_ccy`, sz=100 (sell): sell BTC until you receive 100 USDT.<br>
+Base currency: base_ccy<br>
+Quote currency: quote_ccy
+<br>
+If you use the Base Currency quantity for buy market orders or the Quote Currency for sell market orders, please note:
+<br>
+1. If the quantity you enter is greater than what you can buy or sell, the system will execute the order according to your maximum buyable or sellable quantity. If you want to trade according to the specified quantity, you should use Limit orders.
+<br>
+2. When the market price is too volatile, the locked balance may not be sufficient to buy the Base Currency quantity or sell to receive the Quote Currency that you specified. We will change the quantity of the order to execute the order based on best effort principle based on your account balance. In addition, we will try to over lock a fraction of your balance to avoid changing the order quantity.
+<br>
+2.1 Example of base currency buy market order:
+<br>
+Taking the market order to buy 10 LTCs as an example, and the user can buy 11 LTC. At this time, if 10 < 11, the order is accepted. When the LTC-USDT market price is 200, and the locked balance of the user is 3,000 USDT, as 200*10 < 3,000, the market order of 10 LTC is fully executed;
+If the market is too volatile and the LTC-USDT market price becomes 400, 400*10 > 3,000, the user's locked balance is not sufficient to buy using the specified amount of base currency, the user's maximum locked balance of 3,000 USDT will be used to settle the trade. Final transaction quantity becomes 3,000/400 = 7.5 LTC.
+<br>
+2.2 Example of quote currency sell market order:
+<br>
+Taking the market order to sell 1,000 USDT as an example, and the user can sell 1,200 USDT, 1,000 < 1,200, the order is accepted. When the LTC-USDT market price is 200, and the locked balance of the user is 6 LTC, as 1,000/200 < 6, the market order of 1,000 USDT is fully executed;
+If the market is too volatile and the LTC-USDT market price becomes 100, 100*6 < 1,000, the user's locked balance is not sufficient to sell using the specified amount of quote currency, the user's maximum locked balance of 6 LTC will be used to settle the trade. Final transaction quantity becomes 6 * 100 = 600 USDT.
+</aside>
+
+<aside class="notice">
+px<br>
+The value for px must be a multiple of tickSz for OPTION orders.<br>
+If not, the system will apply the rounding rules below. Using tickSz 0.0005 as an example:<br>
+The px will be rounded up to the nearest 0.0005 when the remainder of px to 0.0005 is more than 0.00025 or `px` is less than 0.0005.<br>
+The px will be rounded down to the nearest 0.0005 when the remainder of px to 0.0005 is less than 0.00025 and `px` is more than 0.0005.
+</aside>
+
+<aside class="notice">
+For placing order with TP/SL:<br>
+Attached TP/SL orders become active only after the parent order is filled. If the parent is cancelled before any fill, the attached TP/SL is also discarded. For TP/SL orders independent of a parent order, use POST /api/v5/trade/order-algo.<br>
+1. TP/SL algo order will be generated only when this order is filled; if the parent order is cancelled before any fill, no TP/SL algo order will be generated.<br>
+2. Attaching TP/SL is neither supported for market buy with tgtCcy is base_ccy or market sell with tgtCcy is quote_ccy<br>
+3. If tpOrdKind is limit, and there is only one conditional TP order, attachAlgoClOrdId can be used as clOrdId for retrieving on "GET / Order details" endpoint.<br>
+4. For “split TPs”, including condition TP order and limit TP order.<br>
+* TP/SL orders in Split TPs only support one-way TP/SL. You can't use slTriggerPx&slOrdPx and tpTriggerPx&tpOrdPx at the same time, or error code 51076 will be thrown.<br>
+* Take-profit trigger price types (tpTriggerPxType) must be the same in an order with Split TPs attached, or error code 51080 will be thrown.<br>
+* Take-profit trigger prices (tpTriggerPx) cannot be the same in an order with Split TPs attached, or error code 51081 will be thrown.<br>
+* The size of the TP order among split TPs attached cannot be empty, or error code 51089 will be thrown.<br>
+* The total size of TP orders with Split TPs attached in a same order should equal the size of this order, or error code 51083 will be thrown.<br>
+* The number of TP orders with Split TPs attached in a same order cannot exceed 10, or error code 51079 will be thrown.<br>
+* Setting multiple TP and cost-price SL orders isn’t supported for spot and margin trading, or error code 51077 will be thrown.<br>
+* The number of SL orders with Split TPs attached in a same order cannot exceed 1, or error code 51084 will be thrown.<br>
+* The number of TP orders cannot be less than 2 when cost-price SL is enabled (amendPxOnTriggerType set as 1) for Split TPs, or error code 51085 will be thrown.<br>
+* All TP orders in one order must be of the same type, or error code 51091 will be thrown.<br>
+* TP order prices (tpOrdPx) in one order must be different, or error code 51092 will be thrown.<br>
+* TP limit order prices (tpOrdPx) in one order can't be –1 (market price), or error code 51093 will be thrown.<br>
+* You can't place TP limit orders in spot, margin, or options trading. Otherwise, error code 51094 will be thrown.<br>
+</aside>
+
+<aside class="notice">
+Mandatory self trade prevention (STP)<br>
+The trading platform imposes mandatory self trade prevention at master account level, which means the accounts under the same master account, including master account itself and all its affiliated sub-accounts, will be prevented from self trade. The account-level acctStpMode will be used to place orders by default. The default value of this field is `cancel_maker`. Users can log in to the webpage through the master account to modify this configuration. Users can also utilize the stpMode request parameter of the placing order endpoint to determine the stpMode of a certain order.<br>
+Mandatory self trade prevention will not lead to latency. <br>
+There are three STP modes. The STP mode is always taken based on the configuration in the taker order.<br>
+1. Cancel Maker: This is the default STP mode, which cancels the maker order to prevent self-trading. Then, the taker order continues to match with the next order based on the order book priority.<br>
+2. Cancel Taker: The taker order is canceled to prevent self-trading. If the user's own maker order is lower in the order book priority, the taker order is partially filled and then canceled. FOK orders are always honored and canceled if they would result in self-trading.<br>
+3. Cancel Both: Both taker and maker orders are canceled to prevent self-trading. If the user's own maker order is lower in the order book priority, the taker order is partially filled. Then, the remaining quantity of the taker order and the first maker order are canceled. FOK orders are not supported in this mode. Combining stpMode=cancel_both with ordType=`fok` returns error 50016.
+</aside>
+
+<aside class="notice">
+tradeQuoteCcy<br>
+For users in specific countries and regions, this parameter must be filled out for a successful order. Otherwise, the system will use the quote currency of instId as the default value, then error code 51000 will occur.<br>
+The value provided must be one of the enumerated values from tradeQuoteCcyList, which can be obtained from the endpoint Get instruments (GET /api/v5/account/instruments).
+</aside>
+
+<aside class="notice">
+Rate limit of orders tagged as isElpTakerAccess:true<br>
+- 50 orders per 2 seconds per User ID per instrument ID.<br>
+- This rate limit is shared in Place order/Place multiple orders endpoints in REST/WebSocket<br>
+</aside>
