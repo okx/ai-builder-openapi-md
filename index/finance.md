@@ -10,7 +10,12 @@ Supported per site (✓ = available, ✗ = not on that site). The `doc` column i
 | GET | /api/v5/finance/flexible-loan/loan-history | GET / Loan history | api/rest/flexibleLoan/getLoanHistory.md | ✓ | ✗ | ✗ | ✗ | ✗ |
 | GET | /api/v5/finance/flexible-loan/loan-info | GET / Loan info | api/rest/flexibleLoan/getLoanInfo.md | ✓ | ✗ | ✗ | ✗ | ✗ |
 | GET | /api/v5/finance/flexible-loan/max-collateral-redeem-amount | GET / Maximum collateral redeem amount | api/rest/flexibleLoan/getMaxRedeemAmt.md | ✓ | ✗ | ✗ | ✗ | ✗ |
+| GET | /api/v5/finance/okusd/account | GET / Get OKUSD Account | api/rest/okusd/account.md | ✓ | ✗ | ✗ | ✗ | ✗ |
 | GET | /api/v5/finance/okusd/limits | GET / OKUSD limits | api/rest/okusd/limits.md | ✓ | ✗ | ✗ | ✗ | ✗ |
+| GET | /api/v5/finance/okusd/rate/history | GET / Get APR History | api/rest/okusd/rateHistory.md | ✓ | ✗ | ✗ | ✗ | ✗ |
+| GET | /api/v5/finance/okusd/redeem/history | GET / Get Redemption History | api/rest/okusd/redeemHistory.md | ✓ | ✗ | ✗ | ✗ | ✗ |
+| GET | /api/v5/finance/okusd/rewards/history | GET / Get Rewards History | api/rest/okusd/rewardsHistory.md | ✓ | ✗ | ✗ | ✗ | ✗ |
+| GET | /api/v5/finance/okusd/subscribe/history | GET / Get Subscription History | api/rest/okusd/subscribeHistory.md | ✓ | ✗ | ✗ | ✗ | ✗ |
 | GET | /api/v5/finance/savings/balance | GET / Saving balance | api/rest/savings/piggyBankBalance.md | ✓ | ✗ | ✗ | ✓ | ✗ |
 | GET | /api/v5/finance/savings/lending-history | GET / Lending history | api/rest/savings/lendingHistory.md | ✓ | ✗ | ✗ | ✓ | ✗ |
 | GET | /api/v5/finance/savings/lending-rate-history | GET / Public borrow history (public) | api/rest/savings/publicBorrowHistory.md | ✓ | ✗ | ✗ | ✗ | ✗ |

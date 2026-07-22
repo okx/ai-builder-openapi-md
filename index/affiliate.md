@@ -10,3 +10,4 @@ Supported per site (✓ = available, ✗ = not on that site). The `doc` column i
 | GET | /api/v5/affiliate/link/list | Get link list | api/rest/affiliate/linkList.md | ✓ | ✗ | ✗ | ✓ | ✗ |
 | GET | /api/v5/affiliate/performance/summary | Get performance summary | api/rest/affiliate/performanceSummary.md | ✓ | ✗ | ✗ | ✓ | ✗ |
 | GET | /api/v5/affiliate/sub-affiliate/list | Get sub-affiliate list | api/rest/affiliate/subAffiliateList.md | ✓ | ✗ | ✗ | ✓ | ✗ |
+| GET | /api/v5/affiliate/tvb/performance/summary | Get TVB performance summary | api/rest/affiliate/tvbPerformanceSummary.md | ✗ | ✗ | ✗ | ✓ | ✗ |

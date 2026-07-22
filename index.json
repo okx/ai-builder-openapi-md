@@ -1,7 +1,7 @@
 {
   "version": "0.1.0",
-  "generated_at": "2026-07-22T12:06:30+08:00",
-  "endpoint_count": 409,
+  "generated_at": "2026-07-20T17:47:48+08:00",
+  "endpoint_count": 415,
   "endpoints": [
     {
       "method": "GET",
@@ -1310,6 +1310,33 @@
           "doc": {
             "en": "api/rest/affiliate/subAffiliateList.md",
             "zh": "api/rest/affiliate/subAffiliateList.md"
+          }
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/affiliate/tvb/performance/summary",
+      "name": "Get TVB performance summary",
+      "module": "affiliate",
+      "sites": {
+        "okex": {
+          "supported": false
+        },
+        "us": {
+          "supported": false
+        },
+        "hongkong": {
+          "supported": false
+        },
+        "my": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/affiliate/tvbPerformanceSummary.md",
+            "zh": "api/rest/affiliate/tvbPerformanceSummary.md"
           }
         },
         "turkey": {
@@ -3145,6 +3172,33 @@
     },
     {
       "method": "GET",
+      "path": "/api/v5/finance/okusd/account",
+      "name": "GET / Get OKUSD Account",
+      "module": "finance",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/okusd/account.md",
+            "zh": "api/rest/okusd/account.md"
+          }
+        },
+        "us": {
+          "supported": false
+        },
+        "hongkong": {
+          "supported": false
+        },
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
       "path": "/api/v5/finance/okusd/limits",
       "name": "GET / OKUSD limits",
       "module": "finance",
@@ -3154,6 +3208,114 @@
           "doc": {
             "en": "api/rest/okusd/limits.md",
             "zh": "api/rest/okusd/limits.md"
+          }
+        },
+        "us": {
+          "supported": false
+        },
+        "hongkong": {
+          "supported": false
+        },
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/finance/okusd/rate/history",
+      "name": "GET / Get APR History",
+      "module": "finance",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/okusd/rateHistory.md",
+            "zh": "api/rest/okusd/rateHistory.md"
+          }
+        },
+        "us": {
+          "supported": false
+        },
+        "hongkong": {
+          "supported": false
+        },
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/finance/okusd/redeem/history",
+      "name": "GET / Get Redemption History",
+      "module": "finance",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/okusd/redeemHistory.md",
+            "zh": "api/rest/okusd/redeemHistory.md"
+          }
+        },
+        "us": {
+          "supported": false
+        },
+        "hongkong": {
+          "supported": false
+        },
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/finance/okusd/rewards/history",
+      "name": "GET / Get Rewards History",
+      "module": "finance",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/okusd/rewardsHistory.md",
+            "zh": "api/rest/okusd/rewardsHistory.md"
+          }
+        },
+        "us": {
+          "supported": false
+        },
+        "hongkong": {
+          "supported": false
+        },
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/finance/okusd/subscribe/history",
+      "name": "GET / Get Subscription History",
+      "module": "finance",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/okusd/subscribeHistory.md",
+            "zh": "api/rest/okusd/subscribeHistory.md"
           }
         },
         "us": {
