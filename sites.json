@@ -21,15 +21,6 @@
       "docs_dir": "docs/us"
     },
     {
-      "id": "hongkong",
-      "label": "OKX HK",
-      "rest": "https://www.okx.com",
-      "ws": "wss://ws.okx.com:8443",
-      "rest_pap": "https://openapi.okx.com",
-      "ws_pap": "wss://wspap.okx.com:8443",
-      "docs_dir": "docs/hongkong"
-    },
-    {
       "id": "my",
       "label": "OKX EEA",
       "rest": "https://eea.okx.com",
