@@ -211,10 +211,15 @@ print(result)
 | 参数名                 | 类型              | 是否必须  | 描述                                                                                                   |
 |:--------------------|:----------------|:------|:-----------------------------------------------------------------------------------------------------|
 | triggerPx           | String          | 是     | 触发该策略订单的价格阈值，单位与该产品的 `px` 相同。具体使用哪种价格源取决于 `triggerPxType`（默认为最新成交价）。方向：做空止损单的触发价须低于 orderPx；做多止损单的触发价须高于 orderPx。方向违规将返回错误码 51046–51049。                                                                                                                                                                                                                                                                                                                                                                                               |
-| orderPx             | String          | 是     | 触发后提交的委托价格，与 `triggerPx`（决定何时激活）相互独立。设为 `-1` 表示触发后以市价委托；设置具体价格表示触发后以限价委托。
-| advanceOrdType      | String | 否 | 计划委托订单类型<br>`fok`：全部成交或立即取消<br>`ioc`：立即成交并取消剩余<br>默认为 ""，限价或者市价（由 orderPx 控制）                                          |
+| orderPx             | String          | 条件必填     | 触发后提交的委托价格，与 `triggerPx`（决定何时激活）相互独立。设为 `-1` 表示触发后以市价委托；设置具体价格表示触发后以限价委托。当 `advanceOrdType` 为 `chase` 时不适用（追逐委托无固定价格）。
+| advanceOrdType      | String | 否 | 计划委托的子订单类型。<br>`fok`：全部成交或立即取消<br>`ioc`：立即成交并取消剩余<br>`chase`：追逐限价委托。仅适用于 FUTURES 和 SWAP。<br>默认为空（按 `orderPx` 下发限价或市价单）。                                          |
+| advChaseParams      | Array of objects | 条件必填 | 追逐参数。当 `advanceOrdType` 为 `chase` 时必填。 |
+| > chaseType         | String | 条件必填 | 追逐距离单位。<br>`distance`（默认）：与买一价/卖一价的绝对价格距离，以结算货币计。<br>`ratio`：百分比。 |
+| > chaseVal          | String | 条件必填 | 追逐值。当 `chaseType` 为 `distance` 时，为与买一价/卖一价的距离（以结算货币计）；当 `ratio` 时，`0.1` 表示 10%。<br>默认值 `0` 表示直接跟随买一价/卖一价；大于 `0` 表示设置一个距离。 |
+| > maxChaseType      | String | 条件必填 | 最大追逐距离单位。`distance` 或 `ratio`。须与 `maxChaseVal` 成对出现。 |
+| > maxChaseVal       | String | 条件必填 | 最大追逐距离值。须为正数。须与 `maxChaseType` 成对出现。当偏离达到该值时，追逐委托自动撤单。 |
 | triggerPxType       | String          | 否     | 触发价格类型：<br>`last`：任意成交价达到或超过 `triggerPx` 时触发——响应最快，但在流动性较差市场中易受短暂插针影响。<br>`index`：基于多交易所合成指数触发——稳定，不受OKX自身插针影响。<br>`mark`：基于OKX标记价格触发——经过平滑处理，抗插针能力强；衍生品推荐使用。<br>现货产品仅支持 `last`。默认为 `last`。                                |
-| attachAlgoOrds      | Array of objects | 否     | 附带止盈止损信息<br>适用于`合约模式/跨币种保证金模式/组合保证金模式`                                                           |
+| attachAlgoOrds      | Array of objects | 否     | 附带止盈止损信息<br>适用于`合约模式/跨币种保证金模式/组合保证金模式`<br>当 `advanceOrdType` 为 `chase` 时不适用。                                                           |
 | > attachAlgoClOrdId | String          | 否     | 下单附带止盈止损时，客户自定义的策略订单ID，字母（区分大小写）与数字的组合，可以是纯字母、纯数字且长度要在1-32位之间。<br>订单完全成交，下止盈止损委托单时，该值会传给algoClOrdId。 |
 | > tpTriggerPx       | String          | 否     | 止盈触发价，如果填写此参数，必须填写`止盈委托价`                                                                            |
 | > tpTriggerRatio    | String          | 否     | 止盈触发比例，0.3 代表 30% <br> 仅适用于`交割`/`永续`合约 <br> `tpTriggerPx` 和 `tpTriggerRatio` 只能传入其中一个<br> 如果主单为买入订单，必须大于 0，如果主单为卖出订单，必须处于 -1 和 0 之间。                                                                            |

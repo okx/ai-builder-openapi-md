@@ -1,7 +1,7 @@
 {
   "version": "0.1.0",
-  "generated_at": "2026-07-20T17:47:48+08:00",
-  "endpoint_count": 413,
+  "generated_at": "2026-07-23T11:09:34+00:00",
+  "endpoint_count": 415,
   "endpoints": [
     {
       "method": "GET",
@@ -7425,6 +7425,54 @@
           "doc": {
             "en": "api/rest/subAccount/getEntrustSubAccountList.md",
             "zh": "api/rest/subAccount/getEntrustSubAccountList.md"
+          }
+        },
+        "us": {
+          "supported": false
+        },
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/users/glp/historical-performance",
+      "name": "GET / Get GLP historical performance",
+      "module": "users",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/account/getGlpHistoricalPerformance.md",
+            "zh": "api/rest/account/getGlpHistoricalPerformance.md"
+          }
+        },
+        "us": {
+          "supported": false
+        },
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/users/glp/today-performance",
+      "name": "GET / Get GLP today performance",
+      "module": "users",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/account/getGlpTodayPerformance.md",
+            "zh": "api/rest/account/getGlpTodayPerformance.md"
           }
         },
         "us": {

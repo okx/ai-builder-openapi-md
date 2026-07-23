@@ -20,4 +20,4 @@ One table per module under `index/<module>.md`. To look up an endpoint: take the
 | system | 1 | 1 | 1 | 1 | 1 |
 | trade | 34 | 32 | 30 | 24 | 25 |
 | tradingBot | 64 | 64 | 0 | 0 | 0 |
-| users | 9 | 8 | 7 | 7 | 8 |
+| users | 11 | 10 | 7 | 7 | 8 |

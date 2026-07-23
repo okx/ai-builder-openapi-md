@@ -5,6 +5,8 @@ Supported per site (✓ = available, ✗ = not on that site). The `doc` column i
 | method | path | name | doc (ref) | okex | us | my | turkey |
 |---|---|---|---|:-:|:-:|:-:|:-:|
 | GET | /api/v5/users/entrust-subaccount-list | Get custody trading sub-account list | api/rest/subAccount/getEntrustSubAccountList.md | ✓ | ✗ | ✗ | ✗ |
+| GET | /api/v5/users/glp/historical-performance | GET / Get GLP historical performance | api/rest/account/getGlpHistoricalPerformance.md | ✓ | ✗ | ✗ | ✗ |
+| GET | /api/v5/users/glp/today-performance | GET / Get GLP today performance | api/rest/account/getGlpTodayPerformance.md | ✓ | ✗ | ✗ | ✗ |
 | GET | /api/v5/users/partner/if-rebate | Get the user's affiliate rebate information | api/rest/affiliate/ifRebate.md | ✗ | ✗ | ✗ | ✓ |
 | GET | /api/v5/users/subaccount/apikey | Query the API Key of a sub-account | api/rest/subAccount/getApikey.md | ✓ | ✓ | ✓ | ✓ |
 | GET | /api/v5/users/subaccount/list | Get sub-account list | api/rest/subAccount/subAccountList.md | ✓ | ✓ | ✓ | ✓ |
