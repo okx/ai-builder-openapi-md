@@ -51,7 +51,7 @@ GET /api/v5/public/market-data-history?module=1&instType=SWAP&instFamilyList=BTC
 | instIdList     | String         | Conditional | List of instrument IDs, e.g. `BTC-USDT`, or `ANY` for all instruments (`ANY` is only supported for module = `1`, `2`, `3`, `11` & dateAggrType = `daily`)<br>Multiple instrument IDs should be separated by commas, e.g. `BTC-USDT,ETH-USDT`<br>Maximum length = 10<br>Only applicable when instType = `SPOT` |
 | instFamilyList | String         | Conditional | List of instrument families, e.g. `BTC-USDT`, or `ANY` for all instruments (`ANY` is only supported for module = `1`, `2`, `3`, `11` & dateAggrType = `daily`)<br>Multiple instrument families should be separated by commas, e.g. `BTC-USDT,ETH-USDT`<br>Maximum length = 10 (= 1when module = `6` & instType = `OPTION`)<br>Only applicable when instType ≠ `SPOT` |
 | dateAggrType   | String         | Yes      | Date aggregation type<br> `daily` (not supported for module = `3` & instFamilyList ≠ `ANY`)<br> `monthly` (not supported for module = `6`) |
-| begin          | String         | Yes      | Begin timestamp. Unix timestamp format in milliseconds (inclusive)<br>Maximum range: 20 days for daily, 20 months for monthly |
+| begin          | String         | Yes      | Begin timestamp. Unix timestamp format in milliseconds (inclusive)<br>Maximum range: 10 days for daily, 10 months for monthly |
 | end            | String         | Yes      | End timestamp. Unix timestamp format in milliseconds (inclusive)<br>When module = `6` & instType = `OPTION`, only returns data for the day specified by `end` |
 
 > Response Example

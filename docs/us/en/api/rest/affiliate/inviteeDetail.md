@@ -21,7 +21,7 @@ supported: true
 > Request sample
 
 ```shell
-GET /api/v5/affiliate/invitee/detail?uid=11111111
+GET /api/v5/affiliate/invitee/detail?uid=11111111&periodType=last_30d
 ```
 
 #### Request Parameters
@@ -29,6 +29,7 @@ GET /api/v5/affiliate/invitee/detail?uid=11111111
 | Parameter | Type  | Required| Description                                                                                                                                               |
 | :------ | :----- | :------- |:----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | uid      | String | Yes      | UID of the invitee. Only applicable to the UID of invitee master account. <br/> The data returned covers invitee master account and invitee sub-accounts. |
+| periodType | String | No     | Stats window for `volPeriod`.<br>`last_7d`<br>`last_30d`<br>`this_month`<br>`last_month`<br>`total`<br>`today`<br>`this_week`<br>When omitted, `volPeriod` is not returned. `custom` is not supported on this endpoint; `custom` or any unknown value returns `51000`. |
 
 > Returned results
 
@@ -51,7 +52,8 @@ GET /api/v5/affiliate/invitee/detail?uid=11111111
             "region": "Vietnam",
             "totalCommission": "0",
             "volMonth": "0",
-            "totalVol": "0"
+            "totalVol": "0",
+            "volPeriod": "1234.56"
         }
     ]
 }
@@ -71,6 +73,7 @@ GET /api/v5/affiliate/invitee/detail?uid=11111111
 | wdAmt              | String   | Accumulated amount of withdrawal in USDT<br/>If user has not withdrawn, 0 will be returned                                                                                                                                              |
 | volMonth           | String   | Accumulated Trading volume in the current month in USDT<br/>If user has not traded, 0 will be returned                                                                                                                                  |
 | totalVol           | String   | Lifetime accumulated trading volume in USDT<br/>If user has not traded, 0 will be returned                                                                                                                                              |
+| volPeriod          | String   | Trading volume within the selected `periodType` window, unit in `USDT`. Only returned when `periodType` is supplied in the request; omitted otherwise. If the user has not traded in the window, `0` is returned. |
 | accFee             | String   | Accumulated Amount of trading fee in USDT<br/>If there is no any fee, 0 will be returned                                                                                                                                                |
 | kycTime            | String   | KYC2 verification time. Unix timestamp in millisecond format and the precision is in day<br/>If user has not passed KYC2, "" will be returned                                                                                           |
 | region             | String   | User country or region. e.g. "United Kingdom"                                                                                                                                                                                           |

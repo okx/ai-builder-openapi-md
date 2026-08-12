@@ -1,7 +1,7 @@
 {
-  "version": "0.1.0",
-  "generated_at": "2026-07-22T12:06:30+08:00",
-  "endpoint_count": 409,
+  "version": "0.1.1",
+  "generated_at": "2026-08-12T01:16:24+00:00",
+  "endpoint_count": 423,
   "endpoints": [
     {
       "method": "GET",
@@ -22,9 +22,6 @@
             "en": "api/rest/account/accountPositionRisk.md",
             "zh": "api/rest/account/accountPositionRisk.md"
           }
-        },
-        "hongkong": {
-          "supported": false
         },
         "my": {
           "supported": true,
@@ -57,9 +54,6 @@
             "zh": "api/rest/account/adjustLeverageInfo.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -88,13 +82,6 @@
           "supported": true,
           "doc": {
             "en": "api/rest/account/balance.md",
-            "zh": "api/rest/account/spot/balance.md"
-          }
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/account/spot/balance.md",
             "zh": "api/rest/account/spot/balance.md"
           }
         },
@@ -134,13 +121,6 @@
             "zh": "api/rest/account/spot/bill7.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/account/spot/bill7.md",
-            "zh": "api/rest/account/spot/bill7.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -174,13 +154,6 @@
           "supported": true,
           "doc": {
             "en": "api/rest/account/bill90.md",
-            "zh": "api/rest/account/spot/bill90.md"
-          }
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/account/spot/bill90.md",
             "zh": "api/rest/account/spot/bill90.md"
           }
         },
@@ -220,9 +193,6 @@
             "zh": "api/rest/account/getBillSince2021.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -254,9 +224,6 @@
             "en": "api/rest/account/collateralAssets.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -279,13 +246,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/account/config.md",
-            "zh": "api/rest/account/config.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/account/config.md",
@@ -327,9 +287,6 @@
             "en": "api/rest/account/greeks.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -357,9 +314,6 @@
             "en": "api/rest/account/instruments.md",
             "zh": "api/rest/account/instruments.md"
           }
-        },
-        "hongkong": {
-          "supported": false
         },
         "my": {
           "supported": true,
@@ -396,9 +350,6 @@
             "en": "api/rest/account/interestAccrued.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -425,9 +376,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -461,9 +409,6 @@
             "en": "api/rest/account/interestRate.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -486,9 +431,6 @@
           "supported": false
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -523,9 +465,6 @@
             "zh": "api/rest/account/leverageInfo.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -555,13 +494,6 @@
           "supported": true,
           "doc": {
             "en": "api/rest/account/maxAvailSize.md",
-            "zh": "api/rest/account/spot/maxAvailSize.md"
-          }
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/account/spot/maxAvailSize.md",
             "zh": "api/rest/account/spot/maxAvailSize.md"
           }
         },
@@ -600,9 +532,6 @@
             "en": "api/rest/account/maxLoan.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -631,13 +560,6 @@
           "supported": true,
           "doc": {
             "en": "api/rest/account/maxSize.md",
-            "zh": "api/rest/account/spot/maxSize.md"
-          }
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/account/spot/maxSize.md",
             "zh": "api/rest/account/spot/maxSize.md"
           }
         },
@@ -676,9 +598,6 @@
             "en": "api/rest/account/maxWithdrawal.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -709,9 +628,6 @@
             "en": "api/rest/account/mmpConfigInfo.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -734,9 +650,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -767,9 +680,6 @@
             "zh": "api/rest/account/tier.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -797,9 +707,6 @@
             "en": "api/rest/account/positions.md",
             "zh": "api/rest/account/positions.md"
           }
-        },
-        "hongkong": {
-          "supported": false
         },
         "my": {
           "supported": true,
@@ -832,9 +739,6 @@
             "zh": "api/rest/account/positionsHistory.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -862,9 +766,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -887,9 +788,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -916,9 +814,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -941,9 +836,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -972,13 +864,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/subAccount/balances.md",
-            "zh": "api/rest/subAccount/balances.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/subAccount/balances.md",
@@ -1021,13 +906,6 @@
             "zh": "api/rest/subAccount/maxWithdrawal.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/subAccount/maxWithdrawal.md",
-            "zh": "api/rest/subAccount/maxWithdrawal.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -1063,9 +941,6 @@
             "en": "api/rest/account/getBillTypes.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -1094,13 +969,6 @@
           "supported": true,
           "doc": {
             "en": "api/rest/account/tradeFee.md",
-            "zh": "api/rest/account/spot/tradeFee.md"
-          }
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/account/spot/tradeFee.md",
             "zh": "api/rest/account/spot/tradeFee.md"
           }
         },
@@ -1136,9 +1004,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -1168,13 +1033,6 @@
           "supported": true,
           "doc": {
             "en": "api/rest/affiliate/inviteeDetail.md"
-          }
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/affiliate/inviteeDetail.md",
-            "zh": "api/rest/affiliate/inviteeDetail.md"
           }
         },
         "my": {
@@ -1209,9 +1067,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -1238,9 +1093,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -1271,9 +1123,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -1302,14 +1151,131 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
             "en": "api/rest/affiliate/subAffiliateList.md",
             "zh": "api/rest/affiliate/subAffiliateList.md"
+          }
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/affiliate/tvb/invitee/detail",
+      "name": "Get TVB invitee detail",
+      "module": "affiliate",
+      "sites": {
+        "okex": {
+          "supported": false
+        },
+        "us": {
+          "supported": false
+        },
+        "my": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/affiliate/tvbInviteeDetail.md",
+            "zh": "api/rest/affiliate/tvbInviteeDetail.md"
+          }
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/affiliate/tvb/invitee/list",
+      "name": "Get TVB invitee list",
+      "module": "affiliate",
+      "sites": {
+        "okex": {
+          "supported": false
+        },
+        "us": {
+          "supported": false
+        },
+        "my": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/affiliate/tvbInviteeList.md",
+            "zh": "api/rest/affiliate/tvbInviteeList.md"
+          }
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/affiliate/tvb/link/list",
+      "name": "Get TVB link list",
+      "module": "affiliate",
+      "sites": {
+        "okex": {
+          "supported": false
+        },
+        "us": {
+          "supported": false
+        },
+        "my": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/affiliate/tvbLinkList.md",
+            "zh": "api/rest/affiliate/tvbLinkList.md"
+          }
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/affiliate/tvb/performance/summary",
+      "name": "Get TVB performance summary",
+      "module": "affiliate",
+      "sites": {
+        "okex": {
+          "supported": false
+        },
+        "us": {
+          "supported": false
+        },
+        "my": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/affiliate/tvbPerformanceSummary.md",
+            "zh": "api/rest/affiliate/tvbPerformanceSummary.md"
+          }
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/affiliate/tvb/tier-breakdown",
+      "name": "Get TVB bonus breakdown by fee tier",
+      "module": "affiliate",
+      "sites": {
+        "okex": {
+          "supported": false
+        },
+        "us": {
+          "supported": false
+        },
+        "my": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/affiliate/tvbTierBreakdown.md",
+            "zh": "api/rest/affiliate/tvbTierBreakdown.md"
           }
         },
         "turkey": {
@@ -1331,13 +1297,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/fundings/assetValuation.md",
-            "zh": "api/rest/fundings/assetValuation.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/fundings/assetValuation.md",
@@ -1380,13 +1339,6 @@
             "zh": "api/rest/fundings/balances.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/fundings/balances.md",
-            "zh": "api/rest/fundings/balances.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -1417,13 +1369,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/fundings/fundingBill.md",
-            "zh": "api/rest/fundings/fundingBill.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/fundings/fundingBill.md",
@@ -1466,9 +1411,6 @@
             "zh": "api/rest/fundings/fundingBillHistory.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -1499,13 +1441,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/convert/currencies.md",
-            "zh": "api/rest/convert/currencies.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/convert/currencies.md",
@@ -1548,13 +1483,6 @@
             "zh": "api/rest/convert/currencyPair.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/convert/currencyPair.md",
-            "zh": "api/rest/convert/currencyPair.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -1585,13 +1513,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/convert/tradeHistory.md",
-            "zh": "api/rest/convert/tradeHistory.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/convert/tradeHistory.md",
@@ -1634,13 +1555,6 @@
             "zh": "api/rest/fundings/currencies.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/fundings/currencies.md",
-            "zh": "api/rest/fundings/currencies.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -1671,13 +1585,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/fundings/depositAddress.md",
-            "zh": "api/rest/fundings/depositAddress.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/fundings/depositAddress.md",
@@ -1720,13 +1627,6 @@
             "zh": "api/rest/fundings/depositHistory.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/fundings/depositHistory.md",
-            "zh": "api/rest/fundings/depositHistory.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -1740,33 +1640,6 @@
             "en": "api/rest/fundings/depositHistory.md",
             "zh": "api/rest/fundings/depositHistory.md"
           }
-        }
-      }
-    },
-    {
-      "method": "GET",
-      "path": "/api/v5/asset/deposit-lightning",
-      "name": "Lightning deposits",
-      "module": "asset",
-      "sites": {
-        "okex": {
-          "supported": false
-        },
-        "us": {
-          "supported": false
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/fundings/depositLightning.md",
-            "zh": "api/rest/fundings/depositLightning.md"
-          }
-        },
-        "my": {
-          "supported": false
-        },
-        "turkey": {
-          "supported": false
         }
       }
     },
@@ -1784,13 +1657,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/fundings/depositWithdrawStatus.md",
-            "zh": "api/rest/fundings/depositWithdrawStatus.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/fundings/depositWithdrawStatus.md",
@@ -1833,13 +1699,6 @@
             "zh": "api/rest/fundings/exchangeList.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/fundings/exchangeList.md",
-            "zh": "api/rest/fundings/exchangeList.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -1870,13 +1729,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/fundings/getMonthlyStatement.md",
-            "zh": "api/rest/fundings/getMonthlyStatement.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/fundings/getMonthlyStatement.md",
@@ -1919,13 +1771,6 @@
             "zh": "api/rest/fundings/nonTradableAssets.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/fundings/nonTradableAssets.md",
-            "zh": "api/rest/fundings/nonTradableAssets.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -1956,13 +1801,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/subAccount/fundingBalances.md",
-            "zh": "api/rest/subAccount/fundingBalances.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/subAccount/fundingBalances.md",
@@ -2005,13 +1843,6 @@
             "zh": "api/rest/subAccount/bills.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/subAccount/bills.md",
-            "zh": "api/rest/subAccount/bills.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -2044,9 +1875,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -2069,13 +1897,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/fundings/transferState.md",
-            "zh": "api/rest/fundings/transferState.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/fundings/transferState.md",
@@ -2110,9 +1931,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -2139,13 +1957,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/fundings/withdrawalHistory.md",
-            "zh": "api/rest/fundings/withdrawalHistory.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/fundings/withdrawalHistory.md",
@@ -2184,9 +1995,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -2209,9 +2017,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -2238,9 +2043,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -2263,9 +2065,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -2292,9 +2091,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -2317,9 +2113,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -2346,9 +2139,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -2371,9 +2161,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -2400,9 +2187,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -2425,9 +2209,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -2454,9 +2235,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -2479,9 +2257,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -2508,9 +2283,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -2533,9 +2305,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -2562,9 +2331,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -2587,9 +2353,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -2616,9 +2379,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -2641,9 +2401,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -2670,9 +2427,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -2695,9 +2449,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -2727,9 +2478,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -2755,9 +2503,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -2788,9 +2533,6 @@
           "doc": {
             "en": "api/rest/fundings/depositOrderDetail.md"
           }
-        },
-        "hongkong": {
-          "supported": false
         },
         "my": {
           "supported": true,
@@ -2824,9 +2566,6 @@
             "en": "api/rest/fundings/depositOrderHistory.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -2858,9 +2597,6 @@
           "doc": {
             "en": "api/rest/fundings/depositPaymentMethods.md"
           }
-        },
-        "hongkong": {
-          "supported": false
         },
         "my": {
           "supported": true,
@@ -2894,9 +2630,6 @@
             "en": "api/rest/fundings/withdrawalOrderDetail.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -2928,9 +2661,6 @@
           "doc": {
             "en": "api/rest/fundings/withdrawalOrderHistory.md"
           }
-        },
-        "hongkong": {
-          "supported": false
         },
         "my": {
           "supported": true,
@@ -2964,9 +2694,6 @@
             "en": "api/rest/fundings/withdrawalPaymentMethods.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -2997,9 +2724,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -3024,7 +2748,28 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/finance/flexible-loan/emode-info",
+      "name": "GET / E-Mode info",
+      "module": "finance",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/flexibleLoan/getEModeInfo.md",
+            "zh": "api/rest/flexibleLoan/getEModeInfo.md"
+          }
+        },
+        "us": {
           "supported": false
         },
         "my": {
@@ -3051,9 +2796,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -3076,9 +2818,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -3105,9 +2844,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -3132,7 +2868,28 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/finance/okusd/account",
+      "name": "GET / Get OKUSD Account",
+      "module": "finance",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/okusd/account.md",
+            "zh": "api/rest/okusd/account.md"
+          }
+        },
+        "us": {
           "supported": false
         },
         "my": {
@@ -3159,7 +2916,100 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/finance/okusd/rate/history",
+      "name": "GET / Get APR History",
+      "module": "finance",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/okusd/rateHistory.md",
+            "zh": "api/rest/okusd/rateHistory.md"
+          }
+        },
+        "us": {
+          "supported": false
+        },
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/finance/okusd/redeem/history",
+      "name": "GET / Get Redemption History",
+      "module": "finance",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/okusd/redeemHistory.md",
+            "zh": "api/rest/okusd/redeemHistory.md"
+          }
+        },
+        "us": {
+          "supported": false
+        },
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/finance/okusd/rewards/history",
+      "name": "GET / Get Rewards History",
+      "module": "finance",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/okusd/rewardsHistory.md",
+            "zh": "api/rest/okusd/rewardsHistory.md"
+          }
+        },
+        "us": {
+          "supported": false
+        },
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/finance/okusd/subscribe/history",
+      "name": "GET / Get Subscription History",
+      "module": "finance",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/okusd/subscribeHistory.md",
+            "zh": "api/rest/okusd/subscribeHistory.md"
+          }
+        },
+        "us": {
           "supported": false
         },
         "my": {
@@ -3184,9 +3034,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -3217,9 +3064,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -3248,9 +3092,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -3269,9 +3110,6 @@
           "supported": false
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -3302,9 +3140,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -3323,9 +3158,6 @@
           "supported": false
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -3356,9 +3188,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -3381,9 +3210,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -3410,9 +3236,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -3435,9 +3258,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -3464,9 +3284,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -3489,9 +3306,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -3518,9 +3332,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -3543,9 +3354,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -3572,9 +3380,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -3597,9 +3402,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -3626,9 +3428,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -3651,9 +3450,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -3684,9 +3480,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -3713,9 +3506,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -3746,9 +3536,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -3771,9 +3558,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -3800,9 +3584,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -3825,9 +3606,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -3854,9 +3632,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -3881,9 +3656,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -3906,13 +3678,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/market/books.md",
-            "zh": "api/rest/market/books.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/market/books.md",
@@ -3955,9 +3720,6 @@
             "zh": "api/rest/market/fullBooks.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -3967,6 +3729,42 @@
         },
         "turkey": {
           "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/market/books-rpi",
+      "name": "GET / RPI order book",
+      "module": "market",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/market/booksRpi.md",
+            "zh": "api/rest/market/booksRpi.md"
+          }
+        },
+        "us": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/market/booksRpi.md",
+            "zh": "api/rest/market/booksRpi.md"
+          }
+        },
+        "my": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/market/booksRpi.md",
+            "zh": "api/rest/market/booksRpi.md"
+          }
+        },
+        "turkey": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/market/booksRpi.md",
+            "zh": "api/rest/market/booksRpi.md"
+          }
         }
       }
     },
@@ -3984,9 +3782,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -4011,9 +3806,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -4041,13 +3833,6 @@
           "supported": true,
           "doc": {
             "en": "api/rest/market/candles.md",
-            "zh": "api/rest/market/spot/candles.md"
-          }
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/market/spot/candles.md",
             "zh": "api/rest/market/spot/candles.md"
           }
         },
@@ -4083,13 +3868,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/market/exchangeRate.md",
-            "zh": "api/rest/market/exchangeRate.md"
-          }
-        },
         "my": {
           "supported": false
         },
@@ -4119,13 +3897,6 @@
           "supported": true,
           "doc": {
             "en": "api/rest/market/historyCandles.md",
-            "zh": "api/rest/market/spot/historyCandles.md"
-          }
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/market/spot/historyCandles.md",
             "zh": "api/rest/market/spot/historyCandles.md"
           }
         },
@@ -4165,9 +3936,6 @@
             "zh": "api/rest/market/historyIndexCandles.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -4199,9 +3967,6 @@
             "zh": "api/rest/market/historyMarkPriceCandles.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -4227,13 +3992,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/market/historyTrades.md",
-            "zh": "api/rest/market/historyTrades.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/market/historyTrades.md",
@@ -4276,9 +4034,6 @@
             "zh": "api/rest/market/indexCandles.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -4304,9 +4059,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -4340,9 +4092,6 @@
             "zh": "api/rest/market/indexTickers.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -4374,9 +4123,6 @@
             "zh": "api/rest/market/markPriceCandles.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -4399,13 +4145,6 @@
         },
         "us": {
           "supported": false
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/market/oracle.md",
-            "zh": "api/rest/market/oracle.md"
-          }
         },
         "my": {
           "supported": false
@@ -4438,9 +4177,6 @@
             "en": "api/rest/market/optionTrades.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -4464,13 +4200,6 @@
         },
         "us": {
           "supported": false
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/market/24Volume.md",
-            "zh": "api/rest/market/24Volume.md"
-          }
         },
         "my": {
           "supported": false
@@ -4498,13 +4227,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "predictionMarket/outcomes_rest_api.md",
-            "zh": "predictionMarket/outcomes_rest_api.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "predictionMarket/outcomes_rest_api.md",
@@ -4543,9 +4265,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -4570,9 +4289,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -4595,9 +4311,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -4625,13 +4338,6 @@
           "supported": true,
           "doc": {
             "en": "api/rest/market/ticker.md",
-            "zh": "api/rest/market/spot/ticker.md"
-          }
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/market/spot/ticker.md",
             "zh": "api/rest/market/spot/ticker.md"
           }
         },
@@ -4671,13 +4377,6 @@
             "zh": "api/rest/market/spot/tickers.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/market/spot/tickers.md",
-            "zh": "api/rest/market/spot/tickers.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -4708,13 +4407,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/market/trades.md",
-            "zh": "api/rest/market/trades.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/market/trades.md",
@@ -4757,13 +4449,6 @@
             "zh": "predictionMarket/outcomes_rest_api.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "predictionMarket/outcomes_rest_api.md",
-            "zh": "predictionMarket/outcomes_rest_api.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -4794,13 +4479,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "predictionMarket/outcomes_rest_api.md",
-            "zh": "predictionMarket/outcomes_rest_api.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "predictionMarket/outcomes_rest_api.md",
@@ -4843,13 +4521,6 @@
             "zh": "predictionMarket/outcomes_rest_api.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "predictionMarket/outcomes_rest_api.md",
-            "zh": "predictionMarket/outcomes_rest_api.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -4880,13 +4551,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "predictionMarket/outcomes_rest_api.md",
-            "zh": "predictionMarket/outcomes_rest_api.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "predictionMarket/outcomes_rest_api.md",
@@ -4929,13 +4593,6 @@
             "zh": "predictionMarket/outcomes_rest_api.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "predictionMarket/outcomes_rest_api.md",
-            "zh": "predictionMarket/outcomes_rest_api.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -4966,13 +4623,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "predictionMarket/outcomes_rest_api.md",
-            "zh": "predictionMarket/outcomes_rest_api.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "predictionMarket/outcomes_rest_api.md",
@@ -5015,13 +4665,6 @@
             "zh": "predictionMarket/outcomes_rest_api.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "predictionMarket/outcomes_rest_api.md",
-            "zh": "predictionMarket/outcomes_rest_api.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -5052,13 +4695,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "predictionMarket/outcomes_rest_api.md",
-            "zh": "predictionMarket/outcomes_rest_api.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "predictionMarket/outcomes_rest_api.md",
@@ -5101,13 +4737,6 @@
             "zh": "predictionMarket/outcomes_rest_api.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "predictionMarket/outcomes_rest_api.md",
-            "zh": "predictionMarket/outcomes_rest_api.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -5138,13 +4767,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "predictionMarket/outcomes_rest_api.md",
-            "zh": "predictionMarket/outcomes_rest_api.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "predictionMarket/outcomes_rest_api.md",
@@ -5183,9 +4805,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -5214,9 +4833,6 @@
             "zh": "api/rest/public/unitConvert.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -5244,9 +4860,6 @@
             "en": "api/rest/public/deliveryExerciseHistory.md",
             "zh": "api/rest/public/deliveryExerciseHistory.md"
           }
-        },
-        "hongkong": {
-          "supported": false
         },
         "my": {
           "supported": true,
@@ -5279,9 +4892,6 @@
             "zh": "api/rest/public/discountRateFreeInterest.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -5305,13 +4915,6 @@
         },
         "us": {
           "supported": false
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/public/economicCalendar.md",
-            "zh": "api/rest/public/economicCalendar.md"
-          }
         },
         "my": {
           "supported": false
@@ -5345,9 +4948,6 @@
             "zh": "api/rest/public/estimatedPrice.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -5375,9 +4975,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -5400,9 +4997,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -5429,9 +5023,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -5456,9 +5047,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -5481,9 +5069,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -5517,9 +5102,6 @@
             "zh": "api/rest/public/fundingRateHistory.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -5550,9 +5132,6 @@
             "en": "api/rest/public/instrumentTickBands.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -5578,13 +5157,6 @@
           "supported": true,
           "doc": {
             "en": "api/rest/public/instruments.md",
-            "zh": "api/rest/public/spot/instruments.md"
-          }
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/public/spot/instruments.md",
             "zh": "api/rest/public/spot/instruments.md"
           }
         },
@@ -5624,9 +5196,6 @@
             "zh": "api/rest/public/insuranceFund.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -5658,9 +5227,6 @@
             "en": "api/rest/public/interestRateLoanQuota.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -5689,9 +5255,6 @@
             "zh": "api/rest/public/markPrice.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -5719,9 +5282,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -5744,9 +5304,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -5776,9 +5333,6 @@
             "en": "api/rest/public/openInterest.md",
             "zh": "api/rest/public/openInterest.md"
           }
-        },
-        "hongkong": {
-          "supported": false
         },
         "my": {
           "supported": true,
@@ -5810,9 +5364,6 @@
             "en": "api/rest/public/optSummary.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -5840,9 +5391,6 @@
             "en": "api/rest/public/optionTrades.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -5865,9 +5413,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -5902,9 +5447,6 @@
             "zh": "api/rest/public/premiumIndex.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -5932,9 +5474,6 @@
             "en": "api/rest/public/limitPrice.md",
             "zh": "api/rest/public/limitPrice.md"
           }
-        },
-        "hongkong": {
-          "supported": false
         },
         "my": {
           "supported": true,
@@ -5967,9 +5506,6 @@
             "zh": "api/rest/public/futureSettlementHistory.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -5992,13 +5528,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/public/time.md",
-            "zh": "api/rest/public/time.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/public/time.md",
@@ -6041,9 +5570,6 @@
             "zh": "api/rest/public/underlying.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -6071,9 +5597,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -6096,9 +5619,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -6125,9 +5645,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -6150,9 +5667,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -6179,9 +5693,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -6204,9 +5715,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -6233,9 +5741,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -6258,9 +5763,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -6287,9 +5789,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -6312,9 +5811,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -6341,9 +5837,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -6366,9 +5859,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -6395,9 +5885,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -6420,9 +5907,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -6449,9 +5933,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -6474,9 +5955,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -6503,9 +5981,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -6528,9 +6003,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -6557,9 +6029,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -6582,9 +6051,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -6611,9 +6077,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -6636,9 +6099,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -6665,9 +6125,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -6690,9 +6147,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -6719,9 +6173,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -6744,9 +6195,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -6773,9 +6221,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -6798,9 +6243,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -6827,9 +6269,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -6852,9 +6291,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -6884,9 +6320,6 @@
             "en": "api/rest/announcement/getAnnouncementTypes.md",
             "zh": "api/rest/announcement/getAnnouncementTypes.md"
           }
-        },
-        "hongkong": {
-          "supported": false
         },
         "my": {
           "supported": true,
@@ -6924,9 +6357,6 @@
             "zh": "api/rest/announcement/getAnnouncements.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -6957,13 +6387,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/status/status.md",
-            "zh": "api/rest/status/status.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/status/status.md",
@@ -7006,13 +6429,6 @@
             "zh": "api/rest/trade/accountRateLimit.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/accountRateLimit.md",
-            "zh": "api/rest/trade/accountRateLimit.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -7048,13 +6464,6 @@
             "en": "api/rest/trade/easyConvertList.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/easyConvertList.md",
-            "zh": "api/rest/trade/easyConvertList.md"
-          }
-        },
         "my": {
           "supported": false
         },
@@ -7084,13 +6493,6 @@
           "supported": true,
           "doc": {
             "en": "api/rest/trade/easyConvertHistory.md"
-          }
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/easyConvertHistory.md",
-            "zh": "api/rest/trade/easyConvertHistory.md"
           }
         },
         "my": {
@@ -7125,13 +6527,6 @@
             "zh": "api/rest/trade/spot/fills.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/spot/fills.md",
-            "zh": "api/rest/trade/spot/fills.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -7151,7 +6546,7 @@
     {
       "method": "GET",
       "path": "/api/v5/trade/fills-archive",
-      "name": "GET / Transaction details (in the past 2 years)",
+      "name": "GET / 获取成交明细（近两年）",
       "module": "trade",
       "sites": {
         "okex": {
@@ -7159,13 +6554,6 @@
         },
         "us": {
           "supported": false
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/getFillsHistoryArchive.md",
-            "zh": "api/rest/trade/getFillsHistoryArchive.md"
-          }
         },
         "my": {
           "supported": false
@@ -7195,13 +6583,6 @@
           "supported": true,
           "doc": {
             "en": "api/rest/trade/fillsHistory.md",
-            "zh": "api/rest/trade/spot/fillsHistory.md"
-          }
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/spot/fillsHistory.md",
             "zh": "api/rest/trade/spot/fillsHistory.md"
           }
         },
@@ -7240,9 +6621,6 @@
             "en": "api/rest/trade/oneClickRepayList.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -7269,9 +6647,6 @@
           "doc": {
             "en": "api/rest/trade/oneClickRepayListV2.md"
           }
-        },
-        "hongkong": {
-          "supported": false
         },
         "my": {
           "supported": true,
@@ -7304,9 +6679,6 @@
             "en": "api/rest/trade/oneClickRepayHistory.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -7333,9 +6705,6 @@
           "doc": {
             "en": "api/rest/trade/oneClickRepayHistoryV2.md"
           }
-        },
-        "hongkong": {
-          "supported": false
         },
         "my": {
           "supported": true,
@@ -7369,13 +6738,6 @@
             "zh": "api/rest/trade/spot/getOrder.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/spot/getOrder.md",
-            "zh": "api/rest/trade/spot/getOrder.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -7406,13 +6768,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/getOrderAlgo.md",
-            "zh": "api/rest/trade/getOrderAlgo.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/trade/getOrderAlgo.md",
@@ -7455,13 +6810,6 @@
             "zh": "api/rest/trade/spot/ordersAlgoHistory.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/spot/ordersAlgoHistory.md",
-            "zh": "api/rest/trade/spot/ordersAlgoHistory.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -7492,13 +6840,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/spot/ordersAlgoPending.md",
-            "zh": "api/rest/trade/spot/ordersAlgoPending.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/trade/spot/ordersAlgoPending.md",
@@ -7541,13 +6882,6 @@
             "zh": "api/rest/trade/spot/ordersHistory.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/spot/ordersHistory.md",
-            "zh": "api/rest/trade/spot/ordersHistory.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -7581,13 +6915,6 @@
           "supported": true,
           "doc": {
             "en": "api/rest/trade/ordersHistoryArchive.md",
-            "zh": "api/rest/trade/spot/ordersHistoryArchive.md"
-          }
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/spot/ordersHistoryArchive.md",
             "zh": "api/rest/trade/spot/ordersHistoryArchive.md"
           }
         },
@@ -7627,13 +6954,6 @@
             "zh": "api/rest/trade/spot/ordersPending.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/spot/ordersPending.md",
-            "zh": "api/rest/trade/spot/ordersPending.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -7666,9 +6986,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -7691,9 +7008,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -7720,9 +7034,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -7745,9 +7056,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -7774,9 +7082,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -7799,9 +7104,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -7828,9 +7130,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -7853,9 +7152,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -7882,9 +7178,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -7907,9 +7200,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -7936,9 +7226,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -7961,9 +7248,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -7990,9 +7274,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -8015,9 +7296,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -8044,9 +7322,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -8069,9 +7344,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -8098,9 +7370,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -8123,9 +7392,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -8152,9 +7418,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -8177,9 +7440,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -8206,9 +7466,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -8231,9 +7488,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -8260,9 +7514,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -8285,9 +7536,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -8314,9 +7562,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -8341,7 +7586,52 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/users/glp/historical-performance",
+      "name": "GET / Get GLP historical performance",
+      "module": "users",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/account/getGlpHistoricalPerformance.md",
+            "zh": "api/rest/account/getGlpHistoricalPerformance.md"
+          }
+        },
+        "us": {
+          "supported": false
+        },
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/users/glp/today-performance",
+      "name": "GET / Get GLP today performance",
+      "module": "users",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/account/getGlpTodayPerformance.md",
+            "zh": "api/rest/account/getGlpTodayPerformance.md"
+          }
+        },
+        "us": {
           "supported": false
         },
         "my": {
@@ -8362,9 +7652,6 @@
           "supported": false
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -8399,9 +7686,6 @@
             "zh": "api/rest/subAccount/getApikey.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -8432,13 +7716,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/subAccount/subAccountList.md",
-            "zh": "api/rest/subAccount/subAccountList.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/subAccount/subAccountList.md",
@@ -8477,9 +7754,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -8506,9 +7780,6 @@
           "doc": {
             "en": "api/rest/account/activateOption.md"
           }
-        },
-        "hongkong": {
-          "supported": false
         },
         "my": {
           "supported": false
@@ -8537,9 +7808,6 @@
             "en": "api/rest/account/billSince2021.md",
             "zh": "api/rest/account/billSince2021.md"
           }
-        },
-        "hongkong": {
-          "supported": false
         },
         "my": {
           "supported": true,
@@ -8572,9 +7840,6 @@
             "en": "api/rest/account/demoAdjustBalance.md",
             "zh": "api/rest/account/demoAdjustBalance.md"
           }
-        },
-        "hongkong": {
-          "supported": false
         },
         "my": {
           "supported": true,
@@ -8611,9 +7876,6 @@
             "en": "api/rest/account/mmpConfig.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -8641,9 +7903,6 @@
             "en": "api/rest/account/resetMmp.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -8666,9 +7925,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -8695,9 +7951,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -8720,9 +7973,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -8753,9 +8003,6 @@
             "zh": "api/rest/account/marginBalance.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -8783,9 +8030,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -8808,9 +8052,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -8837,9 +8078,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -8862,9 +8100,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -8898,9 +8133,6 @@
             "en": "api/rest/account/setCollateralAssets.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -8923,9 +8155,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -8955,9 +8184,6 @@
             "en": "api/rest/account/setGreeks.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -8982,9 +8208,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -9007,9 +8230,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -9044,9 +8264,6 @@
             "zh": "api/rest/account/posMode.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -9074,9 +8291,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -9099,9 +8313,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -9128,9 +8339,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -9153,9 +8361,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -9184,13 +8389,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/fundings/cancelWithdrawal.md",
-            "zh": "api/rest/fundings/cancelWithdrawal.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/fundings/cancelWithdrawal.md",
@@ -9233,13 +8431,6 @@
             "zh": "api/rest/convert/quote.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/convert/quote.md",
-            "zh": "api/rest/convert/quote.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -9270,13 +8461,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/convert/trade.md",
-            "zh": "api/rest/convert/trade.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/convert/trade.md",
@@ -9319,13 +8503,6 @@
             "zh": "api/rest/fundings/monthlyStatement.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/fundings/monthlyStatement.md",
-            "zh": "api/rest/fundings/monthlyStatement.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -9356,13 +8533,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/subAccount/transfer.md",
-            "zh": "api/rest/subAccount/transfer.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/subAccount/transfer.md",
@@ -9405,13 +8575,6 @@
             "zh": "api/rest/fundings/transfer.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/fundings/transfer.md",
-            "zh": "api/rest/fundings/transfer.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -9438,9 +8601,6 @@
           "supported": false
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -9475,13 +8635,6 @@
             "zh": "api/rest/fundings/withdrawal.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/fundings/withdrawal.md",
-            "zh": "api/rest/fundings/withdrawal.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -9495,33 +8648,6 @@
             "en": "api/rest/fundings/withdrawal.md",
             "zh": "api/rest/fundings/withdrawal.md"
           }
-        }
-      }
-    },
-    {
-      "method": "POST",
-      "path": "/api/v5/asset/withdrawal-lightning",
-      "name": "Lightning withdrawals",
-      "module": "asset",
-      "sites": {
-        "okex": {
-          "supported": false
-        },
-        "us": {
-          "supported": false
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/fundings/withdrawalLightning.md",
-            "zh": "api/rest/fundings/withdrawalLightning.md"
-          }
-        },
-        "my": {
-          "supported": false
-        },
-        "turkey": {
-          "supported": false
         }
       }
     },
@@ -9539,9 +8665,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -9568,9 +8691,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -9593,9 +8713,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -9622,9 +8739,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -9647,9 +8761,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -9676,9 +8787,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -9703,9 +8811,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -9728,9 +8833,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -9758,9 +8860,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -9791,9 +8890,6 @@
           "doc": {
             "en": "api/rest/fundings/cancelWithdrawalOrder.md"
           }
-        },
-        "hongkong": {
-          "supported": false
         },
         "my": {
           "supported": true,
@@ -9827,9 +8923,6 @@
             "en": "api/rest/fundings/createWithdrawalOrder.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -9860,7 +8953,28 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v5/finance/flexible-loan/borrow",
+      "name": "POST / Borrow",
+      "module": "finance",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/flexibleLoan/borrow.md",
+            "zh": "api/rest/flexibleLoan/borrow.md"
+          }
+        },
+        "us": {
           "supported": false
         },
         "my": {
@@ -9887,7 +9001,28 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v5/finance/flexible-loan/repay",
+      "name": "POST / Repay",
+      "module": "finance",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/flexibleLoan/repay.md",
+            "zh": "api/rest/flexibleLoan/repay.md"
+          }
+        },
+        "us": {
           "supported": false
         },
         "my": {
@@ -9914,9 +9049,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -9941,9 +9073,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -9966,9 +9095,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -9999,9 +9125,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -10030,9 +9153,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -10055,9 +9175,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -10084,9 +9201,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -10111,9 +9225,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -10136,9 +9247,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -10169,9 +9277,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -10194,9 +9299,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -10223,9 +9325,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -10248,9 +9347,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -10281,9 +9377,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -10312,9 +9405,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -10339,9 +9429,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -10364,13 +9451,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "predictionMarket/outcomes_rest_api.md",
-            "zh": "predictionMarket/outcomes_rest_api.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "predictionMarket/outcomes_rest_api.md",
@@ -10413,13 +9493,6 @@
             "zh": "predictionMarket/outcomes_rest_api.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "predictionMarket/outcomes_rest_api.md",
-            "zh": "predictionMarket/outcomes_rest_api.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -10450,13 +9523,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "predictionMarket/outcomes_rest_api.md",
-            "zh": "predictionMarket/outcomes_rest_api.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "predictionMarket/outcomes_rest_api.md",
@@ -10499,13 +9565,6 @@
             "zh": "predictionMarket/outcomes_rest_api.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "predictionMarket/outcomes_rest_api.md",
-            "zh": "predictionMarket/outcomes_rest_api.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -10536,13 +9595,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "predictionMarket/outcomes_rest_api.md",
-            "zh": "predictionMarket/outcomes_rest_api.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "predictionMarket/outcomes_rest_api.md",
@@ -10585,13 +9637,6 @@
             "zh": "predictionMarket/outcomes_rest_api.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "predictionMarket/outcomes_rest_api.md",
-            "zh": "predictionMarket/outcomes_rest_api.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -10622,13 +9667,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "predictionMarket/outcomes_rest_api.md",
-            "zh": "predictionMarket/outcomes_rest_api.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "predictionMarket/outcomes_rest_api.md",
@@ -10667,9 +9705,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -10692,9 +9727,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -10721,9 +9753,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -10746,9 +9775,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -10775,9 +9801,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -10800,9 +9823,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -10829,9 +9849,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -10854,9 +9871,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -10883,9 +9897,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -10908,9 +9919,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -10937,9 +9945,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -10962,9 +9967,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -10991,9 +9993,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -11016,9 +10015,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -11045,9 +10041,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -11070,9 +10063,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -11099,9 +10089,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -11124,9 +10111,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -11156,9 +10140,6 @@
             "en": "api/rest/trade/amendAlgos.md",
             "zh": "api/rest/trade/amendAlgos.md"
           }
-        },
-        "hongkong": {
-          "supported": false
         },
         "my": {
           "supported": true,
@@ -11193,13 +10174,6 @@
           "supported": true,
           "doc": {
             "en": "api/rest/trade/amendBatchOrders.md",
-            "zh": "api/rest/trade/spot/amendBatchOrders.md"
-          }
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/spot/amendBatchOrders.md",
             "zh": "api/rest/trade/spot/amendBatchOrders.md"
           }
         },
@@ -11239,13 +10213,6 @@
             "zh": "api/rest/trade/spot/amendOrder.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/spot/amendOrder.md",
-            "zh": "api/rest/trade/spot/amendOrder.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -11282,13 +10249,6 @@
             "zh": "api/rest/trade/spot/batchOrders.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/spot/batchOrders.md",
-            "zh": "api/rest/trade/spot/batchOrders.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -11319,13 +10279,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/spot/cancelAlgos.md",
-            "zh": "api/rest/trade/spot/cancelAlgos.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/trade/spot/cancelAlgos.md",
@@ -11368,13 +10321,6 @@
             "zh": "api/rest/trade/cancelAllAfter.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/cancelAllAfter.md",
-            "zh": "api/rest/trade/cancelAllAfter.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -11408,13 +10354,6 @@
           "supported": true,
           "doc": {
             "en": "api/rest/trade/cancelBatchOrders.md",
-            "zh": "api/rest/trade/spot/cancelBatchOrders.md"
-          }
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/spot/cancelBatchOrders.md",
             "zh": "api/rest/trade/spot/cancelBatchOrders.md"
           }
         },
@@ -11454,13 +10393,6 @@
             "zh": "api/rest/trade/spot/cancelOrder.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/spot/cancelOrder.md",
-            "zh": "api/rest/trade/spot/cancelOrder.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -11493,9 +10425,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -11526,13 +10455,6 @@
             "en": "api/rest/trade/easyConvertOrder.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/easyConvertOrder.md",
-            "zh": "api/rest/trade/easyConvertOrder.md"
-          }
-        },
         "my": {
           "supported": false
         },
@@ -11548,7 +10470,7 @@
     {
       "method": "POST",
       "path": "/api/v5/trade/fills-archive",
-      "name": "POST / Transaction details (in the past 2 years)",
+      "name": "POST / 申请成交明细（近两年）",
       "module": "trade",
       "sites": {
         "okex": {
@@ -11556,13 +10478,6 @@
         },
         "us": {
           "supported": false
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/fillsHistoryArchive.md",
-            "zh": "api/rest/trade/fillsHistoryArchive.md"
-          }
         },
         "my": {
           "supported": false
@@ -11594,9 +10509,6 @@
             "en": "api/rest/trade/massCancel.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -11624,9 +10536,6 @@
             "en": "api/rest/trade/oneClickRepayOrder.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -11653,9 +10562,6 @@
           "doc": {
             "en": "api/rest/trade/oneClickRepayOrderV2.md"
           }
-        },
-        "hongkong": {
-          "supported": false
         },
         "my": {
           "supported": true,
@@ -11686,13 +10592,6 @@
           "supported": true,
           "doc": {
             "en": "api/rest/trade/placeOrder.md",
-            "zh": "api/rest/trade/spot/placeOrder.md"
-          }
-        },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/spot/placeOrder.md",
             "zh": "api/rest/trade/spot/placeOrder.md"
           }
         },
@@ -11732,13 +10631,6 @@
             "zh": "api/rest/trade/spot/orderAlgo.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/trade/spot/orderAlgo.md",
-            "zh": "api/rest/trade/spot/orderAlgo.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -11771,9 +10663,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -11796,9 +10685,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -11825,9 +10711,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -11850,9 +10733,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -11879,9 +10759,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -11904,9 +10781,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -11933,9 +10807,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -11958,9 +10829,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -11987,9 +10855,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -12012,9 +10877,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -12041,9 +10903,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -12066,9 +10925,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -12095,9 +10951,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -12120,9 +10973,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -12149,9 +10999,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -12174,9 +11021,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -12203,9 +11047,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -12228,9 +11069,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -12257,9 +11095,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -12282,9 +11117,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -12311,9 +11143,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -12336,9 +11165,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -12365,9 +11191,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -12390,9 +11213,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -12419,9 +11239,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -12444,9 +11261,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -12473,9 +11287,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -12498,9 +11309,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -12527,9 +11335,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -12552,9 +11357,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -12581,9 +11383,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -12606,9 +11405,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -12635,9 +11431,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -12660,9 +11453,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -12689,9 +11479,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -12714,9 +11501,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -12743,9 +11527,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -12768,9 +11549,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -12797,9 +11575,6 @@
         "us": {
           "supported": false
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": false
         },
@@ -12822,9 +11597,6 @@
           }
         },
         "us": {
-          "supported": false
-        },
-        "hongkong": {
           "supported": false
         },
         "my": {
@@ -12854,9 +11626,6 @@
             "en": "api/rest/subAccount/placeApikey.md",
             "zh": "api/rest/subAccount/placeApikey.md"
           }
-        },
-        "hongkong": {
-          "supported": false
         },
         "my": {
           "supported": true,
@@ -12894,9 +11663,6 @@
             "zh": "api/rest/subAccount/createSubAccount.md"
           }
         },
-        "hongkong": {
-          "supported": false
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -12932,9 +11698,6 @@
             "en": "api/rest/subAccount/deleteApikey.md",
             "zh": "api/rest/subAccount/deleteApikey.md"
           }
-        },
-        "hongkong": {
-          "supported": false
         },
         "my": {
           "supported": true,
@@ -12972,13 +11735,6 @@
             "zh": "api/rest/subAccount/modifyApikey.md"
           }
         },
-        "hongkong": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/subAccount/modifyApikey.md",
-            "zh": "api/rest/subAccount/modifyApikey.md"
-          }
-        },
         "my": {
           "supported": true,
           "doc": {
@@ -13009,13 +11765,6 @@
           }
         },
         "us": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/subAccount/setTransferOut.md",
-            "zh": "api/rest/subAccount/setTransferOut.md"
-          }
-        },
-        "hongkong": {
           "supported": true,
           "doc": {
             "en": "api/rest/subAccount/setTransferOut.md",

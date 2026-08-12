@@ -33,8 +33,8 @@ docs/<site>/<lang>/...md         # one self-contained Markdown file per endpoint
 skills/okx-v5-api/               # pure-Markdown skill (SKILL.md only)
 ```
 
-- **Sites**: `okex` (Global), `us`, `hongkong` (uses the global domain), `my`
-  (EEA), `turkey`. Each site's docs are **flattened and self-contained** — the
+- **Sites**: `okex` (Global), `us`, `my` (EEA), `turkey` (Hong Kong is **not**
+  covered). Each site's docs are **flattened and self-contained** — the
   domain and the set of supported endpoints already reflect that site. Do not
   assume the Global site's endpoints or domain apply elsewhere.
 - **Languages**: `en` and `zh`.

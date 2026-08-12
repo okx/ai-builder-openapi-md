@@ -57,6 +57,8 @@ print(result)
 | collateralAmt | String           | 是    | 抵押物数量                                 |
 | ordId       | String           | 否    | 活期借币订单 ID。<br>如果不传 `ordId`，系统将默认对起始时间最早的现存订单进行操作。<br>如果没有现存订单，系统将返回错误 `51063` |
 
+对于 E-Mode 订单，`add` 请求的抵押币种必须与订单记录的 E-Mode 配对抵押币种一致；否则将返回错误码 `51785`。
+
 > 返回结果
 
 ```json

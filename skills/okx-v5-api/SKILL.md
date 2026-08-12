@@ -3,12 +3,12 @@ name: okx-v5-api
 description: >-
   Look up OKX V5 REST/WS API definitions — an index/retriever over the official
   OpenAPI docs. Resolves which endpoints exist on which site (okex/Global, us,
-  hongkong, my, turkey), the correct base URL (rest/ws domain) per site, whether
+  my, turkey), the correct base URL (rest/ws domain) per site, whether
   a given endpoint is supported there, and the per-endpoint params/response/rate
   limits. Use this whenever you need an OKX API's definition — e.g. while writing
   or reviewing code that calls the OKX API and you need to confirm an endpoint's
   path, availability, domain, or parameters — especially for a non-global site
-  (US, Hong Kong, EEA, Turkey; the EEA site id is `my`, meaning EEA, NOT
+  (US, EEA, Turkey; the EEA site id is `my`, meaning EEA, NOT
   Malaysia), where base URL and endpoint availability differ from OKX Global.
   Its result is the API's documented definition — finding and reading the docs;
   making the call or writing the code around it stays with the caller. Reads
@@ -16,11 +16,11 @@ description: >-
 license: MIT
 metadata:
   author: okx
-  version: "0.1.0"
+  version: "0.1.1"
   homepage: "https://www.okx.com"
   expected_data_major: 0
----
 
+---
 # OKX V5 API endpoint lookup
 
 A **router** over the OKX V5 API docs. It reads a **docs repo you set up once**
@@ -33,7 +33,7 @@ Everything is **local** once the repo is cloned — no network at query time. Th
 skill installed by `npx skill add` is just this `SKILL.md`; all data comes from
 the docs repo, so **the repo must be set up before any use — routing included.**
 
-Sites: `okex` (Global), `us`, `hongkong`, `my` (**EEA**, not Malaysia),
+Sites: `okex` (Global), `us`, `my` (**EEA**, not Malaysia),
 `turkey`. Langs: `en`, `zh`.
 
 ## When to use
@@ -43,7 +43,7 @@ Sites: `okex` (Global), `us`, `hongkong`, `my` (**EEA**, not Malaysia),
 - You are **writing** or **reviewing** code that calls the OKX API and need to
   confirm an endpoint's path, availability, domain, or parameters — look it up
   here instead of relying on memory.
-- Especially when the target site is **not** OKX Global — `us`, `hongkong`,
+- Especially when the target site is **not** OKX Global — `us`,
   `my` (EEA), `turkey` each have their own REST/WS domains and their own set of
   supported endpoints. Never assume Global's URLs or coverage apply.
 
@@ -119,7 +119,7 @@ slices below, in order:
    `rest` and `ws` base URLs there — always read the file, never rely on a
    remembered domain. Domains are site-specific (the values here are
    **illustrative only**; `sites.json` is the source of truth): `us`→`us.okx.com`,
-   `my`/EEA→`eea.okx.com`, `turkey`→`tr.okx.com`, `okex`/`hongkong`→`www.okx.com`.
+   `my`/EEA→`eea.okx.com`, `turkey`→`tr.okx.com`, `okex`→`www.okx.com`.
    Portfolio-margin/broker endpoints use `rest_pap` / `ws_pap` where present.
 2. **Find the endpoint — `<docs_path>/index/<module>.md`.** The module is the
    **2nd path segment**: `/api/v5/<module>/...` (e.g. `/api/v5/trade/order` →

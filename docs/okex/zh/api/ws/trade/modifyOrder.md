@@ -56,6 +56,8 @@ type: guide
 | > newPxUsd  | String | 可选 | 以USD价格进行期权改单 <br>仅适用于期权，期权改单时，newPx/newPxUsd/newPxVol 只能填一个                               |
 | > newPxVol  | String | 可选 | 以隐含波动率进行期权改单，例如 1 代表 100% <br>仅适用于期权，期权改单时，newPx/newPxUsd/newPxVol 只能填一个                  |
 | > pxAmendType  | String  | 否       | 订单价格修正类型<br>`0`：当`newPx`超出价格限制时，不允许系统修改订单价格<br>`1`：当`newPx`超出价格限制时，允许系统将价格修改为限制范围内的最优值<br>默认值为`0`         |
+| > rpiTakerAccess | Boolean | 否 | 默认值为 `false`。<br>设为 `true` 时，改单后的订单可使用 RPI 流动性，适用于 `limit`、`market`、`fok`、`ioc` 订单。<br>改单时不会从原始订单继承，必须每次显式指定（省略则该次改单视为 `false`）。 |
+| > rpiPxRound | Boolean | 否 | 默认值为 `false`。仅对 RPI 做市商订单（`ordType: rpi`）生效。设为 `true` 时，违反间距规则的价格将自动向外取整至最近的合规价位，而非被拒绝。对非 RPI 订单及 `OPTION`/`EVENTS` 无效。 |
 | expTime | String | 否     | 请求有效截止时间。Unix时间戳的毫秒数格式，如 `1597026383085`                                                  |
 
 > 成功返回示例

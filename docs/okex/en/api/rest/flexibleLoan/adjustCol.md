@@ -57,6 +57,8 @@ print(result)
 | collateralAmt | String    | Yes          | Collateral amount                                                      |
 | ordId       | String    | No           | Order ID of your flexible loan.<br>If `ordId` is not passed, system will assume it is acting against the existing order with the earliest order start time.<br>If there are no existing orders, system will return error `51063` |
 
+For an E-Mode order, an `add` request must use the collateral currency recorded for that order's E-Mode pair. Otherwise, the system returns error `51785`.
+
 > Response Example
 
 ```json

@@ -591,17 +591,17 @@ There is a sub-code format used to further distinguish different scenarios withi
 |   54035           |   200                 | Order failed. The platform has reached the collateral limit for this crypto, so you can only place reduce-only orders.                                    | 
 |   54036           |   200                 | You can't place fill or kill orders when self-trade prevention is set to both maker and taker orders.                                     | 
 |   54036           |   200                 | You can't place fill or kill orders when self-trade prevention is set to both maker and taker orders.                                     | 
-| 54039  |   200                | ELP orders can't be reduce-only orders. |
-| 54040  |   200                  | ELP orders can't be used with TP/SL settings. |
-| 54041  |   200                 | ELP orders aren't supported for {param0}. |
-| 54042  |   200                 | You don't have permission to place ELP orders for {param0}. |
-| 54043  |   200                | You can only place up to {param1} ELP orders for {param0}. Cancel some of your orders and try again. |
-| 54044 | 200 | ELP is not enabled for {param0}. You can’t place orders that take ELP liquidity of it. |
-| 54045 | 200 | OpenAPI users can only place IOC orders that take ELP liquidity. |
-| 54046 | 200 | You can’t place orders to take ELP liquidity. |
+| 54039  |   200                | RPI orders can’t be reduce-only orders. |
+| 54040  |   200                  | RPI orders can’t be used with TP/SL settings. |
+| 54041  |   200                 | RPI orders aren’t supported for {param0}. |
+| 54042  |   200                 | You don’t have permission to place RPI orders for {param0}. |
+| 54043  |   200                | You can only place up to {param1} RPI orders for {param0}. Cancel some of your orders and try again. |
+| 54044 | 200 | RPI is not enabled for {param0}. You can’t place orders that take RPI liquidity of it. |
+| 54045 | 200 | OpenAPI users can only place IOC orders that take ELP liquidity. (Deprecated) |
+| 54046 | 200 | You can’t place orders to take RPI liquidity. |
 | 54047 | 200 | You can’t amend this order because an order with the same order ID or client order ID is in speed bump. |
 | 54048 | 200 | You can’t cancel the order because an order with the same order ID or client order ID is in speed bump. |
-| 54049 | 200 | API users can’t place orders that take ELP liquidity now because system is busy. To proceed, set isElpTakerAccess:false. |
+| 54049 | 200 | API users can’t place orders that take RPI liquidity now because system is busy. To proceed, set rpiTakerAccess:false. |
 |   54070 | 200 | The current function is not supported. Please update to the latest app version if using the app, or use the attachAlgoOrds array to place orders via Open API. |
 |   54071 | 200 | Due to the platform system upgrade, this order no longer supports modifications. It is recommended to cancel and place a new order. |
 |   54072	         | 	200	                | This contract is currently view-only and not tradable. |

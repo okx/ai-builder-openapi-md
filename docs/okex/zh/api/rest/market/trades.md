@@ -86,7 +86,7 @@ print(result)
 | px         | String   | 成交价格                                              |
 | sz         | String   | 成交数量<br>对于币币交易，成交数量的单位为交易货币<br/>对于交割、永续以及期权，单位为张。 |
 | side       | String   | 吃单方向<br>`buy`：买<br>`sell`：卖                       |
-| source | String | 订单来源<br> `0`：普通订单<br> `1`：流动性增强计划订单 |
+| source | String | 订单来源<br> `0`：普通订单<br> `1`：RPI 订单 |
 | ts         | String   | 成交时间，Unix时间戳的毫秒数格式， 如`1597026383085`              |
 
 <aside class="notice">

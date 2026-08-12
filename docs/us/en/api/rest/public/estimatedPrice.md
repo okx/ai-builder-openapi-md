@@ -12,7 +12,7 @@ supported: true
 
 ### Get estimated delivery/exercise price
 
-Retrieve the estimated delivery price which will only have a return value one hour before the delivery/exercise.
+Retrieve the estimated delivery price which will only have a return value 30 minutes before the delivery/exercise.
 
 #### Rate Limit: 10 requests per 2 seconds
 #### Rate limit rule: IP + Instrument ID

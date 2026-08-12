@@ -90,6 +90,8 @@ print(result)
 | > newCallbackRatio    | String | Conditional | New callback ratio, e.g. `0.05` represents 5%.<br>Either `newCallbackRatio` or `newCallbackSpread` can be passed. Only one can be passed.<br>Only applicable when `ordType` = `move_order_stop` |
 | > newCallbackSpread   | String | Conditional | New callback spread (price distance).<br>Either `newCallbackRatio` or `newCallbackSpread` can be passed. Only one can be passed.<br>Only applicable when `ordType` = `move_order_stop` |
 | > newActivePx         | String | No          | New activation price.<br>Only applicable when `ordType` = `move_order_stop` |
+| rpiTakerAccess | Boolean | No | Default `false`.<br>When `true`, the amended order can access RPI liquidity, for `limit`, `market`, `fok`, and `ioc` orders.<br>Not inherited from the original order — must be re-specified on each amend request (omitted = `false` for that amend). |
+| rpiPxRound | Boolean | No | Default `false`. Effective only on RPI maker orders (`ordType: rpi`). When `true`, a price that violates the RPI maker spacing rule is auto-rounded outward to the nearest placeable, non-crossing level instead of being rejected. Silently ignored on non-RPI orders and on `OPTION`/`EVENTS`. |
 
 > Response Example
 
