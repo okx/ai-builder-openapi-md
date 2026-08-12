@@ -67,6 +67,7 @@ print(result)
             "ctValCcy": "",
             "contTdSwTime": "1704876947000",
             "elp": "0",
+            "rpi": "0",
             "expTime": "",
             "futureSettlement": false,
             "groupId": "4",
@@ -144,13 +145,14 @@ print(result)
 | preMktSwTime | String	 | 盘前交易产品切换为正常交易的时间，Unix时间戳的毫秒数格式，如 `1597026383085`<br>仅适用于盘前`SWAP` 与盘前 X-Perp `FUTURES`。当盘前 X-Perp 转换为正常 X-Perp 时填充 |
 | openType | String | 开盘类型<br>`fix_price`: 定价开盘<br>`pre_quote`: 提前挂单<br>`call_auction`: 集合竞价 <br>只适用于`SPOT`/`MARGIN`，其他业务线返回"" |
 | elp | String | ELP 下单权限<br>`0`：该币对不支持 ELP<br>`1`：该币对支持 ELP 但用户没有权限为其下 ELP 订单<br>`2`：该币对支持 ELP 且用户有权限为其下 ELP 订单<br><br>`1/2`不代表深度中一定有 ELP 挂单 |
+| rpi | String | RPI 做市商权限。<br>`0`：该产品未开通 RPI<br>`1`：该产品已开通 RPI，但当前用户无权下 RPI 订单<br>`2`：已开通且有权限<br>`1`/`2` 不代表当前存在 RPI 流动性。<br>`elp` 在 2026年10月31日前作为别名继续被接受。 |
 | expTime          | String | 产品下线时间<br>适用于`币币/杠杆/交割/永续/期权`，对于 `交割/期权`，为交割/行权日期；亦可以为产品下线时间，有变动就会推送。                                     |
 | lever            | String | 该`instId`支持的最大杠杆倍数，不适用于`币币`、`期权`                                                                          |
 | tickSz           | String | 下单价格精度，如 `0.0001`。<br>对于 `OPTION`/`EVENTS`，该值为 tick band 中的最小 tickSz。如需获取各价格区间的精确 tickSz，请使用"获取期权价格梯度"接口并传入对应的 `instType` 参数。                                    |
 | lotSz            | String | 下单数量精度<br>合约的数量单位是`张`，现货的数量单位是`交易货币`                                                                      |
 | minSz            | String | 最小下单数量<br>合约的数量单位是`张`，现货的数量单位是`交易货币`                                                                      |
 | ctType           | String | 合约类型<br>`linear`：正向合约<br>`inverse`：反向合约<br>仅适用于`交割/永续`                                                    |
-| state            | String | 产品状态<br>`live`：交易中 <br>`suspend`：暂停中<br>`rebase`：合约在变基中，不可交易，仅适用于`SWAP`<br>`post_only`：仅接受 post-only 订单；已有 post-only 订单可改单和撤单。其他订单类型（市价单、IOC、FOK、普通限价单）将被拒绝。仅适用于 `SWAP`<br>`preopen`：预上线，交割和期权合约轮转生成到开始交易；部分交易产品上线前<br>`test`：测试中（测试产品，不可交易）<br>`settling`：结算中，仅适用于 `EVENTS` |
+| state            | String | 产品状态<br>`live`：交易中 <br>`suspend`：暂停中<br>`rebase`：合约在变基中，不可交易<br>`post_only`：仅接受 post-only 订单；已有 post-only 订单可改单和撤单。其他订单类型（市价单、IOC、FOK、普通限价单）将被拒绝。<br>`preopen`：预上线，交割和期权合约轮转生成到开始交易；部分交易产品上线前<br>`test`：测试中（测试产品，不可交易）<br>`settling`：结算中，仅适用于 `EVENTS` |
 | ruleType         | String | 交易规则类型<br>`normal`：普通交易<br>`pre_market`：盘前交易，含盘前 X-Perp `FUTURES`<br>`rebase_contract`：盘前变基合约<br>`xperp`：永续合约风格的交割合约，仅适用于部分 `FUTURES` 合约。盘前 X-Perp 转换为正常 X-Perp 后，由 `pre_market` 变为 `xperp` |
 | posLmtAmt        | String | 单一用户（母子账户共享）层面的该产品最大持仓名义价值（USD），按同方向已持仓与挂单的美元名义价值计算。单用户有效上限为 max(posLmtAmt, oiUSD × posLmtPct)。适用于 `SWAP`/`FUTURES`。 |
 | posLmtPct        | String | 单一用户（母子账户共享）相对于平台当前总持仓名义价值可持有的最大比例（如 30 表示 30%）。单用户有效上限为 max(posLmtAmt, oiUSD × posLmtPct)。适用于 `SWAP`/`FUTURES`。           |

@@ -16,7 +16,6 @@ Retrieve the current day and month-to-date (MTD) GLP performance snapshot for th
 
 #### Rate Limit: 5 requests per 2 seconds
 #### Rate limit rule: User ID
-#### Permission: Read
 
 #### HTTP Request
 

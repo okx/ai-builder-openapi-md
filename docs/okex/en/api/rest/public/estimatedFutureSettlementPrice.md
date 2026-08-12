@@ -12,7 +12,7 @@ supported: true
 
 ### Get estimated future settlement price
 
-Retrieve the estimated settlement price which will only have a return value one hour before the settlement.
+Retrieve the estimated settlement price which will only have a return value 30 minutes before the settlement.
 
 #### Rate Limit: 10 requests per 2 seconds
 #### Rate limit rule: IP + Instrument ID

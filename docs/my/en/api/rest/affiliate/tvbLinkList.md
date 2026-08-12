@@ -1,0 +1,102 @@
+---
+site: my
+lang: en
+name: Get TVB link list
+method: GET
+path: /api/v5/affiliate/tvb/link/list
+module: affiliate
+rest: https://eea.okx.com
+ws: wss://wseea.okx.com:8443
+supported: true
+---
+
+### Get TVB link list
+
+List an affiliate's TVB (Trading Volume Bonus) invite links, each row carrying that link's TVB performance — valid invitees, valid and eligible traders, valid and eligible trading volume and accrued bonus. Paginated. All amounts are in `USDC`.
+
+#### Rate Limit: 3 requests per second
+#### Rate limit rule: User ID
+#### HTTP Request
+
+`GET /api/v5/affiliate/tvb/link/list`
+
+> Request Example
+
+```shell
+GET /api/v5/affiliate/tvb/link/list?linkType=standard
+```
+
+#### Request Parameters
+
+| **Parameter** | **Type** | **Required** | **Description** |
+| :------------ | :------- | :----------- | :-------------- |
+| periodType    | String   | No           | Stats window for the metric fields.<br>`last_7d`<br>`last_30d`<br>`this_month`<br>`last_month`<br>`this_week`<br>`today`<br>`total`<br>`custom`: pass `begin` and `end` to define a custom window.<br>The default is `total`. |
+| begin         | String   | Conditional  | Custom stats-window start, Unix timestamp in millisecond format. Required when `periodType=custom`, together with `end`. Inclusive. Used for a custom window — `periodType=custom`, or `periodType` omitted with both `begin` and `end` supplied. |
+| end           | String   | Conditional  | Custom stats-window end, Unix timestamp in millisecond format. Required when `periodType=custom`, together with `begin`. Inclusive. Used for a custom window — `periodType=custom`, or `periodType` omitted with both `begin` and `end` supplied. |
+| page          | String   | No           | 1-indexed page number. Non-numeric values fall back to `1`. The default is `1`. |
+| limit         | String   | No           | Items per page. Clamped to `[1, 100]`. The default is `100`. |
+| linkType      | String   | No           | Link kind filter.<br>`standard`: standard invite link<br>`co_inviter`: co-inviter link<br>Omit to return all types. |
+| linkStatus    | String   | No           | Link status.<br>`normal`<br>`abnormal` |
+
+When `periodType=custom`, supply both `begin` and `end`. Supplying only one returns `50014`.<br>
+For all other `periodType` values, server-defined windows are used and any `begin` / `end` passed alongside are ignored.<br>
+When `periodType` is omitted, the window falls back to `custom` if both `begin` and `end` are present, otherwise `total`.<br>
+A custom window (`end − begin`) must be between 1 and 90 days; `begin` must not be earlier than 180 days ago. Otherwise `50076`.
+
+> Response Example
+
+```json
+{
+    "code": "0",
+    "msg": "",
+    "totalPage": "3",
+    "data": [
+        {
+            "channelId": "245012001",
+            "channelName": "Summer Campaign",
+            "linkStatus": "normal",
+            "joinLink": "https://www.okx.com/join/245012001",
+            "note": "IG bio link",
+            "validInviteeCnt": "58",
+            "validTraderCnt": "24",
+            "eligibleTraderCnt": "21",
+            "validVol": "96500.00",
+            "eligibleVol": "84200.00",
+            "tradingVolBonus": "12.63",
+            "cTime": "1782129625000"
+        },
+        {
+            "channelId": "245012002",
+            "channelName": "Telegram Group",
+            "linkStatus": "abnormal",
+            "joinLink": "https://www.okx.com/join/245012002",
+            "note": "",
+            "validInviteeCnt": "0",
+            "validTraderCnt": "0",
+            "eligibleTraderCnt": "0",
+            "validVol": "0",
+            "eligibleVol": "0",
+            "tradingVolBonus": "0",
+            "cTime": "1779537625000"
+        }
+    ]
+}
+```
+
+#### Response Parameters
+
+| **Parameter**     | **Type** | **Description** |
+| :---------------- | :------- | :-------------- |
+| totalPage         | String   | Total number of pages under the current filters and `limit`. Same level as `data` in the response. |
+| channelId         | String   | The link's channel ID. |
+| channelName       | String   | Link display name. |
+| linkStatus        | String   | Link status.<br>`normal`<br>`abnormal` |
+| joinLink          | String   | The shareable invite URL for this link. |
+| note              | String   | User-defined note/remark on the link. Returns `""` when none. |
+| validInviteeCnt   | String   | Distinct valid invitees attributed to this link. `0` when none. |
+| validTraderCnt    | String   | Distinct valid traders on this link. `0` when none. |
+| eligibleTraderCnt | String   | Distinct eligible traders — the bonus-generating subset of valid traders. `0` when none. |
+| validVol          | String   | Valid trading volume on this link, unit in `USDC`. `0` when none. |
+| eligibleVol       | String   | Eligible trading volume — the subset of valid volume that generates the bonus (bonus base), unit in `USDC`. `0` when none. |
+| tradingVolBonus   | String   | Accrued TVB bonus from this link, unit in `USDC`. `0` when none. |
+| cTime             | String   | Link creation time, Unix timestamp in millisecond format. Returns `""` when unavailable. |

@@ -41,9 +41,14 @@ GET /api/v5/affiliate/invitee/list?page=1&kycStatus=verified
 | orderDir            | String   | No           | Sort direction.<br>`asc`<br>`desc`<br>The default is `desc`. |
 | kycStatus           | String   | No           | KYC status.<br>`unverified`<br>`verified` (passed at least KYC2) |
 | subAffiliateUid     | String   | No           | Filter invitees under a specific sub-affiliate (external UID). |
+| uid                 | String   | No           | External user UIDs for exact match — the same UID returned as `uid` in the response. Single UID or up to 100 UIDs, comma-separated, e.g. `835449167911924693,835449167911924700`. Unknown UIDs are silently skipped; if none resolve, an empty page is returned (never the full list). |
+| joinTimeBegin       | String   | Conditional  | Filter lower bound on `joinTime` (the relationship-established time), Unix timestamp in millisecond format. Inclusive. Required when `joinTimeEnd` is supplied; the two must be sent together. Independent of the `periodType` / `begin` / `end` stats window. |
+| joinTimeEnd         | String   | Conditional  | Filter upper bound on `joinTime` (the relationship-established time), Unix timestamp in millisecond format. Inclusive. Required when `joinTimeBegin` is supplied; the two must be sent together. Independent of the `periodType` / `begin` / `end` stats window. |
 
 When `periodType=custom`, supply both `begin` and `end`. Supplying only one returns `50014`.<br>
 For all other `periodType` values, server-defined windows are used and any `begin` / `end` passed alongside are ignored. The window between `begin` and `end` must not exceed 90 days. `begin` cannot be earlier than 180 days from now.
+
+Supply both `joinTimeBegin` and `joinTimeEnd` or neither. `joinTimeBegin` equal to `joinTimeEnd` is a valid single-point range. The `joinTimeBegin` / `joinTimeEnd` span must not exceed 90 days, and `joinTimeBegin` cannot be earlier than 180 days from now.
 
 > Response Example
 

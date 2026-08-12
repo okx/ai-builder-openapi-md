@@ -68,6 +68,7 @@ print(result)
             "feeGroup": [
                 {
                     "elpMaker": "-0.0008",
+                    "rpiMaker": "-0.0008",
                     "groupId": "1",
                     "maker": "-0.0008",
                     "taker": "-0.001"
@@ -100,6 +101,7 @@ print(result)
 | > maker | String | Maker fee<br>K2 parameter for `EVENTS` maker fee formula: `K2 × C × (P × (1-P))` (C = number of contracts, P = price) |
 | > groupId | String | Instrument trading fee group ID<br><br>**instType and groupId should be used together to determine a trading fee group. Users should use this endpoint together with [instruments endpoint](/docs-v5/en/#trading-account-rest-api-get-instruments) to get the trading fee of a specific symbol.** |
 | > elpMaker | String | ELP Maker effective fee rate. Returns `""` if ELP is not applicable to the instrument. |
+| > rpiMaker | String | RPI maker effective fee rate. Returns `""` if RPI is not applicable to the instrument.<br>`elpMaker` remains accepted as an alias until October 31, 2026. |
 | delivery      | String   | Delivery fee rate                                                                                                                             |
 | exercise      | String   | Fee rate for exercising the option                                                                                                            |
 | instType      | String   | Instrument type                                                                                                                               |

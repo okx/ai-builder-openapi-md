@@ -1,7 +1,7 @@
 {
   "version": "0.1.0",
-  "generated_at": "2026-07-23T11:09:34+00:00",
-  "endpoint_count": 415,
+  "generated_at": "2026-08-12T01:16:24+00:00",
+  "endpoint_count": 423,
   "endpoints": [
     {
       "method": "GET",
@@ -1165,6 +1165,78 @@
     },
     {
       "method": "GET",
+      "path": "/api/v5/affiliate/tvb/invitee/detail",
+      "name": "Get TVB invitee detail",
+      "module": "affiliate",
+      "sites": {
+        "okex": {
+          "supported": false
+        },
+        "us": {
+          "supported": false
+        },
+        "my": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/affiliate/tvbInviteeDetail.md",
+            "zh": "api/rest/affiliate/tvbInviteeDetail.md"
+          }
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/affiliate/tvb/invitee/list",
+      "name": "Get TVB invitee list",
+      "module": "affiliate",
+      "sites": {
+        "okex": {
+          "supported": false
+        },
+        "us": {
+          "supported": false
+        },
+        "my": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/affiliate/tvbInviteeList.md",
+            "zh": "api/rest/affiliate/tvbInviteeList.md"
+          }
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/affiliate/tvb/link/list",
+      "name": "Get TVB link list",
+      "module": "affiliate",
+      "sites": {
+        "okex": {
+          "supported": false
+        },
+        "us": {
+          "supported": false
+        },
+        "my": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/affiliate/tvbLinkList.md",
+            "zh": "api/rest/affiliate/tvbLinkList.md"
+          }
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
       "path": "/api/v5/affiliate/tvb/performance/summary",
       "name": "Get TVB performance summary",
       "module": "affiliate",
@@ -1180,6 +1252,30 @@
           "doc": {
             "en": "api/rest/affiliate/tvbPerformanceSummary.md",
             "zh": "api/rest/affiliate/tvbPerformanceSummary.md"
+          }
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/affiliate/tvb/tier-breakdown",
+      "name": "Get TVB bonus breakdown by fee tier",
+      "module": "affiliate",
+      "sites": {
+        "okex": {
+          "supported": false
+        },
+        "us": {
+          "supported": false
+        },
+        "my": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/affiliate/tvbTierBreakdown.md",
+            "zh": "api/rest/affiliate/tvbTierBreakdown.md"
           }
         },
         "turkey": {
@@ -2662,6 +2758,30 @@
     },
     {
       "method": "GET",
+      "path": "/api/v5/finance/flexible-loan/emode-info",
+      "name": "GET / E-Mode info",
+      "module": "finance",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/flexibleLoan/getEModeInfo.md",
+            "zh": "api/rest/flexibleLoan/getEModeInfo.md"
+          }
+        },
+        "us": {
+          "supported": false
+        },
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
       "path": "/api/v5/finance/flexible-loan/interest-accrued",
       "name": "GET / Accrued interest",
       "module": "finance",
@@ -3609,6 +3729,42 @@
         },
         "turkey": {
           "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/market/books-rpi",
+      "name": "GET / RPI order book",
+      "module": "market",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/market/booksRpi.md",
+            "zh": "api/rest/market/booksRpi.md"
+          }
+        },
+        "us": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/market/booksRpi.md",
+            "zh": "api/rest/market/booksRpi.md"
+          }
+        },
+        "my": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/market/booksRpi.md",
+            "zh": "api/rest/market/booksRpi.md"
+          }
+        },
+        "turkey": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/market/booksRpi.md",
+            "zh": "api/rest/market/booksRpi.md"
+          }
         }
       }
     },
@@ -8807,6 +8963,30 @@
     },
     {
       "method": "POST",
+      "path": "/api/v5/finance/flexible-loan/borrow",
+      "name": "POST / Borrow",
+      "module": "finance",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/flexibleLoan/borrow.md",
+            "zh": "api/rest/flexibleLoan/borrow.md"
+          }
+        },
+        "us": {
+          "supported": false
+        },
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "POST",
       "path": "/api/v5/finance/flexible-loan/max-loan",
       "name": "POST / Maximum loan amount",
       "module": "finance",
@@ -8816,6 +8996,30 @@
           "doc": {
             "en": "api/rest/flexibleLoan/getMaxLoan.md",
             "zh": "api/rest/flexibleLoan/getMaxLoan.md"
+          }
+        },
+        "us": {
+          "supported": false
+        },
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v5/finance/flexible-loan/repay",
+      "name": "POST / Repay",
+      "module": "finance",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/flexibleLoan/repay.md",
+            "zh": "api/rest/flexibleLoan/repay.md"
           }
         },
         "us": {

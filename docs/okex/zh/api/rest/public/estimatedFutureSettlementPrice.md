@@ -12,7 +12,7 @@ supported: true
 
 ### 获取交割预估结算价格 [public-data-rest-api-get-estimated-future-settlement-price]
 
-获取交割合约预估结算价。只有结算前一小时才有返回值。
+获取交割合约预估结算价。只有结算前30分钟才有返回值。
 
 #### 限速：10次/2s
 #### 限速规则：IP + Instrument ID

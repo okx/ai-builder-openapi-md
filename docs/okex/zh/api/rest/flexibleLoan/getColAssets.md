@@ -12,7 +12,7 @@ supported: true
 
 ### GET / 可抵押资产 [financial-product-flexible-loan-get-collateral-assets]
 
-获取可抵押资产信息（仅支持资金账户中的资产）
+获取活期借币现存订单下持有的抵押资产信息（仅支持资金账户中的资产）。该接口查询的是订单下实际持有的抵押资产，若不存在订单，则无法返回泛指的、用户可用作抵押的资产列表
 
 #### 限速：5次/2s
 #### 限速规则：User ID

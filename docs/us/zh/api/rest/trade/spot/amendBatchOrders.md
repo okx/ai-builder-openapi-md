@@ -87,9 +87,11 @@ print(result)
 | > newTpTriggerPxType     | String          | 可选     | 止盈触发价类型<br>`last`：最新价格<br>`index`：指数价格<br>`mark`：标记价格<br>只适用于`交割`/`永续`<br>如果要新增止盈，该参数必填       |
 | > newSlTriggerPxType     | String          | 可选     | 止损触发价类型<br>`last`：最新价格<br>`index`：指数价格<br>`mark`：标记价格<br>只适用于`交割`/`永续`<br>如果要新增止损，该参数必填       |
 | > sz                     | String          | 可选     | 新的张数。仅适用于“多笔止盈”的止盈订单且必填                                                                       |
-| > amendPxOnTriggerType   | String          | 否      | 是否启用开仓价止损，仅适用于分批止盈的止损订单<br>`0`：不开启，默认值<br>`1`：开启“开仓价止损”                                       |
+| > amendPxOnTriggerType   | String          | 否      | 是否启用开仓价止损，仅适用于分批止盈的止损订单<br>`0`：不开启，默认值<br>`1`：开启”开仓价止损”                                       |
+| rpiTakerAccess | Boolean | 否 | 默认值为 `false`。<br>设为 `true` 时，改单后的订单可使用 RPI 流动性，适用于 `limit`、`market`、`fok`、`ioc` 订单。<br>改单时不会从原始订单继承，必须每次显式指定（省略则该次改单视为 `false`）。 |
+| rpiPxRound | Boolean | 否 | 默认值为 `false`。仅对 RPI 做市商订单（`ordType: rpi`）生效。设为 `true` 时，违反间距规则的价格将自动向外取整至最近的合规价位，而非被拒绝。对非 RPI 订单及 `OPTION`/`EVENTS` 无效。 |
 
-<aside class="notice">
+<aside class=”notice”>
 newSz<br>
 修改的数量<=该笔订单已成交数量时，该订单的状态会修改为完全成交状态。<br>
 </aside>

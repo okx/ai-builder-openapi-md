@@ -16,7 +16,6 @@ Retrieve an affiliate's aggregated TVB (Trading Volume Bonus) performance — tr
 
 #### Rate Limit: 3 requests per second
 #### Rate limit rule: User ID
-#### Permission: Read
 #### HTTP Request
 
 `GET /api/v5/affiliate/tvb/performance/summary`

@@ -1,0 +1,82 @@
+---
+site: my
+lang: en
+name: Get TVB invitee detail
+method: GET
+path: /api/v5/affiliate/tvb/invitee/detail
+module: affiliate
+rest: https://eea.okx.com
+ws: wss://wseea.okx.com:8443
+supported: true
+---
+
+### Get TVB invitee detail
+
+A single invitee's TVB (Trading Volume Bonus) profile — identity, KYC, fee tier, and TVB trading volume / deposit — looked up by the invitee's UID. All amounts are in `USDC`.
+
+#### Rate Limit: 3 requests per second
+#### Rate limit rule: User ID
+#### HTTP Request
+
+`GET /api/v5/affiliate/tvb/invitee/detail`
+
+> Request Example
+
+```shell
+GET /api/v5/affiliate/tvb/invitee/detail?uid=855082962927686909
+```
+
+#### Request Parameters
+
+| **Parameter** | **Type** | **Required** | **Description** |
+| :------------ | :------- | :----------- | :-------------- |
+| uid           | String   | Yes          | The invitee's UID. |
+
+Single-invitee lookup by `uid`; no time-window parameters.<br>
+No per-invitee bonus is exposed — only trading volume, eligible volume, and deposit. Bonus is never attributed to an individual invitee (surfaced only at the affiliate-total and per-fee-tier level).<br>
+`validDepAmt` is masked to `""` for callers lacking the deposit-view permission.<br>
+An invalid or unresolvable `uid` returns HTTP 200 with a non-zero business code and empty `data` — it does not reveal whether the UID exists.
+
+> Response Example
+
+```json
+{
+    "code": "0",
+    "msg": "",
+    "data": [
+        {
+            "uid": "855082962927686909",
+            "inviterUid": "853364004059009741",
+            "joinTime": "1782129625000",
+            "country": "NL",
+            "kycStatus": "verified",
+            "kycTime": "1782129625324",
+            "affiliateCode": "54022003",
+            "note": "VIP client from IG",
+            "firstTradeTime": "",
+            "level": "Regular User",
+            "validVol": "12500.00",
+            "eligibleVol": "9800.00",
+            "validDepAmt": "1420.11"
+        }
+    ]
+}
+```
+
+#### Response Parameters
+
+| **Parameter**  | **Type** | **Description** |
+| :------------- | :------- | :-------------- |
+| uid            | String   | The invitee's UID. |
+| inviterUid     | String   | Public UID of the invitee's direct inviter (the account that invited this invitee). Equals the affiliate itself for a direct invitee; a sub-affiliate's UID under MLRS. Returns `""` when the inviter cannot be resolved. |
+| joinTime       | String   | Time the invite relationship with this affiliate was established, Unix timestamp in millisecond format. |
+| country        | String   | Invitee's country / region. |
+| kycStatus      | String   | KYC status.<br>`unknown`<br>`unverified`<br>`verified`<br>`video_verified`<br>Returns `""` when compliance info is unavailable. |
+| kycTime        | String   | KYC verification time, Unix timestamp in millisecond format. Returns `""` when not verified. |
+| affiliateCode  | String   | The affiliate invite code the invitee registered via. |
+| note           | String   | Affiliate's private note/remark on this invitee. Returns `""` when none. |
+| firstTradeTime | String   | The invitee's first trade time after the relationship was established, Unix timestamp in millisecond format. Returns `""` when the invitee has not traded. |
+| level          | String   | Invitee's trading fee tier display name, e.g. `Regular User`, `VIP 1`–`VIP 9`. |
+| validVol       | String   | Invitee's total trading volume, unit in `USDC`. |
+| eligibleVol    | String   | Eligible trading volume — the subset that generates the bonus, unit in `USDC`. |
+| validDepAmt    | String   | Invitee's total deposit, unit in `USDC`. Returns `""` for callers without deposit-view permission (masked). |

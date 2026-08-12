@@ -34,7 +34,7 @@ GET /api/v5/trade/orders-history-archive?ordType=post_only,fok,ioc&instType=SPOT
 | :-------- | :----- | :------- | :------------------------------------------------------------------------ |
 | instType  | String | yes      | Instrument type<br>`SPOT`|
 | instId    | String | No       | Instrument ID, e.g. `BTC-USDT`                                      |
-| ordType   | String | No       | Order type <br>`market`: market order <br>`limit`: limit order <br>`post_only`: Post-only order <br>`fok`: Fill-or-kill order <br>`ioc`: Immediate-or-cancel order <br>`elp`: Enhanced Liquidity Program order  |
+| ordType   | String | No       | Order type <br>`market`: market order <br>`limit`: limit order <br>`post_only`: Post-only order <br>`fok`: Fill-or-kill order <br>`ioc`: Immediate-or-cancel order <br>`rpi`: Retail Price Improvement order<br>`elp`: Enhanced Liquidity Program order (Deprecated; use `rpi`. Accepted until October 31, 2026.)  |
 | state     | String | No       | State<br>`canceled` <br>`filled`                                        |
 | category  | String | No       |  Category <br>`twap`  |
 | after     | String | No       | Pagination of data to return records earlier than the requested `ordId`   |
@@ -102,7 +102,7 @@ GET /api/v5/trade/orders-history-archive?ordType=post_only,fok,ioc&instType=SPOT
 | tag           | String   | Order tag                                                                                                                                                                  |
 | px            | String   | Price                                                                                                                                                                      |
 | sz            | String   | Quantity to buy or sell                                                                                                                                                    |
-| ordType       | String   | Order type <br>`market`: market order <br>`limit`: limit order <br>`post_only`: Post-only order <br>`fok`: Fill-or-kill order <br>`ioc`: Immediate-or-cancel order <br>`elp`: Enhanced Liquidity Program order  |
+| ordType       | String   | Order type <br>`market`: market order <br>`limit`: limit order <br>`post_only`: Post-only order <br>`fok`: Fill-or-kill order <br>`ioc`: Immediate-or-cancel order <br>`rpi`: Retail Price Improvement order<br>`elp`: Enhanced Liquidity Program order (Deprecated; use `rpi`. Accepted until October 31, 2026.)  |
 | side          | String   | Order side                                                                                                                                                                 |
 | posSide       | String   | Position side                                                                                                                                                              |
 | tdMode        | String   | Trade mode                                                                                                                                                                 |

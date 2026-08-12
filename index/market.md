@@ -8,6 +8,7 @@ Supported per site (✓ = available, ✗ = not on that site). The `doc` column i
 | GET | /api/v5/market/block-tickers | Get block tickers | api/rest/market/blockTickers.md | ✓ | ✗ | ✗ | ✗ |
 | GET | /api/v5/market/books | GET / Order book | api/rest/market/books.md | ✓ | ✓ | ✓ | ✓ |
 | GET | /api/v5/market/books-full | GET / Full order book | api/rest/market/fullBooks.md | ✓ | ✓ | ✓ | ✗ |
+| GET | /api/v5/market/books-rpi | GET / RPI order book | api/rest/market/booksRpi.md | ✓ | ✓ | ✓ | ✓ |
 | GET | /api/v5/market/books-sbe | SBE Order book | api/rest/sbe/sbe.md | ✓ | ✗ | ✗ | ✗ |
 | GET | /api/v5/market/call-auction-details | GET / Call auction details | api/rest/market/callAuction.md | ✓ | ✗ | ✗ | ✗ |
 | GET | /api/v5/market/candles | GET / Candlesticks | api/rest/market/candles.md | ✓ | ✓ | ✓ | ✓ |

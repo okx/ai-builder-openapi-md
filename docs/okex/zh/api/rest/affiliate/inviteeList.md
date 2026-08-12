@@ -41,9 +41,14 @@ GET /api/v5/affiliate/invitee/list?page=1&kycStatus=verified
 | orderDir           | String   | 否          | 排序方向。<br>`asc`<br>`desc`<br>默认为 `desc` |
 | kycStatus          | String   | 否          | KYC 状态。<br>`unverified`：未通过<br>`verified`：至少通过 KYC2 |
 | subAffiliateUid    | String   | 否          | 按指定二级节点（外部 UID）筛选其直客。 |
+| uid                | String   | 否          | 按外部 UID 精确匹配，与响应中的 `uid` 对应。单个或最多 100 个 UID，以逗号分隔，如 `835449167911924693,835449167911924700`。无法解析的 UID 静默跳过；若全部无法解析，返回空页（不会退化为全量列表）。 |
+| joinTimeBegin      | String   | 条件必填     | 按 `joinTime`（返佣关系建立时间）过滤的下界，Unix时间戳的毫秒数格式。包含端点。当 `joinTimeEnd` 传入时必填，两者需同时传入。与 `periodType` / `begin` / `end` 统计窗口相互独立。 |
+| joinTimeEnd        | String   | 条件必填     | 按 `joinTime`（返佣关系建立时间）过滤的上界，Unix时间戳的毫秒数格式。包含端点。当 `joinTimeBegin` 传入时必填，两者需同时传入。与 `periodType` / `begin` / `end` 统计窗口相互独立。 |
 
 当 `periodType=custom` 时，需同时传 `begin` 和 `end`，仅传一个会返回 `50014`。<br>
 其他 `periodType` 值使用服务端预设窗口，与之同时传入的 `begin` / `end` 将被忽略。`begin` 与 `end` 区间不得超过 90 天，`begin` 不得早于当前时间 180 天前。
+
+`joinTimeBegin` 与 `joinTimeEnd` 需同时传入或都不传。`joinTimeBegin` 等于 `joinTimeEnd` 时为合法的单点区间。`joinTimeBegin` 与 `joinTimeEnd` 的区间不得超过 90 天，且 `joinTimeBegin` 不得早于当前时间 180 天前。
 
 > 返回结果
 

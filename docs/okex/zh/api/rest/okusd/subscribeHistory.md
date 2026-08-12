@@ -16,7 +16,6 @@ supported: true
 
 #### 限速：5次/2s
 #### 限速规则：User ID
-#### Permission: Read
 
 #### HTTP 请求
 

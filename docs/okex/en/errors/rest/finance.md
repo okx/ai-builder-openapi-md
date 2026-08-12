@@ -56,3 +56,5 @@ Error Code from 51700 to 51799
 | 51772	       | 200	               | Instant redemption pool insufficient	                                                                 |
 | 51773	       | 200	               | Feature not available in your region	                                                                 |
 | 51774	       | 200	               | OKUSD API is under maintenance	                                                                 |
+| 51784	       | 200	               | Client order ID is being processed	                                                              |
+| 51785	       | 200	               | The collateral currency does not match the E-Mode pair	                                         |

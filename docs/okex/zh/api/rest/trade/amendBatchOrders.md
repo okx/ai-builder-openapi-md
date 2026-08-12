@@ -101,6 +101,8 @@ print(result)
 | > newCallbackRatio    | String | 可选 | 新的回调幅度比例，如 `0.05` 代表 5%。<br>`newCallbackRatio` 和 `newCallbackSpread` 只能传入其中一个。<br>仅适用于 `ordType` = `move_order_stop` |
 | > newCallbackSpread   | String | 可选 | 新的回调幅度价距。<br>`newCallbackRatio` 和 `newCallbackSpread` 只能传入其中一个。<br>仅适用于 `ordType` = `move_order_stop` |
 | > newActivePx         | String | 否          | 新的激活价格。<br>仅适用于 `ordType` = `move_order_stop` |
+| rpiTakerAccess | Boolean | 否 | 默认值为 `false`。<br>设为 `true` 时，改单后的订单可使用 RPI 流动性，适用于 `limit`、`market`、`fok`、`ioc` 订单。<br>改单时不会从原始订单继承，必须每次显式指定（省略则该次改单视为 `false`）。 |
+| rpiPxRound | Boolean | 否 | 默认值为 `false`。仅对 RPI 做市商订单（`ordType: rpi`）生效。设为 `true` 时，违反间距规则的价格将自动向外取整至最近的合规价位，而非被拒绝。对非 RPI 订单及 `OPTION`/`EVENTS` 无效。 |
 
 <aside class="notice">
 newSz<br>

@@ -158,13 +158,6 @@ To move positions between different accounts under the same master account. Each
     "data": []
 }
 
-// TradeFi positions are not supported.
-{
-    "code": "70004",
-    "msg": "Invalid instrument ID XAG-USDT-SWAP",
-    "data": []
-}
-
 ```
 
 #### Response parameters
@@ -205,7 +198,7 @@ To move positions between different accounts under the same master account. Each
 4. The maximum number of legs per move position request is 30.
 5. No move position fee will be charged at this time.
 6. Moving positions is not supported in margin trading now.
-7. TradeFi positions are not supported.
+7. TradeFi positions (including equity perps/XPerp) are supported.
 8. The move position price is determined by the TWAP (Time-Weighted Average Price) of the mark price over the past 60 minutes, using the closing mark price per minute. If the symbol is newly listed and a 60-minute TWAP is unavailable, the move position will be rejected with error code 70065
 9. The move position will share the same price limit as those in the order book. The move position will fail if the 60-minute mark price TWAP is outside of the price limit.
 10. For the source account, move positions must be conducted in a reduce-only manner. You must choose the opposite side of your current position and specify a size equal to or smaller than your existing position size. The system will also process move position requests in a best-effort reduce-only manner.

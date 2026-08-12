@@ -73,7 +73,7 @@ print(result)
 | clOrdId                | String          | 否        | 客户自定义订单ID<br>字母（区分大小写）与数字的组合，可以是纯字母、纯数字且长度要在1-32位之间。                                                             |
 | tag                    | String          | 否        | 订单标签<br>字母（区分大小写）与数字的组合，可以是纯字母、纯数字，且长度在1-16位之间。                                                                  |
 | side                   | String          | 是        | 订单方向<br>`buy`：买<br>`sell`：卖                                                                                      |
-| ordType                | String          | 是        | 订单类型<br>`market`：市价单<br>`limit`：限价单 <br>`post_only`：只做maker单 <br>`fok`：全部成交或立即取消 <br>`ioc`：立即成交并取消剩余 <br>`elp`：流动性增强计划订单             |
+| ordType                | String          | 是        | 订单类型<br>`market`：市价单<br>`limit`：限价单 <br>`post_only`：只做maker单 <br>`fok`：全部成交或立即取消 <br>`ioc`：立即成交并取消剩余 <br>`rpi`：Retail Price Improvement 订单<br>`elp`：流动性增强计划订单（已弃用，请使用 `rpi`。2026年10月31日前仍可使用。）             |
 | sz                     | String          | 是        | 委托数量                                                                                                             |
 | px                     | String          | 可选       | 委托价格，仅适用于`limit`、`post_only`、`fok`、`ioc`类型的订单                                                                    |
 | tgtCcy                 | String          | 否        | 市价单委托数量`sz`的单位，仅适用于`币币`市价订单<br>`base_ccy`: 交易货币<br>`quote_ccy`：计价货币<br>买单默认`quote_ccy`， 卖单默认`base_ccy`           |
@@ -81,7 +81,8 @@ print(result)
 | stpId                  | String          | 否        | ~~自成交保护ID。来自同一个母账户配着同一个ID的订单不能自成交<br>用户自定义1<=x<=999999999的整数~~（已弃用）                                                       |
 | stpMode                | String          | 否        | 自成交保护模式<br>默认为 cancel maker <br>`cancel_maker`,`cancel_taker`,`cancel_both`<br>Cancel both不支持FOK |
 | tradeQuoteCcy    | String | 否       | 用于交易的计价币种。仅适用于`币币`。<br>默认值为 `instId` 的计价币种，比如：对于 `BTC-USD`，默认取 `USD`。 |
-| isElpTakerAccess | Boolean | 否 | 是否作为 taker 吃单 ELP<br>`true`：该请求能吃单 ELP，但会被施加延迟<br>`false`：该请求不能吃单 ELP，并且没有延迟<br><br>默认值为`false`，`true`仅适用于ioc订单 |
+| rpiTakerAccess | Boolean | 否 | 默认值为 `false`。<br>设为 `true` 时，订单可使用 RPI 流动性，适用于 `limit`、`market`、`fok`、`ioc` 订单。<br>当 `rpiTakerAccess` 为 `true` 时，减速带机制在下单和改单时均适用于所有 `ordType`，包括 `post_only`。<br>改单时不会从原始订单继承，必须每次显式指定（省略则该次改单视为 `false`）。<br>`isElpTakerAccess` 在 2026年10月31日前作为别名继续被接受。 |
+| rpiPxRound | Boolean | 否 | 默认值为 `false`。仅对 RPI 做市商订单（`ordType: rpi`）生效。设为 `true` 时，违反 RPI 做市商间距规则的价格将自动向外取整至最近的合规价位，而非被拒绝。对非 RPI 订单及 `OPTION`/`EVENTS` 无效。 |
 | attachAlgoOrds         | Array of objects | 否        | 附带止盈止损或移动止盈止损订单信息                                                                                                       |
 | > attachAlgoClOrdId    | String          | 否        | 下单附带止盈止损或移动止盈止损时，客户自定义的策略订单ID <br>字母（区分大小写）与数字的组合，可以是纯字母、纯数字且长度要在1-32位之间。<br>订单完全成交，下附带策略委托单时，该值会传给`algoClOrdId`        |
 | > tpTriggerPx          | String          | 可选       | 止盈触发价，如果填写此参数，必须填写 止盈委托价                                                                                         |
@@ -194,10 +195,4 @@ tgtCcy<br>
 1.Cancel Maker：这是默认的STP模式，系统撤Maker订单以防止自成交。然后，taker订单会基于深度继续和下一个订单成交。<br>
 2.Cancel Taker：撤Taker订单以防止自成交。如果用户的Maker订单不是深度里第一个订单，Taker订单会被部分成交，然后撤单。FOK订单会确保完全成交和自成交保护。<br>
 3.Cancel Both：撤Taker和Maker订单以防止自成交。如果用户的Maker订单不是深度里第一个订单，Taker订单会被部分成交，然后Taker订单的剩余数量和第一个自我Maker订单被取消。此模式不支持FOK订单。<br>
-</aside>
-
-<aside class="notice">
-isElpTakerAccess:true订单限速<br>
-- 50个/2s，限制维度为 User ID + Instrument ID<br>
-- 该限速会在 REST 和 WebSocket 的下单及批量下单接口中共享
 </aside>

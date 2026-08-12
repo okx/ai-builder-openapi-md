@@ -85,7 +85,7 @@ print(result)
 | px         | String   | Trade price                                 |
 | sz         | String   | Trade quantity <br>For spot trading, the unit is base currency<br/>For `FUTURES`/`SWAP`/`OPTION`, the unit is contract.                              |
 | side       | String   | Trade side of taker <br>`buy`  <br>`sell` |
-| source | String | Order source<br> `0`: normal order<br> `1`: Enhanced Liquidity Program order |
+| source | String | Order source<br> `0`: normal order<br> `1`: RPI order |
 | ts         | String   | Trade time, Unix timestamp format in milliseconds, e.g. `1597026383085`. |
 
 <aside class="notice">

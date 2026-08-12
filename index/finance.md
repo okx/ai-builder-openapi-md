@@ -6,6 +6,7 @@ Supported per site (✓ = available, ✗ = not on that site). The `doc` column i
 |---|---|---|---|:-:|:-:|:-:|:-:|
 | GET | /api/v5/finance/flexible-loan/borrow-currencies | GET / Borrowable currencies | api/rest/flexibleLoan/getBorrowableCurrencies.md | ✓ | ✗ | ✗ | ✗ |
 | GET | /api/v5/finance/flexible-loan/collateral-assets | GET / Collateral assets | api/rest/flexibleLoan/getColAssets.md | ✓ | ✗ | ✗ | ✗ |
+| GET | /api/v5/finance/flexible-loan/emode-info | GET / E-Mode info | api/rest/flexibleLoan/getEModeInfo.md | ✓ | ✗ | ✗ | ✗ |
 | GET | /api/v5/finance/flexible-loan/interest-accrued | GET / Accrued interest | api/rest/flexibleLoan/getInterestHistory.md | ✓ | ✗ | ✗ | ✗ |
 | GET | /api/v5/finance/flexible-loan/loan-history | GET / Loan history | api/rest/flexibleLoan/getLoanHistory.md | ✓ | ✗ | ✗ | ✗ |
 | GET | /api/v5/finance/flexible-loan/loan-info | GET / Loan info | api/rest/flexibleLoan/getLoanInfo.md | ✓ | ✗ | ✗ | ✗ |
@@ -41,7 +42,9 @@ Supported per site (✓ = available, ✗ = not on that site). The `doc` column i
 | GET | /api/v5/finance/staking-defi/sol/product-info | GET / Product info | api/rest/okSol/productInfo.md | ✓ | ✗ | ✗ | ✗ |
 | GET | /api/v5/finance/staking-defi/sol/purchase-redeem-history | GET / Purchase&Redeem history | api/rest/okSol/P&RHistory.md | ✓ | ✗ | ✗ | ✗ |
 | POST | /api/v5/finance/flexible-loan/adjust-collateral | POST / Adjust collateral | api/rest/flexibleLoan/adjustCol.md | ✓ | ✗ | ✗ | ✗ |
+| POST | /api/v5/finance/flexible-loan/borrow | POST / Borrow | api/rest/flexibleLoan/borrow.md | ✓ | ✗ | ✗ | ✗ |
 | POST | /api/v5/finance/flexible-loan/max-loan | POST / Maximum loan amount | api/rest/flexibleLoan/getMaxLoan.md | ✓ | ✗ | ✗ | ✗ |
+| POST | /api/v5/finance/flexible-loan/repay | POST / Repay | api/rest/flexibleLoan/repay.md | ✓ | ✗ | ✗ | ✗ |
 | POST | /api/v5/finance/okusd/redeem | POST / Redeem OKUSD | api/rest/okusd/redeem.md | ✓ | ✗ | ✗ | ✗ |
 | POST | /api/v5/finance/okusd/subscribe | POST / Subscribe OKUSD | api/rest/okusd/subscribe.md | ✓ | ✗ | ✗ | ✗ |
 | POST | /api/v5/finance/savings/purchase-redempt | POST / Savings purchase/redemption | api/rest/savings/purchaseRedempt.md | ✓ | ✗ | ✓ | ✗ |

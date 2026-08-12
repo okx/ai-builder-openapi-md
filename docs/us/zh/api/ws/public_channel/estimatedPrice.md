@@ -7,7 +7,7 @@ type: guide
 
 ### 预估永续/交割/行权/结算价格频道 [public-data-websocket-estimated-delivery-exercise-settlement-price-channel]
 
-在永续/交割/行权/结算前一小时内，将基于指数价格计算并推送预估价，更新频率约为每 200 毫秒一次。
+在永续/交割/行权/结算前30分钟内，将基于指数价格计算并推送预估价，更新频率约为每 200 毫秒一次。
 
 #### URL Path
 

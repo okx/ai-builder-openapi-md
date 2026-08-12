@@ -16,7 +16,6 @@ Retrieve your OKUSD redemption order history. Results are returned in descending
 
 #### Rate Limit: 5 requests per 2 seconds
 #### Rate limit rule: User ID
-#### Permission: Read
 
 #### HTTP Request
 

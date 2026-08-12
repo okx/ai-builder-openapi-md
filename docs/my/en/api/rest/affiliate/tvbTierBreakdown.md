@@ -1,0 +1,120 @@
+---
+site: my
+lang: en
+name: Get TVB bonus breakdown by fee tier
+method: GET
+path: /api/v5/affiliate/tvb/tier-breakdown
+module: affiliate
+rest: https://eea.okx.com
+ws: wss://wseea.okx.com:8443
+supported: true
+---
+
+### Get TVB bonus breakdown by fee tier
+
+Decomposes the affiliate's total TVB (Trading Volume Bonus) by the invitee's trading fee tier for a specified time period. All amounts are in `USDC`.
+
+#### Rate Limit: 3 requests per second
+#### Rate limit rule: User ID
+#### HTTP Request
+
+`GET /api/v5/affiliate/tvb/tier-breakdown`
+
+> Request Example
+
+```shell
+GET /api/v5/affiliate/tvb/tier-breakdown?periodType=last_30d
+```
+
+#### Request Parameters
+
+| **Parameter** | **Type** | **Required** | **Description** |
+| :------------ | :------- | :----------- | :-------------- |
+| periodType    | String   | No           | Stats window for the metric fields.<br>`last_7d`<br>`last_30d`<br>`this_month`<br>`last_month`<br>`this_week`<br>`today`<br>`total`<br>`custom`: pass `begin` and `end` to define a custom window.<br>The default is `total`. |
+| begin         | String   | Conditional  | Custom stats-window start, Unix timestamp in millisecond format. Required when `periodType=custom`, together with `end`. Inclusive. Used for a custom window — `periodType=custom`, or `periodType` omitted with both `begin` and `end` supplied. |
+| end           | String   | Conditional  | Custom stats-window end, Unix timestamp in millisecond format. Required when `periodType=custom`, together with `begin`. Inclusive. Used for a custom window — `periodType=custom`, or `periodType` omitted with both `begin` and `end` supplied. |
+
+When `periodType=custom`, supply both `begin` and `end`. Supplying only one returns `50014`.<br>
+For all other `periodType` values, server-defined windows are used and any `begin` / `end` passed alongside are ignored.<br>
+When `periodType` is omitted, the window falls back to `custom` if both `begin` and `end` are present, otherwise `total`.<br>
+A custom window (`end − begin`) must be between 1 and 90 days.<br>
+`begin` must not be earlier than 180 days ago — data is available only for the past 180 days.<br>
+`multiplier`, `ccy` and `uTime` are not window-scoped — they reflect the current config / data snapshot regardless of `periodType`.
+
+> Response Example
+
+```json
+{
+    "code": "0",
+    "msg": "",
+    "data": [
+        {
+            "multiplier": "0.5",
+            "tradingVolBonus": "15.5875",
+            "ccy": "USDC",
+            "uTime": "1784505600000",
+            "tiers": [
+                {
+                    "level": "Regular User",
+                    "validVol": "82000",
+                    "eligibleVol": "60000",
+                    "bonusRate": "0.00035",
+                    "tradingVolBonus": "10.5"
+                },
+                {
+                    "level": "VIP 1",
+                    "validVol": "21500",
+                    "eligibleVol": "20000",
+                    "bonusRate": "0.000305",
+                    "tradingVolBonus": "3.05"
+                },
+                {
+                    "level": "VIP 2",
+                    "validVol": "10000",
+                    "eligibleVol": "10000",
+                    "bonusRate": "0.000255",
+                    "tradingVolBonus": "1.275"
+                },
+                {
+                    "level": "VIP 3",
+                    "validVol": "6100",
+                    "eligibleVol": "5000",
+                    "bonusRate": "0.00019",
+                    "tradingVolBonus": "0.475"
+                },
+                {
+                    "level": "VIP 4",
+                    "validVol": "2400",
+                    "eligibleVol": "2400",
+                    "bonusRate": "0.000175",
+                    "tradingVolBonus": "0.21"
+                },
+                {
+                    "level": "VIP 5",
+                    "validVol": "1300",
+                    "eligibleVol": "1000",
+                    "bonusRate": "0.000155",
+                    "tradingVolBonus": "0.0775"
+                }
+            ]
+        }
+    ]
+}
+```
+
+#### Response Parameters
+
+| **Parameter**     | **Type**         | **Description** |
+| :---------------- | :--------------- | :-------------- |
+| multiplier        | String           | Affiliate's current bonus multiplier as a decimal ratio, e.g. `0.5` = 50%. Not window-scoped. |
+| tradingVolBonus   | String           | Accrued TVB bonus in the selected window, unit in `USDC`. Affiliate-level total — equals the sum of `tiers[].tradingVolBonus`. |
+| ccy               | String           | Settlement currency. Constant `USDC`. |
+| uTime             | String           | Last data update timestamp, Unix timestamp in millisecond format. Returns `""` when no data is available yet. |
+| tiers             | Array of objects | One row per invitee fee tier. |
+| > level           | String           | Display label of the tier.<br>`Regular User`<br>`VIP 1`<br>`VIP 2`<br>`VIP 3`<br>`VIP 4`<br>`VIP 5` |
+| > validVol        | String           | Valid trading volume in the selected window — trading volume from valid invitees, unit in `USDC`. |
+| > eligibleVol     | String           | Eligible trading volume — the subset of valid volume that generates the bonus (bonus base), unit in `USDC`. |
+| > bonusRate       | String           | The programme's fixed bonus rate for this tier, expressed as a decimal. For example, `0.00035`. |
+| > tradingVolBonus | String           | Trading Volume Bonus accrued from this tier's `eligibleVol` within the selected window, with `multiplier` applied, unit in `USDC`. |
+
+The Trading Volume Bonus programme is not available to invitees at VIP 6 or above, so the tier breakdown caps at `VIP 5`.

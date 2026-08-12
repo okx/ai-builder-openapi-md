@@ -146,7 +146,7 @@ print(result)
 | minSz        | String | 最小委托量。委托量必须同时满足：sz ≥ `minSz` 且 sz 为 `lotSz` 的整数倍。最小下单数量<br>合约的数量单位是`张`，现货的数量单位是`交易货币`                                                                                                                                           |
 | ctType       | String | 合约类型<br>`linear`：正向合约，保证金、盈亏及结算均以计价货币计（如BTC-USDT-SWAP以USDT计）。<br>`inverse`：反向合约，保证金、盈亏及结算均以标的货币计（如BTC-USD-SWAP以BTC计）。反向合约的USD盈亏为非线性：固定BTC盈亏的USD价值随BTC价格变化。<br>仅适用于 `FUTURES`/`SWAP` |
 | alias        | String | 合约日期别名（已废弃，将于 2026 年 4 月底下线，请使用 expTime 字段获取交割时间）<br>`this_week`：本周<br>`next_week`：次周<br>`this_month`：本月<br>`next_month`：次月<br>`quarter`：季度<br>`next_quarter`：次季度<br>`third_quarter`：第三季度<br>`this_five_years`：当期五年合约<br>`next_five_years`：次期五年合约<br>仅适用于`交割` |
-| state        | String | 产品状态<br>`live`：交易中 <br>`suspend`：暂停中<br>`rebase`：合约在变基中，不可交易，仅适用于`SWAP`<br>`post_only`：仅接受 post-only 订单；已有 post-only 订单可改单和撤单。其他订单类型（市价单、IOC、FOK、普通限价单）将被拒绝。仅适用于 `SWAP`<br>`preopen`：预上线，交割和期权合约轮转生成到开始交易；部分交易产品上线前<br>`test`：测试中（测试产品，不可交易）<br>`settling`：结算中，仅适用于 `EVENTS`                                                            |
+| state        | String | 产品状态<br>`live`：交易中 <br>`suspend`：暂停中<br>`rebase`：合约在变基中，不可交易<br>`post_only`：仅接受 post-only 订单；已有 post-only 订单可改单和撤单。其他订单类型（市价单、IOC、FOK、普通限价单）将被拒绝。<br>`preopen`：预上线，交割和期权合约轮转生成到开始交易；部分交易产品上线前<br>`test`：测试中（测试产品，不可交易）<br>`settling`：结算中，仅适用于 `EVENTS`                                                            |
 | ruleType | String | 交易规则类型<br>`normal`：普通交易<br>`pre_market`：盘前交易，含盘前 X-Perp `FUTURES`<br>`rebase_contract`：盘前变基合约<br>`xperp`：永续合约风格的交割合约，仅适用于部分 `FUTURES` 合约。盘前 X-Perp 转换为正常 X-Perp 后，由 `pre_market` 变为 `xperp` |
 | maxLmtSz     | String | 限价单的单笔最大委托数量<br>合约的数量单位是`张`，现货的数量单位是`交易货币`                                                                                                                                     |
 | maxMktSz     | String | 市价单的单笔最大委托数量<br>合约的数量单位是`张`，现货的数量单位是`USDT`                                                                                                                                     |
@@ -163,6 +163,8 @@ print(result)
 | initPxLmtPct | String | 合约上线后前 10 分钟内的初始价格限制区间，小数百分比，例如 `0.05` 代表 5%。通过 GET /api/v5/public/price-limit 可获取对应价格限制。<br>适用于 `SPOT`/`MARGIN`/`SWAP`/`FUTURES`；`OPTION` 和 `EVENTS` 返回 `""`。 |
 | floatPxLmtPct | String | 常规交易期间的浮动价格限制区间，小数百分比，例如 `0.03` 代表 3%。通过 GET /api/v5/public/price-limit 可获取对应价格限制。<br>适用于 `SPOT`/`MARGIN`/`SWAP`/`FUTURES`；`OPTION` 和 `EVENTS` 返回 `""`。 |
 | maxPxLmtPct | String | 最大价格限制上限（下单价格相对指数价格偏离的硬性上限），小数百分比，例如 `0.15` 代表 15%。通过 GET /api/v5/public/price-limit 可获取对应价格限制。<br>适用于 `SPOT`/`MARGIN`/`SWAP`/`FUTURES`；`OPTION` 和 `EVENTS` 返回 `""`。 |
+| rpiMinLevel | String | RPI 买卖间最小间距，以有机订单的价格档位计。 |
+| rpiMinPxBand | String | 距对手方有机最优价的最小距离，以基点（bps）计。 |
 | upcChg | Array of objects | 即将变更的参数列表。当没有即将变更的参数时，返回空数组 []|
 | > param | String | 即将变更的参数名称。<br> `tickSz`<br> `minSz`：若为交割/永续合约（`FUTURES`/`SWAP`），`lotSz` 会同步变更。<br> `maxMktSz`|
 | > newValue | String | 即将变更的参数值。|

@@ -19,8 +19,8 @@ metadata:
   version: "0.1.0"
   homepage: "https://www.okx.com"
   expected_data_major: 0
----
 
+---
 # OKX V5 API endpoint lookup
 
 A **router** over the OKX V5 API docs. It reads a **docs repo you set up once**

@@ -16,7 +16,6 @@ Retrieve the historical APR snapshots for OKUSD. Results are returned in descend
 
 #### Rate Limit: 5 requests per 2 seconds
 #### Rate limit rule: User ID
-#### Permission: Read
 
 #### HTTP Request
 
