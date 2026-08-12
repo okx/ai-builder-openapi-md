@@ -16,7 +16,7 @@ description: >-
 license: MIT
 metadata:
   author: okx
-  version: "0.1.0"
+  version: "0.1.1"
   homepage: "https://www.okx.com"
   expected_data_major: 0
 
