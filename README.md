@@ -1,8 +1,13 @@
 # OKX V5 API — Flat Markdown Docs
 
-Machine-friendly, flattened Markdown of the OKX V5 REST/WebSocket API, generated
-from the official documentation source. Built for AI agents and tooling to read
-and to write/verify OKX API integration code across **multiple sites**.
+Machine-friendly, flattened Markdown of the OKX V5 REST API, generated from the
+official documentation source. Built for AI agents and tooling to read and to
+write/verify OKX API integration code across **multiple sites**.
+
+The primary lookup flow is for REST endpoints: endpoint path -> module index ->
+site/language doc. WebSocket Markdown is included when present as supplemental
+documentation and can be searched when needed, but it does not have the same
+deterministic REST endpoint routing/index.
 
 > Generated content — do not edit by hand. `sites.json` and `index.json` each
 > carry a `version` (semver) and a `generated_at` timestamp so you can tell which
@@ -24,12 +29,12 @@ compatibility and `generated_at` for freshness.
 ## What's here
 
 ```
-sites.json                       # site -> REST/WS domains (+ version, generated_at)
+sites.json                       # site -> REST and WS domains (+ version, generated_at)
 index/                           # layered lookup tables (primary navigation)
   modules.md                     #   module list + per-site endpoint counts
   <module>.md                    #   one table per module: method|path|name|doc|per-site supported
 index.json                       # full machine index (secondary): every endpoint, per-site "supported" + doc path (+ version, generated_at)
-docs/<site>/<lang>/...md         # one self-contained Markdown file per endpoint
+docs/<site>/<lang>/...md         # usually one endpoint per Markdown file
 skills/okx-v5-api/               # pure-Markdown skill (SKILL.md only)
 ```
 
@@ -38,8 +43,15 @@ skills/okx-v5-api/               # pure-Markdown skill (SKILL.md only)
   domain and the set of supported endpoints already reflect that site. Do not
   assume the Global site's endpoints or domain apply elsewhere.
 - **Languages**: `en` and `zh`.
-- Each Markdown file carries YAML frontmatter (`method`, `path`, `site`, `lang`,
-  `rest`, `ws`, `module`) so tools can read the essentials without parsing prose.
+- Each endpoint Markdown file carries YAML frontmatter (`method`, `path`, `site`,
+  `lang`, `rest`, `ws`, `module`) so tools can read the essentials without
+  parsing prose.
+- Some multi-endpoint source pages are preserved as one Markdown file and marked
+  `multi_endpoint: true`. Those files include an `Endpoint sections` table near
+  the top so AI agents can locate a target `method path` and read only the
+  matching section. In multi-endpoint files, the frontmatter `method`/`path`
+  identifies the first endpoint only; use `index.json` plus the target section
+  for the endpoint-specific method/path.
 
 ## Navigation (the `index/` layer)
 
@@ -57,19 +69,26 @@ no runtime, all local.
 
 ## For AI agents
 
-1. Read `sites.json` to get the target site's `rest` (and `ws`) domain. Use that
-   as the base URL — **never hardcode a single global domain**.
+1. Read `sites.json` to get the target site's `rest` domain. Use that as the REST
+   base URL - **never hardcode a single global domain**. `sites.json` also
+   carries `ws` domains for supplemental WebSocket docs.
 2. Derive the module from the endpoint path (2nd segment) and open
    `index/<module>.md`. Confirm the endpoint's column for your site is `✓`.
    **If it is `✗` (not supported), do not generate that call.**
-3. From the matched row, read the `doc` path and open
-   `docs/<site>/<lang>/<doc>`. Its YAML frontmatter carries `method`/`path`/
+3. The module table's `doc` is a reference path. For the exact per-site/per-lang
+   path, look up the endpoint in `index.json` by `method` + `path`, take
+   `sites.<site>.doc.<lang>`, and read `docs/<site>/<lang>/<that>` (or more
+   generally `<docs_dir>/<lang>/<that>`, where `docs_dir` comes from
+   `sites.json`, e.g. `docs/us` → `docs/us/en/<that>`). For normal
+   single-endpoint files, YAML frontmatter carries the endpoint `method`/`path`/
    `rest`/`ws`; the prose covers parameters, response, and rate limits.
-   - The en/zh `doc` path can differ slightly for a few endpoints. If `<doc>` is
-     absent for your site/lang, find the file by name under
-     `docs/<site>/<lang>/`. `index.json` records both relative paths as
-     `sites[id].doc.{en,zh}`; the full path is `<docs_dir>/<lang>/<doc>`, where
-     `docs_dir` comes from `sites.json` (e.g. `docs/us` → `docs/us/en/<doc>`).
+   - If the doc frontmatter has `multi_endpoint: true`, do not read the entire
+     file for a single endpoint. Use the generated `Endpoint sections` table or
+     `rg -n -F "<search key>" docs/<site>/<lang>/<that>` to locate the target
+     section, then read only that section and nearby shared definitions. For
+     these files, keep the target `method`/`path` from `index.json` or the
+     matched section; the file frontmatter `method`/`path` names only the first
+     endpoint in the file.
 
 ## Skill & install model
 
@@ -78,9 +97,10 @@ no scripts, no runtime dependency, and **no bundled data**. It does not carry it
 own copy of the routing layer. Instead it reads **everything** — `sites.json`,
 `index/`, and the endpoint doc `docs/` — from **this repository, cloned by you**.
 
-Point the skill at your clone once via a fixed config file at
-`~/.okx-v5-api/config.json` with a `docs_path` field naming the checkout. The
-skill then resolves both routing and bodies under that path:
+Installing the skill does **not** install this data repo. Point the skill at
+your clone once via a fixed config file at `~/.okx-v5-api/config.json` with a
+`docs_path` field naming the checkout. The skill then resolves both routing and
+bodies under that path:
 
 1. **Route**: from `docs_path`, read `sites.json` + `index/` to find the site
    domain, per-site support, and the target `doc` path.
@@ -88,6 +108,21 @@ skill then resolves both routing and bodies under that path:
 
 If `~/.okx-v5-api/config.json` or the clone is missing, set up the clone and
 point `docs_path` at it before using the skill.
+
+If you have not cloned/downloaded this docs repo yet:
+
+```sh
+git clone https://github.com/okx/ai-builder-openapi-md ~/.okx-v5-api-docs
+mkdir -p ~/.okx-v5-api
+printf '{"docs_path":"%s/.okx-v5-api-docs"}\n' "$HOME" > ~/.okx-v5-api/config.json
+```
+
+If you already cloned/downloaded this repo, run this from the repo root:
+
+```sh
+mkdir -p ~/.okx-v5-api
+printf '{"docs_path":"%s"}\n' "$(pwd)" > ~/.okx-v5-api/config.json
+```
 
 ## Provenance & disclaimer
 

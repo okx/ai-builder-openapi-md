@@ -11,6 +11,15 @@ supported: true
 multi_endpoint: true
 ---
 
+## Endpoint sections
+
+This generated file documents multiple REST endpoints. For a single-endpoint lookup, use this table or `rg -n -F "<search key>" <this-file>` to locate the target section, then read only that section instead of loading the whole file.
+
+| Method | Path | Search key | Section |
+| --- | --- | --- | --- |
+| GET | `/api/v5/asset/travel-rule/get-locked` | `GET /api/v5/asset/travel-rule/get-locked` | Get locked Travel Rule deposits |
+| POST | `/api/v5/asset/travel-rule/unlock` | `POST /api/v5/asset/travel-rule/unlock` | Unlock Travel Rule deposit |
+
 ### Get locked Travel Rule deposits
 
 Retrieve the list of deposits currently locked under the Travel Rule. Returns an empty array if the user has no locked deposits. The maximum number of locked deposits is limited to 50.

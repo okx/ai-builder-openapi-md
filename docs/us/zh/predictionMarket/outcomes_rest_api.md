@@ -13,6 +13,37 @@ multi_endpoint: true
 
 # REST API [rest-api]
 
+## Endpoint sections
+
+This generated file documents multiple REST endpoints. For a single-endpoint lookup, use this table or `rg -n -F "<search key>" <this-file>` to locate the target section, then read only that section instead of loading the whole file.
+
+| Method | Path | Search key | Section |
+| --- | --- | --- | --- |
+| GET | `/api/v5/predictions/events` | `GET /api/v5/predictions/events` | 1.1 获取事件列表 |
+| GET | `/api/v5/predictions/events/{eventId}` | `GET /api/v5/predictions/events/{eventId}` | 1.2 获取单个事件 |
+| GET | `/api/v5/predictions/events/{eventId}/markets` | `GET /api/v5/predictions/events/{eventId}/markets` | 1.3 获取市场列表 |
+| GET | `/api/v5/predictions/markets/{marketId}` | `GET /api/v5/predictions/markets/{marketId}` | 1.4 获取单个市场 |
+| GET | `/api/v5/predictions/events/search` | `GET /api/v5/predictions/events/search` | 1.5 搜索事件 |
+| GET | `/api/v5/market/ticker` | `GET /api/v5/market/ticker?instId={yesAssetId}` | 2.1 获取行情 Ticker |
+| GET | `/api/v5/market/candles` | `GET /api/v5/market/candles?instId={yesAssetId}&bar=1m&limit=100` | 2.2 获取 K 线数据 |
+| GET | `/api/v5/market/pm-books` | `GET /api/v5/market/pm-books?instId={yesAssetId}&sz=400` | 2.3 获取深度数据 |
+| POST | `/api/v5/predictions/orders` | `POST /api/v5/predictions/orders` | 3.1 下单 |
+| POST | `/api/v5/predictions/orders/cancel` | `POST /api/v5/predictions/orders/cancel` | 3.2 撤销单个订单 |
+| GET | `/api/v5/predictions/orders/{orderId}` | `GET /api/v5/predictions/orders/{orderId}` | 3.3 查询单个订单 |
+| GET | `/api/v5/predictions/orders` | `GET /api/v5/predictions/orders` | 3.4 查询用户订单列表 |
+| POST | `/api/v5/predictions/orders/cancel-all` | `POST /api/v5/predictions/orders/cancel-all` | 3.5 撤销全部 / 指定市场订单 |
+| POST | `/api/v5/predictions/heartbeat` | `POST /api/v5/predictions/heartbeat` | 3.6 发送心跳 |
+| POST | `/api/v5/predictions/positions/split` | `POST /api/v5/predictions/positions/split` | 4.1 Split（xp → YES \+ NO） |
+| POST | `/api/v5/predictions/positions/merge` | `POST /api/v5/predictions/positions/merge` | 4.2 Merge（YES \+ NO → xp） |
+| POST | `/api/v5/predictions/positions/redeem` | `POST /api/v5/predictions/positions/redeem` | 4.3 Redeem（结算后兑换 xp） |
+| GET | `/api/v5/predictions/trades` | `GET /api/v5/predictions/trades` | 5.1 查询成交记录 |
+| GET | `/api/v5/predictions/positions` | `GET /api/v5/predictions/positions?status=open` | 6.1 查询当前持仓 |
+| GET | `/api/v5/predictions/positions` | `GET /api/v5/predictions/positions?status=closed` | 6.2 查询已平仓仓位 |
+| GET | `/api/v5/predictions/positions` | `GET /api/v5/predictions/positions?marketId={marketId}` | 6.3 查询指定市场仓位 |
+| GET | `/api/v5/predictions/positions` | `GET /api/v5/predictions/positions` | 6.4 统一端点 |
+| GET | `/api/v5/predictions/balance` | `GET /api/v5/predictions/balance` | 7.1 查询账户余额 |
+
+
 REST API 用于查询事件、市场、行情、订单簿、订单、成交、持仓、余额，以及提交下单、撤单、Split、Merge、Redeem 等写操作。开发者可以通过 REST API 完成完整的交易闭环：发现市场、获取 `assetId`、提交订单、查询订单状态、管理持仓并处理结算相关操作。所有接口的基础地址为 `https://www.okx.com`。
 
 ## 1. 事件与市场 [rest-api-1-events-markets-api]
