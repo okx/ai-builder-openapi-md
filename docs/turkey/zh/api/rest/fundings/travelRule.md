@@ -11,6 +11,15 @@ supported: true
 multi_endpoint: true
 ---
 
+## Endpoint sections
+
+This generated file documents multiple REST endpoints. For a single-endpoint lookup, use this table or `rg -n -F "<search key>" <this-file>` to locate the target section, then read only that section instead of loading the whole file.
+
+| Method | Path | Search key | Section |
+| --- | --- | --- | --- |
+| GET | `/api/v5/asset/travel-rule/get-locked` | `GET /api/v5/asset/travel-rule/get-locked` | 获取旅行规则锁定的充值记录 |
+| POST | `/api/v5/asset/travel-rule/unlock` | `POST /api/v5/asset/travel-rule/unlock` | 解锁旅行规则充值 |
+
 ### 获取旅行规则锁定的充值记录 [funding-account-rest-api-get-locked-travel-rule-deposits]
 
 获取当前被旅行规则锁定的充值列表。如果用户没有被锁定的充值，则返回空数组。锁定充值的最大数量限制为 50 条。

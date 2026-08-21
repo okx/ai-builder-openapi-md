@@ -74,6 +74,9 @@ body
 | > newCallbackRatio    | String | Conditional | New callback ratio, e.g. `0.05` represents 5%.<br>Either `newCallbackRatio` or `newCallbackSpread` can be passed. Only one can be passed.<br>Only applicable when `ordType` = `move_order_stop` |
 | > newCallbackSpread   | String | Conditional | New callback spread (price distance).<br>Either `newCallbackRatio` or `newCallbackSpread` can be passed. Only one can be passed.<br>Only applicable when `ordType` = `move_order_stop` |
 | > newActivePx         | String | No          | New activation price.<br>Only applicable when `ordType` = `move_order_stop` |
+| advChaseParams      | Array of objects | Conditional | Chase parameters to amend. Only for a pending trigger order with `advanceOrdType` `chase`. |
+| > newChaseVal       | String | Conditional | New chase value. Non-negative, interpreted per the order's existing `chaseType`. It cannot cross the `0` ↔ non-`0` boundary of the original `chaseVal` — tracking the best bid/ask directly (`0`) and a distance offset (`>0`) are not interchangeable. |
+| > newMaxChaseVal    | String | Conditional | New maximum chase distance value. Positive, interpreted per the existing `maxChaseType`. Only applicable when maximum chase is enabled. |
 
 > Response Example
 

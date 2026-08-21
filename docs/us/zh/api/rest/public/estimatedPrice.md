@@ -12,7 +12,7 @@ supported: true
 
 ### 获取预估交割/行权价格 [public-data-rest-api-get-estimated-delivery-exercise-price]
 
-获取交割合约和期权预估交割/行权价。交割/行权预估价只有交割/行权前一小时才有返回值
+获取交割合约和期权预估交割/行权价。交割/行权预估价只有交割/行权前30分钟才有返回值
 
 #### 限速：10次/2s
 #### 限速规则：IP + Instrument ID

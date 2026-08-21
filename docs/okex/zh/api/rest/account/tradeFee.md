@@ -68,6 +68,7 @@ print(result)
             "feeGroup": [
                 {
                     "elpMaker": "-0.0008",
+                    "rpiMaker": "-0.0008",
                     "groupId": "1",
                     "maker": "-0.0008",
                     "taker": "-0.001"
@@ -100,6 +101,7 @@ print(result)
 | > maker | String | 挂单手续费<br>`EVENTS` 挂单手续费公式的 K2 参数：`K2 × C × (P × (1-P))`（C = 合约张数，P = 价格） |
 | > groupId | String | 交易产品手续费分组ID<br><br>**用户需要同时使用instType和groupId来确定一个交易产品的交易手续费分组；用户应该将此接口和[获取交易产品基础信息](/docs-v5/zh/#trading-account-rest-api-get-instruments)一起使用，以获取特定交易产品的手续费率**|
 | > elpMaker | String | ELP Maker 有效费率。若 ELP 不适用于该交易产品，则返回 `""`。 |
+| > rpiMaker | String | RPI 做市商有效费率。若 RPI 不适用于该产品，返回 `""`。<br>`elpMaker` 在 2026年10月31日前作为别名继续被接受。 |
 | delivery | String   | 交割手续费率                                               |
 | exercise | String   | 行权手续费率                                               |
 | instType | String   | 产品类型                                                 |

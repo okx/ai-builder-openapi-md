@@ -51,7 +51,7 @@ GET /api/v5/public/market-data-history?module=1&instType=SWAP&instFamilyList=BTC
 | instIdList     | String         | 可选     | 产品ID列表，例如 `BTC-USDT` 或 `ANY` 表示所有产品（`ANY` 仅支持 module = `1`, `2`, `3`, `11` & dateAggrType = `daily`）<br>多个产品请用英文逗号分隔，如 `BTC-USDT,ETH-USDT`<br>最大长度 = 10 <br>仅适用于instType = `SPOT`|
 | instFamilyList | String         | 可选     | 交易品种列表，例如 `BTC-USDT` 或 `ANY` 表示所有产品（`ANY` 仅支持 module = `1`, `2`, `3`, `11` & dateAggrType = `daily`）<br>多个品种请用英文逗号分隔，如 `BTC-USDT,ETH-USDT`<br>最大长度 = 10 (当module = `6` & instType = `OPTION`时为1) <br>仅适用于instType ≠ `SPOT`|
 | dateAggrType   | String         | 是      | 日期聚合类型<br> `daily` (不支持 module = `3` & instFamilyList ≠ `ANY`)<br> `monthly` （不支持module = `6`） |
-| begin          | String         | 是      | 开始时间戳，Unix时间戳格式为毫秒数（包含该时间）<br>日度最大范围：20天，月度最大范围：20个月 |
+| begin          | String         | 是      | 开始时间戳，Unix时间戳格式为毫秒数（包含该时间）<br>日度最大范围：10天，月度最大范围：10个月 |
 | end            | String         | 是      | 结束时间戳，Unix时间戳格式为毫秒数（包含该时间）<br>当module = `6` & instType = `OPTION`时，仅返回`end`指定日期的数据 |
 
 > 返回示例

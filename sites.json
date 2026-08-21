@@ -1,6 +1,6 @@
 {
-  "version": "0.1.0",
-  "generated_at": "2026-07-22T12:06:30+08:00",
+  "version": "0.1.1",
+  "generated_at": "2026-08-21T14:48:13+00:00",
   "sites": [
     {
       "id": "okex",
@@ -19,15 +19,6 @@
       "rest_pap": "https://us.okx.com",
       "ws_pap": "wss://wsuspap.okx.com:8443",
       "docs_dir": "docs/us"
-    },
-    {
-      "id": "hongkong",
-      "label": "OKX HK",
-      "rest": "https://www.okx.com",
-      "ws": "wss://ws.okx.com:8443",
-      "rest_pap": "https://openapi.okx.com",
-      "ws_pap": "wss://wspap.okx.com:8443",
-      "docs_dir": "docs/hongkong"
     },
     {
       "id": "my",

@@ -683,16 +683,16 @@ Module: `okx_outcomes_sdk::ws::*`. Requires the `websocket` Cargo feature.
 
 **Connection model**
 
-The Open API uses the same endpoint for public and private channels: `wss://<host>/ws/v5/business`. Public channels can be used anonymously. Private channels require a one-time `op: "login"` after the WS handshake.
+The Open API uses the same endpoint for public and private channels: `wss://<host>/ws/v6/dex`. Public channels can be used anonymously. Private channels require a one-time `op: "login"` after the WS handshake.
 
 Hosts:
 
 ```rust
 pub mod ws::endpoints {
-    pub const DEFAULT_WS_HOST: &str = "wss://ws.okx.com:8443";
-    pub const EU_WS_HOST:      &str = "wss://wseea.okx.com";
-    pub const US_WS_HOST:      &str = "wss://wsus.okx.com";
-    pub const BUSINESS_PATH:   &str = "/ws/v5/business";
+    pub const DEFAULT_WS_HOST: &str = "wss://wsdex.okx.com";
+    pub const EU_WS_HOST:      &str = "wss://wsweb3eea.okx.com";
+    pub const US_WS_HOST:      &str = "wss://wsweb3us.okx.com";
+    pub const BUSINESS_PATH:   &str = "/ws/v6/dex";
 }
 ```
 

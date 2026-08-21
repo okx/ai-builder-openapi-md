@@ -75,6 +75,9 @@ body
 | > newCallbackRatio    | String | 可选 | 新的回调幅度比例，如 `0.05` 代表 5%。<br>`newCallbackRatio` 和 `newCallbackSpread` 只能传入其中一个。<br>仅适用于 `ordType` = `move_order_stop` |
 | > newCallbackSpread   | String | 可选 | 新的回调幅度价距。<br>`newCallbackRatio` 和 `newCallbackSpread` 只能传入其中一个。<br>仅适用于 `ordType` = `move_order_stop` |
 | > newActivePx         | String | 否          | 新的激活价格。<br>仅适用于 `ordType` = `move_order_stop` |
+| advChaseParams      | Array of objects | 条件必填 | 待修改的追逐参数。仅适用于 `advanceOrdType` 为 `chase` 的挂单中计划委托。 |
+| > newChaseVal       | String | 条件必填 | 新的追逐值。非负数，按订单已有（不可修改）的 `chaseType` 解释。不可越过原 `chaseVal` 的 `0` ↔ 非 `0` 边界——直接跟随买一价/卖一价（`0`）与设置距离（大于 `0`）两种模式不可互换。 |
+| > newMaxChaseVal    | String | 条件必填 | 新的最大追逐距离值。须为正数，按已有（不可修改）的 `maxChaseType` 解释。仅在已启用最大追逐距离时适用。 |
 
 > 返回结果
 

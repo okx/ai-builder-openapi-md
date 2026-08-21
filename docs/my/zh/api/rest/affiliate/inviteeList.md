@@ -1,7 +1,7 @@
 ---
 site: my
 lang: zh
-name: 获取直客列表
+name: 获取 CPS 直客列表
 method: GET
 path: /api/v5/affiliate/invitee/list
 module: affiliate
@@ -10,9 +10,9 @@ ws: wss://wseea.okx.com:8443
 supported: true
 ---
 
-### 获取直客列表 [affiliate-rest-api-get-invitee-list]
+### 获取 CPS 直客列表 [affiliate-rest-api-get-invitee-list]
 
-分页获取直客列表，包含交易统计与 KYC 信息。
+本节数据适用于使用 CPS 激励模式的节点账户。在 CPS（按销售付费）模式下，节点根据来自适用司法辖区的被邀请人所产生的符合条件的交易手续费获得奖励。该接口返回 CPS 模式下归属于该节点账户的用户列表。
 
 #### 限速：3次/s
 #### 限速规则：User ID
@@ -36,14 +36,19 @@ GET /api/v5/affiliate/invitee/list?page=1&kycStatus=verified
 | begin              | String   | 条件必填     | 自定义统计窗口起始时间，Unix时间戳的毫秒数格式。当 `periodType=custom` 时必填，需与 `end` 同时传入。包含端点。 |
 | end                | String   | 条件必填     | 自定义统计窗口结束时间，Unix时间戳的毫秒数格式。当 `periodType=custom` 时必填，需与 `begin` 同时传入。包含端点。 |
 | keyword            | String   | 否          | 按直客 UID 或渠道名搜索。 |
-| commissionCategory | String   | 否          | 返佣计算类别。<br>`SPOT`<br>`DERIVATIVE`<br>`BSC` |
+| commissionCategory | String   | 否          | 返佣计算类别。<br>`SPOT`<br>`DERIVATIVE`<br>根据监管要求，来自 EEA 地区 OKX 用户的衍生品交易不适用返佣。来自符合资格地区的现货和衍生品交易返佣仍完全适用。 |
 | orderBy            | String   | 否          | 排序字段。<br>`cTime`<br>`depAmt`<br>`vol`<br>`fee`<br>`rebate`<br>默认为 `cTime` |
 | orderDir           | String   | 否          | 排序方向。<br>`asc`<br>`desc`<br>默认为 `desc` |
 | kycStatus          | String   | 否          | KYC 状态。<br>`unverified`：未通过<br>`verified`：至少通过 KYC2 |
 | subAffiliateUid    | String   | 否          | 按指定二级节点（外部 UID）筛选其直客。 |
+| uid                | String   | 否          | 按外部 UID 精确匹配，与响应中的 `uid` 对应。单个或最多 100 个 UID，以逗号分隔，如 `835449167911924693,835449167911924700`。无法解析的 UID 静默跳过；若全部无法解析，返回空页（不会退化为全量列表）。 |
+| joinTimeBegin      | String   | 条件必填     | 按 `joinTime`（返佣关系建立时间）过滤的下界，Unix时间戳的毫秒数格式。包含端点。当 `joinTimeEnd` 传入时必填，两者需同时传入。与 `periodType` / `begin` / `end` 统计窗口相互独立。 |
+| joinTimeEnd        | String   | 条件必填     | 按 `joinTime`（返佣关系建立时间）过滤的上界，Unix时间戳的毫秒数格式。包含端点。当 `joinTimeBegin` 传入时必填，两者需同时传入。与 `periodType` / `begin` / `end` 统计窗口相互独立。 |
 
 当 `periodType=custom` 时，需同时传 `begin` 和 `end`，仅传一个会返回 `50014`。<br>
 其他 `periodType` 值使用服务端预设窗口，与之同时传入的 `begin` / `end` 将被忽略。`begin` 与 `end` 区间不得超过 90 天，`begin` 不得早于当前时间 180 天前。
+
+`joinTimeBegin` 与 `joinTimeEnd` 需同时传入或都不传。`joinTimeBegin` 等于 `joinTimeEnd` 时为合法的单点区间。`joinTimeBegin` 与 `joinTimeEnd` 的区间不得超过 90 天，且 `joinTimeBegin` 不得早于当前时间 180 天前。
 
 > 返回结果
 
@@ -75,8 +80,8 @@ GET /api/v5/affiliate/invitee/list?page=1&kycStatus=verified
 
 #### 返回参数
 
-| **参数名**         | **类型**  | **描述** |
-| :--------------- | :------- | :------- |
+| **参数名**         | **类型**  | **描述** | **数据范围** |
+| :--------------- | :------- | :------- | :------------- |
 | totalPage        | String   | 当前过滤条件与 `limit` 下的总页数，与 `data` 在响应中同级。 |
 | uid              | String   | 直客的外部 UID。 |
 | country          | String   | 直客所在地的 ISO 3166-1 alpha-2 国家/地区码，如 `KR`、`CN`。未设置时返回空字符串。 |
@@ -87,8 +92,8 @@ GET /api/v5/affiliate/invitee/list?page=1&kycStatus=verified
 | feeTierRank      | String   | 跨类别手续费等级排名整数（`0` 最低，`13` 最高）。不区分常规/VIP——分类标签请使用 [获取被邀请人返佣信息](/docs-v5/zh/#affiliate-rest-api-get-the-invitee-39-s-detail) 中的 `level`。 |
 | kycStatus        | String   | KYC 状态。<br>`unverified`<br>`verified` |
 | kycTime          | String   | KYC2 认证时间，Unix时间戳的毫秒数格式。如未通过 KYC2，返回 `""`。 |
-| depAmt           | String   | 累计充值金额，单位为 `USDT`。 |
-| totalVol         | String   | 累计交易量，单位为 `USDT`。 |
-| totalFee         | String   | 累计交易手续费，单位为 `USDT`。 |
-| totalCommission  | String   | 来自该直客的累计返佣，单位为 `USDT`。 |
+| depAmt           | String   | 累计充值金额，单位为 `USDC`。 | CPS+TVB both |
+| totalVol         | String   | 累计交易量，单位为 `USDC`。 | CPS+TVB both |
+| totalFee         | String   | 累计交易手续费，单位为 `USDC`。 | CPS only |
+| totalCommission  | String   | 来自该直客的累计返佣，单位为 `USDC`。 | CPS only |
 | isCompliant      | Boolean  | 该直客是否符合区域合规要求。<br>`true`：无限制<br>`false`：因 KYC 主体或司法辖区受限（如制裁地区） |

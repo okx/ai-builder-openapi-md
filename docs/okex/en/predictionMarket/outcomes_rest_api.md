@@ -13,6 +13,37 @@ multi_endpoint: true
 
 # REST API
 
+## Endpoint sections
+
+This generated file documents multiple REST endpoints. For a single-endpoint lookup, use this table or `rg -n -F "<search key>" <this-file>` to locate the target section, then read only that section instead of loading the whole file.
+
+| Method | Path | Search key | Section |
+| --- | --- | --- | --- |
+| GET | `/api/v5/predictions/events` | `GET /api/v5/predictions/events` | 1.1 Get events |
+| GET | `/api/v5/predictions/events/{eventId}` | `GET /api/v5/predictions/events/{eventId}` | 1.2 Get a single event |
+| GET | `/api/v5/predictions/events/{eventId}/markets` | `GET /api/v5/predictions/events/{eventId}/markets` | 1.3 Get markets |
+| GET | `/api/v5/predictions/markets/{marketId}` | `GET /api/v5/predictions/markets/{marketId}` | 1.4 Get a single market |
+| GET | `/api/v5/predictions/events/search` | `GET /api/v5/predictions/events/search` | 1.5 Search events |
+| GET | `/api/v5/market/ticker` | `GET /api/v5/market/ticker?instId={yesAssetId}` | 2.1 Get ticker |
+| GET | `/api/v5/market/candles` | `GET /api/v5/market/candles?instId={yesAssetId}&bar=1m&limit=100` | 2.2 Get candlesticks |
+| GET | `/api/v5/market/pm-books` | `GET /api/v5/market/pm-books?instId={yesAssetId}&sz=400` | 2.3 Get order book |
+| POST | `/api/v5/predictions/orders` | `POST /api/v5/predictions/orders` | 3.1 Place order |
+| POST | `/api/v5/predictions/orders/cancel` | `POST /api/v5/predictions/orders/cancel` | 3.2 Cancel a single order |
+| GET | `/api/v5/predictions/orders/{orderId}` | `GET /api/v5/predictions/orders/{orderId}` | 3.3 Get a single order |
+| GET | `/api/v5/predictions/orders` | `GET /api/v5/predictions/orders` | 3.4 Get user orders |
+| POST | `/api/v5/predictions/orders/cancel-all` | `POST /api/v5/predictions/orders/cancel-all` | 3.5 Cancel all / market orders |
+| POST | `/api/v5/predictions/heartbeat` | `POST /api/v5/predictions/heartbeat` | 3.6 Send heartbeat |
+| POST | `/api/v5/predictions/positions/split` | `POST /api/v5/predictions/positions/split` | 4.1 Split (xp → YES + NO) |
+| POST | `/api/v5/predictions/positions/merge` | `POST /api/v5/predictions/positions/merge` | 4.2 Merge (YES + NO → xp) |
+| POST | `/api/v5/predictions/positions/redeem` | `POST /api/v5/predictions/positions/redeem` | 4.3 Redeem (redeem xp after settlement) |
+| GET | `/api/v5/predictions/trades` | `GET /api/v5/predictions/trades` | 5.1 Query trades |
+| GET | `/api/v5/predictions/positions` | `GET /api/v5/predictions/positions?status=open` | 6.1 Query current positions |
+| GET | `/api/v5/predictions/positions` | `GET /api/v5/predictions/positions?status=closed` | 6.2 Query closed positions |
+| GET | `/api/v5/predictions/positions` | `GET /api/v5/predictions/positions?marketId={marketId}` | 6.3 Query positions in a specified market |
+| GET | `/api/v5/predictions/positions` | `GET /api/v5/predictions/positions` | 6.4 Unified endpoint |
+| GET | `/api/v5/predictions/balance` | `GET /api/v5/predictions/balance` | 7.1 Query account balance |
+
+
 The REST API lets you query events, markets, tickers, order books, orders, trades, positions, and balances, and submit write operations such as place order, cancel order, Split, Merge, and Redeem. Developers can complete the full trading loop through the REST API: discover markets, obtain the `assetId`, submit orders, query order status, manage positions, and handle settlement-related operations. The base URL for all endpoints is `https://www.okx.com`.
 
 ## 1. Events & Markets API

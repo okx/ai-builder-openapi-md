@@ -79,10 +79,9 @@ print(result)
 | tag               | String   | 否       | 订单标签<br>字母（区分大小写）与数字的组合，可以是纯字母、纯数字，且长度在1-16位之间。                                                                                                                                                                                                                         |
 | side              | String   | 是       | 订单方向<br>`buy`：买，   `sell`：卖                                                                                                                                                                                                                                             |
 | posSide           | String   | 可选     | 持仓方向<br>在开平仓模式下必填，且仅可选择 `long` 或 `short`。 仅适用交割、永续。`SPOT` 或 `MARGIN` 订单请勿传此字段。交割/永续在开平仓模式下如未填写，返回错误码 51000。                                                                                                                                                                                                                     |
-| ordType           | String   | 是       | 订单类型  <br>`market`：市价单，仅适用于`币币/杠杆/交割/永续`<br>`limit`：限价单 <br>`post_only`：只做maker单 <br>`fok`：全部成交或立即取消 <br>`ioc`：立即成交并取消剩余 <br>`optimal_limit_ioc`：以价格限制区间的最高买价（买单）或最低卖价（卖单）挂限价单，未成交部分立即取消（IOC）。仅适用交割、永续合约，订单不会以超出当前价格限制边界的价格成交<br>`mmp`：做市商保护(仅适用于组合保证金账户模式下的期权订单)<br>`mmp_and_post_only`：做市商保护且只做maker单(仅适用于组合保证金账户模式下的期权订单)<br>`elp`：流动性增强计划订单 |
+| ordType           | String   | 是       | 订单类型  <br>`market`：市价单，仅适用于`币币/杠杆/交割/永续`<br>`limit`：限价单 <br>`post_only`：只做maker单 <br>`fok`：全部成交或立即取消 <br>`ioc`：立即成交并取消剩余 <br>`optimal_limit_ioc`：以价格限制区间的最高买价（买单）或最低卖价（卖单）挂限价单，未成交部分立即取消（IOC）。仅适用交割、永续合约，订单不会以超出当前价格限制边界的价格成交<br>`mmp`：做市商保护(仅适用于组合保证金账户模式下的期权订单)<br>`mmp_and_post_only`：做市商保护且只做maker单(仅适用于组合保证金账户模式下的期权订单)<br>`rpi`：Retail Price Improvement 订单<br>`elp`：流动性增强计划订单（已弃用，请使用 `rpi`。2026年10月31日前仍可使用。） |
 | sz                | String   | 是       | 委托数量                                                                                                                                                                                                                                                                    |
 | px                | String   | 可选     | 委托价格，仅适用于`limit`、`post_only`、`fok`、`ioc`、`mmp`、`mmp_and_post_only`类型的订单<br>期权下单时，px/pxUsd/pxVol 只能填一个                                                                                                                                                                   |
-| speedBump | String | 可选 | 减速带<br>`1`：事件合约速度限制（延迟可能因市场情况调整，不提前通知）。对 `EVENTS` 产品的非只挂单操作为必填。 |
 | outcome | String | 可选 | 用户交易的市场结果方向。<br>`yes`<br>`no`<br>仅适用于 `EVENTS`，且为必填 |
 | pxUsd | String | 可选 | 以USD价格进行期权下单 <br>仅适用于期权 <br>期权下单时 px/pxUsd/pxVol 必填一个，且只能填一个                                                                                                                                                                                                            |
 | pxVol | String | 可选 | 以隐含波动率进行期权下单，例如 1 代表 100% <br>仅适用于期权 <br>期权下单时 px/pxUsd/pxVol 必填一个，且只能填一个                                                                                                                                                                                               |
@@ -93,7 +92,8 @@ print(result)
 | tradeQuoteCcy    | String | 否       | 用于交易的计价币种。仅适用于`币币`。<br>默认值为 `instId` 的计价币种，比如：对于 `BTC-USD`，默认取 `USD`。 |
 | slippagePct      | String | 否       | 币币、币币杠杆市价单（`tgtCcy` 为到手币种：买单为 `base_ccy`，卖单为 `quote_ccy`）的最大可接受滑点。<br>取值范围：`0` 至 `0.05`（即 0% 至 5%，含边界），以百分比形式表示时最多保留 2 位小数，例如 `0.01`（1%）和 `0.0123`（1.23%）合法；`0.01234`（1.234%）将被拒绝。<br>不填或为空时，默认为 `0.00%`。<br>不支持改单修改滑点，如需调整请撤单重新提交。<br>仅适用于币币和币币杠杆的市价单。 |
 | stpMode | String | 否 | 自成交保护模式 <br>`cancel_maker`,`cancel_taker`, `cancel_both`<br>Cancel both不支持FOK <br><br>默认使用账户层面的acctStpMode进行下单，该字段的默认值为`cancel_maker`，用户可通过母账户登录网页修改该配置；用户亦可以通过下单接口的stpMode参数指定订单的STP模式。|
-| isElpTakerAccess | Boolean | 否 | 是否作为 taker 吃单 ELP<br>`true`：该请求能吃单 ELP，但会被施加延迟<br>`false`：该请求不能吃单 ELP，并且没有延迟<br><br>默认值为`false`，`true`仅适用于ioc订单 |
+| rpiTakerAccess | Boolean | 否 | 默认值为 `false`。<br>设为 `true` 时，订单可使用 RPI 流动性，适用于 `limit`、`market`、`fok`、`ioc` 订单。<br>当 `rpiTakerAccess` 为 `true` 时，减速带机制在下单和改单时均适用于所有 `ordType`，包括 `post_only`。<br>改单时不会从原始订单继承，必须每次显式指定（省略则该次改单视为 `false`）。<br>`isElpTakerAccess` 在 2026年10月31日前作为别名继续被接受。 |
+| rpiPxRound | Boolean | 否 | 默认值为 `false`。仅对 RPI 做市商订单（`ordType: rpi`）生效。设为 `true` 时，违反 RPI 做市商间距规则的价格将自动向外取整至最近的合规价位，而非被拒绝。对非 RPI 订单及 `OPTION`/`EVENTS` 无效。 |
 | attachAlgoOrds         | Array of objects   | 否    | 附带止盈止损或移动止盈止损订单信息                                                                                                                                                                                                                                                              |
 | > attachAlgoClOrdId    | String            | 否    | 下单附带止盈止损或移动止盈止损时，客户自定义的策略订单ID <br>字母（区分大小写）与数字的组合，可以是纯字母、纯数字且长度要在1-32位之间。<br>订单完全成交，下附带策略委托单时，该值会传给`algoClOrdId`                                                                                                                                                               |
 | > tpTriggerPx          | String            | 可选    | 止盈触发价<br/>对于条件止盈单，如果填写此参数，必须填写 止盈委托价                                                                                                                                                                                                                                    |
@@ -295,10 +295,4 @@ px<br>
 tradeQuoteCcy<br>
 对于特定国家和地区的用户，下单成功需要填写该参数，否则会取 `instId` 的计价币种为默认值，报错 51000。<br>
 传值必须取 tradeQuoteCcyList 的枚举值，tradeQuoteCcyList 来自获取交易产品基础信息(GET /api/v5/account/instruments) 接口。<br>
-</aside>
-
-<aside class="notice">
-isElpTakerAccess:true订单限速<br>
-- 50个/2s，限制维度为 User ID + Instrument ID<br>
-- 该限速会在 REST 和 WebSocket 的下单及批量下单接口中共享
 </aside>

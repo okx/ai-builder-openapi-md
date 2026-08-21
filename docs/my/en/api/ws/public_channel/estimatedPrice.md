@@ -9,7 +9,7 @@ type: guide
 
 Retrieve the estimated delivery/exercise/settlement price of `FUTURES`, `OPTION` and `SWAP` contracts.
 
-The estimated price, calculated based on index price during the one-hour period prior to delivery, excerise, or settlement, with updates pushed approximately every 200ms.
+The estimated price, calculated based on index price during the 30-minute period prior to delivery, excerise, or settlement, with updates pushed approximately every 200ms.
 
 #### URL Path
 

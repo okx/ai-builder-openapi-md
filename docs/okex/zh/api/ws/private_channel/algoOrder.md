@@ -255,7 +255,8 @@ asyncio.run(main())
 | > instId               | String          | 产品ID                                                                                                          |
 | > ccy                    | String          | 保证金币种，适用于`逐仓杠杆`及`合约模式`下的`全仓杠杆`订单以及交割、永续和期权合约订单。                                                                                                                                                                                                                                                   |
 | > ordId                | String          | 最新一笔订单ID，与策略委托订单关联的订单ID，即将废弃。                                                                                 |
-| > ordIdList            | Array of strings          | 订单ID列表，当止盈止损存在市价拆单时，会有多个。                                                                                     |
+| > ordIdList            | Array of strings          | 订单ID列表，当止盈止损存在市价拆单时，会有多个。 对于追逐委托（trigger+chase），该字段为空——参见 `subAlgoIdList`。                                                                                     |
+| > subAlgoIdList        | Array of strings          | 计划委托触发时生成的策略委托单 `algoId`。当 `advanceOrdType` 为 `chase` 时，在触发后存放生成的追逐委托 `algoId`，触发前为空。与 `ordIdList` 对应，后者记录生成的普通订单。 |
 | > algoId               | String          | 策略委托单ID                                                                                                       |
 | > clOrdId              | String          | 客户自定义订单ID                                                                                                     |
 | > sz                   | String          | 委托数量，`币币/币币杠杆` 以币为单位；`交割`/`永续`/`期权` 以张为单位                                                                         |
@@ -275,7 +276,12 @@ asyncio.run(main())
 | > triggerPx            | String          | 计划委托单的触发价格                                                                                                    |
 | > triggerPxType        | String          | 计划委托单的触发价类型<br>`last`：最新价格<br>`index`：指数价格<br>`mark`：标记价格                                                     |
 | > ordPx                | String          | 计划委托单的委托价格                                                                                                    |
-| > advanceOrdType       | String          | 计划委托订单类型                                         |
+| > advanceOrdType       | String          | 计划委托的子订单类型。<br>`fok`：全部成交或立即取消<br>`ioc`：立即成交并取消剩余<br>`chase`：追逐限价委托<br>默认为空。                                         |
+| > advChaseParams       | Array of objects | 追逐参数。当 `advanceOrdType` 为 `chase` 时返回。 |
+| >> chaseType           | String | 追逐距离单位。`distance` 或 `ratio`。 |
+| >> chaseVal            | String | 追逐值。`0` 表示直接跟随买一价/卖一价；大于 `0` 表示距离。 |
+| >> maxChaseType        | String | 最大追逐距离单位。`distance` 或 `ratio`。 |
+| >> maxChaseVal         | String | 最大追逐距离值。 |
 | > last                 | String          | 下单时的最新成交价                                                                                                     |
 | > actualSz             | String          | 实际委托量                                                                                                         |
 | > actualPx             | String          | 实际委价                                                                                                          |

@@ -1,51 +1,56 @@
 ---
 name: okx-v5-api
 description: >-
-  Look up OKX V5 REST/WS API definitions — an index/retriever over the official
-  OpenAPI docs. Resolves which endpoints exist on which site (okex/Global, us,
-  hongkong, my, turkey), the correct base URL (rest/ws domain) per site, whether
-  a given endpoint is supported there, and the per-endpoint params/response/rate
-  limits. Use this whenever you need an OKX API's definition — e.g. while writing
-  or reviewing code that calls the OKX API and you need to confirm an endpoint's
-  path, availability, domain, or parameters — especially for a non-global site
-  (US, Hong Kong, EEA, Turkey; the EEA site id is `my`, meaning EEA, NOT
-  Malaysia), where base URL and endpoint availability differ from OKX Global.
-  Its result is the API's documented definition — finding and reading the docs;
-  making the call or writing the code around it stays with the caller. Reads
-  everything from a docs repo you set up once (see Setup) — do that before first use.
+  REST-first lookup for OKX V5 API definitions - a lightweight router over the
+  local Markdown docs repo. Resolves which REST endpoints exist on which site
+  (okex/Global, us, my, turkey), the correct REST base URL per site, whether a
+  given REST endpoint is supported there, and the per-endpoint params/response/
+  rate limits. WebSocket docs may be included in the docs repo as supplemental
+  Markdown and can be searched when needed, but the deterministic routing/index
+  flow is REST endpoint path based. Use this whenever you need an OKX API's
+  documented definition while writing or reviewing code. Reads everything from a
+  docs repo you set up once (see Setup) - do that before first use.
 license: MIT
 metadata:
   author: okx
-  version: "0.1.0"
+  version: "0.1.1"
   homepage: "https://www.okx.com"
   expected_data_major: 0
----
 
+---
 # OKX V5 API endpoint lookup
 
 A **router** over the OKX V5 API docs. It reads a **docs repo you set up once**
 (see **Setup**): the site table, the routing `index/`, and the per-endpoint
-bodies all live there. Given an endpoint, it resolves the site's base URL/domain,
-whether that endpoint is **supported** on the target site, and which doc file
-holds the params/response/rate-limit details.
+bodies all live there. The primary lookup flow is for REST endpoints. Given a
+REST endpoint, it resolves the site's REST base URL/domain, whether that endpoint
+is **supported** on the target site, and which doc file holds the
+params/response/rate-limit details.
+
+WebSocket Markdown can exist in the docs repo as supplemental documentation.
+Search it when needed, but do not assume WebSocket docs have the same
+deterministic REST endpoint-path routing/index.
 
 Everything is **local** once the repo is cloned — no network at query time. The
 skill installed by `npx skill add` is just this `SKILL.md`; all data comes from
 the docs repo, so **the repo must be set up before any use — routing included.**
 
-Sites: `okex` (Global), `us`, `hongkong`, `my` (**EEA**, not Malaysia),
+Sites: `okex` (Global), `us`, `my` (**EEA**, not Malaysia),
 `turkey`. Langs: `en`, `zh`.
 
 ## When to use
 
 - You need an OKX V5 API endpoint's definition (path, method, params, response,
-  rate limit, base URL, WS URL).
+  rate limit, REST base URL).
 - You are **writing** or **reviewing** code that calls the OKX API and need to
   confirm an endpoint's path, availability, domain, or parameters — look it up
   here instead of relying on memory.
-- Especially when the target site is **not** OKX Global — `us`, `hongkong`,
-  `my` (EEA), `turkey` each have their own REST/WS domains and their own set of
-  supported endpoints. Never assume Global's URLs or coverage apply.
+- Especially when the target site is **not** OKX Global — `us`,
+  `my` (EEA), `turkey` each have their own REST domains and their own set of
+  supported REST endpoints. Never assume Global's URLs or coverage apply.
+- You need WebSocket docs only as supplemental Markdown search. Use `sites.json`
+  for the site's `ws` domain, then search/read the relevant Markdown; do not use
+  REST endpoint routing as a promise of WebSocket coverage.
 
 Your **result** is the endpoint's documented definition — this skill helps you
 *find and read* it. Making the call or writing the code around it stays with the
@@ -62,6 +67,10 @@ offline (no network).
    `docs_path` is **not absolute**, or that path has **no `sites.json`** inside
    (`<docs_path>/sites.json`) → the docs are not set up → show **Setup** and stop
    until fixed. Nothing (not even routing) works before this.
+   If the current workspace already contains `sites.json`, `index.json`, and
+   `docs/`, then the current workspace is already the docs repo. Suggest writing
+   that workspace's absolute path to `~/.okx-v5-api/config.json`; do not clone a
+   second copy unless the user asks.
 2. **Offline major-compat check (local only).** Compare `<docs_path>/sites.json`
    `version` **major** against this file's `metadata.expected_data_major`. If
    majors **differ**, warn that skill and docs data are out of sync — paths and
@@ -74,26 +83,33 @@ offline (no network).
 Show this **only when the docs are not set up**. The config path is **fixed** at
 `~/.okx-v5-api/config.json` — not configurable, not an env var. Its content is
 just `{"docs_path":"<absolute path to the docs repo>"}`. `docs_path` **must be
-absolute**. Offer the user these three options:
+absolute**.
 
-**a) I already have the docs repo cloned.** Point the config at it:
+If the user installed this skill via `npx`/`npm skill add`, that installed only
+the lightweight router. The docs repo still needs to exist locally and be named
+by `docs_path`.
+
+**a) I have not cloned/downloaded the docs repo yet.** Clone the public docs repo
+and point the config at it:
 
 ```sh
-mkdir -p ~/.okx-v5-api && printf '{"docs_path":"%s"}\n' "<abs path>" > ~/.okx-v5-api/config.json
+git clone https://github.com/okx/ai-builder-openapi-md ~/.okx-v5-api-docs
+mkdir -p ~/.okx-v5-api
+printf '{"docs_path":"%s/.okx-v5-api-docs"}\n' "$HOME" > ~/.okx-v5-api/config.json
 ```
 
-**b) Clone + configure in one line** (uses the default location):
+**b) I already cloned/downloaded the docs repo.** From the docs repo root, point
+the config at the current directory:
 
 ```sh
-git clone <REPO_URL> ~/.okx-v5-api-docs && mkdir -p ~/.okx-v5-api && printf '{"docs_path":"%s/.okx-v5-api-docs"}\n' "$HOME" > ~/.okx-v5-api/config.json
+mkdir -p ~/.okx-v5-api
+printf '{"docs_path":"%s"}\n' "$(pwd)" > ~/.okx-v5-api/config.json
 ```
-
-> `<REPO_URL>` is a placeholder — the real docs repo URL is **TBD**; substitute
-> it before running, or ask the user for the clone URL.
 
 **c) Let me (the AI) set it up.** With your **explicit consent** (this modifies
-your machine), I'll clone the docs repo to the default `~/.okx-v5-api-docs` and
-write the config, then continue. I must ask for consent **before** running.
+your machine), I'll clone `https://github.com/okx/ai-builder-openapi-md` to the
+default `~/.okx-v5-api-docs` and write the config, then continue. I must ask for
+consent **before** running.
 
 Notes:
 
@@ -115,11 +131,12 @@ or fill in from training data (it may be outdated or a hallucination).
 Everything reads from `docs_path` (run **Preflight** first). Read the small
 slices below, in order:
 
-1. **Domain — `<docs_path>/sites.json` (authoritative).** Look up the site's
-   `rest` and `ws` base URLs there — always read the file, never rely on a
-   remembered domain. Domains are site-specific (the values here are
+1. **REST domain — `<docs_path>/sites.json` (authoritative).** Look up the site's
+   `rest` base URL there — always read the file, never rely on a remembered
+   domain. `sites.json` also carries `ws` domains for supplemental WebSocket docs.
+   Domains are site-specific (the values here are
    **illustrative only**; `sites.json` is the source of truth): `us`→`us.okx.com`,
-   `my`/EEA→`eea.okx.com`, `turkey`→`tr.okx.com`, `okex`/`hongkong`→`www.okx.com`.
+   `my`/EEA→`eea.okx.com`, `turkey`→`tr.okx.com`, `okex`→`www.okx.com`.
    Portfolio-margin/broker endpoints use `rest_pap` / `ws_pap` where present.
 2. **Find the endpoint — `<docs_path>/index/<module>.md`.** The module is the
    **2nd path segment**: `/api/v5/<module>/...` (e.g. `/api/v5/trade/order` →
@@ -145,8 +162,17 @@ slices below, in order:
    e.g. `rg -A 30 '"/api/v5/trade/order"' <docs_path>/index.json`, or a `jq`
    lookup — because the `sites.<site>.doc` values sit a dozen-odd lines *below*
    the matched `path`; the same `path` appears once per method, so match on
-   `method` + `path`.) The doc's YAML frontmatter is authoritative for
-   `method`/`path`/`rest`/`ws`.
+   `method` + `path`.) For normal single-endpoint files, the doc's YAML
+   frontmatter is authoritative for `method`/`path`/`rest`/`ws`.
+   - **Multi-endpoint docs.** If the doc frontmatter has `multi_endpoint: true`,
+     or if `index.json` shows several REST endpoints sharing the same `doc` path,
+     do **not** read the whole file for one endpoint. First use the generated
+     `Endpoint sections` table near the top of the file, or run
+     `rg -n -F "<search key>" <docs_path>/docs/<site>/<lang>/<that>`.
+     Then read only the matching endpoint section and nearby shared definitions
+     until the next endpoint heading. In these files, keep the target
+     `method`/`path` from `index.json` or the matched section; file frontmatter
+     `method`/`path` names only the first endpoint in that Markdown file.
 
 ## Example — place-order call for the US site
 
@@ -191,3 +217,5 @@ Semver: **MAJOR** = breaking layout/schema change (skill must update);
   `SKILL.md`; the clone is used **only** for its data (`sites.json`, `index/`,
   `docs/`). Ignore the clone's `SKILL.md`.
 - **`my` = EEA**, not Malaysia.
+- **WebSocket docs.** WebSocket Markdown is supplemental search corpus. This
+  skill's deterministic routing protocol is REST endpoint path based.

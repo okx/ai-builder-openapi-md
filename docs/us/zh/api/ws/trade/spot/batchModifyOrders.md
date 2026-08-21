@@ -56,6 +56,8 @@ type: guide
 | > reqId     | String  | 否       | 用户提供的请求ID<br>如果提供，那在返回参数中返回reqId，方便找到相应的修改请求。<br>字母（区分大小写）与数字的组合，可以是纯字母、纯数字且长度要在1-32位之间。 |
 | > newSz     | String  | 可选     | 修改后的新数量<br>`newSz`和`newPx`不可同时为空。对于部分成交订单，该数量应包含已成交数量。                                   |
 | > newPx     | String  | 可选     | 修改后的新价格                                                                                  |
+| > rpiTakerAccess | Boolean | 否 | 默认值为 `false`。<br>设为 `true` 时，改单后的订单可使用 RPI 流动性，适用于 `limit`、`market`、`fok`、`ioc` 订单。<br>改单时不会从原始订单继承，必须每次显式指定（省略则该次改单视为 `false`）。 |
+| > rpiPxRound | Boolean | 否 | 默认值为 `false`。仅对 RPI 做市商订单（`ordType: rpi`）生效。设为 `true` 时，违反间距规则的价格将自动向外取整至最近的合规价位，而非被拒绝。对非 RPI 订单及 `OPTION`/`EVENTS` 无效。 |
 | expTime     | String | 否     | 请求有效截止时间。Unix时间戳的毫秒数格式，如 `1597026383085`                                                 |
 
 > 全部成功返回示例
