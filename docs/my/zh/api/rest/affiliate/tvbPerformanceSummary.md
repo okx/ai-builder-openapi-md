@@ -12,7 +12,7 @@ supported: true
 
 ### 获取 TVB 业绩概览 [affiliate-rest-api-get-tvb-performance-summary]
 
-获取节点在指定时间段内的 TVB（交易量返佣，Trading Volume Bonus）业绩聚合数据——交易量、返佣金额、被邀请人及交易者。TVB 目前仅在部分地区提供。返佣按小时累计，以 `USDC` 结算。
+本节数据适用于采用 TVB 激励模式的节点账户。在 TVB（交易量返佣，Trading Volume Bonus）模式下，奖励根据来自适用司法辖区的被邀请人所产生的符合条件的交易量计算。本接口返回 TVB 模式下节点账户的整体业绩概览。
 
 #### 限速：3次/s
 #### 限速规则：User ID
@@ -68,17 +68,17 @@ GET /api/v5/affiliate/tvb/performance/summary?periodType=last_30d
 
 #### 返回参数
 
-| **参数名**             | **类型** | **描述** |
-| :--------------------- | :------- | :------- |
-| tradingVolBonus        | String   | 选定窗口内累计的 TVB 返佣，单位为 `USDC`。为累计值——包含仍处于待发放/暂缓状态的金额。 |
-| validVol               | String   | 选定窗口内的有效交易量——来自有效被邀请人的交易量，单位为 `USDC`。 |
-| eligibleVol            | String   | 符合条件的交易量——有效交易量中产生返佣的子集（返佣计算基数），单位为 `USDC`。 |
-| validInviteeCnt        | String   | 选定窗口内的去重有效被邀请人数。有效 = 与该节点存在有效邀请关系的用户。 |
-| validTraderCnt         | String   | 选定窗口内产生交易的去重有效被邀请人数。 |
-| eligibleTraderCnt      | String   | 已交易并产生返佣的去重交易者数（`validTraderCnt` 的子集）。 |
-| validDepAmt            | String   | 选定窗口内有效被邀请人的入金额，单位为 `USDC`。 |
-| validFirstTraderCnt    | String   | 首次交易发生在选定窗口内的去重有效被邀请人数（FTT）。每人至多计一次。 |
-| validFirstDepositorCnt | String   | 首次入金发生在选定窗口内的去重有效被邀请人数（FTD）。每人至多计一次。 |
+| **参数名**             | **类型** | **描述** | **数据范围** |
+| :--------------------- | :------- | :------- | :------------- |
+| tradingVolBonus        | String   | 选定窗口内累计的 TVB 返佣，单位为 `USDC`。为累计值——包含仍处于待发放/暂缓状态的金额。包含仍处于待发放或暂停状态的金额，可能与实际发放金额不一致。 | TVB only |
+| validVol               | String   | 选定窗口内的有效交易量——来自有效被邀请人的交易量，单位为 `USDC`。 | TVB only |
+| eligibleVol            | String   | 符合条件的交易量——有效交易量中产生返佣的子集（返佣计算基数），单位为 `USDC`。 | TVB only |
+| validInviteeCnt        | String   | 选定窗口内的去重有效被邀请人数。有效 = 与该节点存在有效邀请关系的用户。 | CPS+TVB both |
+| validTraderCnt         | String   | 选定窗口内产生交易的去重有效被邀请人数。 | TVB only |
+| eligibleTraderCnt      | String   | 已交易并产生返佣的去重交易者数（`validTraderCnt` 的子集）。 | TVB only |
+| validDepAmt            | String   | 选定窗口内有效被邀请人的入金额，单位为 `USDC`。 | CPS+TVB both |
+| validFirstTraderCnt    | String   | 首次交易发生在选定窗口内的去重有效被邀请人数（FTT）。每人至多计一次。<br><br>CPS firstTraderCnt 统计在选定周期内加入或重新加入节点邀请关系后完成首次交易，且该交易产生有效返佣的被邀请人。TVB validFirstTraderCnt 基于符合条件的交易量，不要求交易产生返佣。对于同一批被邀请人，CPS 统计值因此会系统性低于 TVB 统计值。两者不可比较。 | TVB only |
+| validFirstDepositorCnt | String   | 首次入金发生在选定窗口内的去重有效被邀请人数（FTD）。每人至多计一次。 | TVB only |
 | multiplier             | String   | 节点当前返佣倍率，以小数比率表示，例如 `0.5` 表示 50%。不受统计窗口影响。 |
 | ccy                    | String   | 结算币种，恒为 `USDC`。 |
 | uTime                  | String   | 数据最近更新时间，Unix时间戳的毫秒数格式。暂无数据时返回 `""`。 |

@@ -12,7 +12,7 @@ supported: true
 
 ### 获取 TVB 被邀请人列表 [affiliate-rest-api-get-tvb-invitee-list]
 
-分页获取节点的 TVB（交易量返佣，Trading Volume Bonus）被邀请人列表——包含身份、手续费等级，以及统计窗口内的 TVB 交易量。所有金额单位均为 `USDC`。
+本节数据适用于采用 TVB 激励模式的节点账户。在 TVB（交易量返佣，Trading Volume Bonus）模式下，奖励根据来自适用司法辖区的被邀请人所产生的符合条件的交易量计算。本接口返回 TVB 模式下归属于节点账户的用户列表。
 
 #### 限速：3次/s
 #### 限速规则：User ID
@@ -112,17 +112,17 @@ GET /api/v5/affiliate/tvb/invitee/list?periodType=last_30d&page=1&limit=100
 
 #### 返回参数
 
-| **参数名**           | **类型**          | **描述** |
-| :------------------ | :--------------- | :------- |
+| **参数名**           | **类型**          | **描述** | **数据范围** |
+| :------------------ | :--------------- | :------- | :------------- |
 | totalPage           | String           | 当前过滤条件与 `limit` 下的总页数。与响应中的 `data` 同级。 |
-| tradingVolBonus     | String           | 选定窗口内累计的 TVB 返佣，单位为 `USDC`。为累计值——包含仍处于待发放/暂缓状态的金额。 |
-| validVol            | String           | 选定窗口内的有效交易量——来自有效被邀请人的交易量，单位为 `USDC`。 |
-| eligibleVol         | String           | 符合条件的交易量——有效交易量中产生返佣的子集（返佣计算基数），单位为 `USDC`。 |
-| validDepAmt         | String           | 选定窗口内有效被邀请人的入金额，单位为 `USDC`。 |
-| validInviteeCnt     | String           | 选定窗口内的去重有效被邀请人数。有效 = 与该节点存在有效邀请关系的用户。 |
-| validFirstTraderCnt | String           | 首次交易发生在选定窗口内的去重有效被邀请人数（FTT）。每人至多计一次。 |
-| validTraderCnt      | String           | 选定窗口内产生交易的去重有效被邀请人数。 |
-| eligibleTraderCnt   | String           | 已交易并产生返佣的去重交易者数（`validTraderCnt` 的子集）。 |
+| tradingVolBonus     | String           | 选定窗口内累计的 TVB 返佣，单位为 `USDC`。为累计值——包含仍处于待发放/暂缓状态的金额。包含仍处于待发放或暂停状态的金额，可能与实际发放金额不一致。 | TVB only |
+| validVol            | String           | 选定窗口内的有效交易量——来自有效被邀请人的交易量，单位为 `USDC`。 | TVB only |
+| eligibleVol         | String           | 符合条件的交易量——有效交易量中产生返佣的子集（返佣计算基数），单位为 `USDC`。 | TVB only |
+| validDepAmt         | String           | 选定窗口内有效被邀请人的入金额，单位为 `USDC`。 | CPS+TVB both |
+| validInviteeCnt     | String           | 选定窗口内的去重有效被邀请人数。有效 = 与该节点存在有效邀请关系的用户。 | CPS+TVB both |
+| validFirstTraderCnt | String           | 首次交易发生在选定窗口内的去重有效被邀请人数（FTT）。每人至多计一次。 | TVB only |
+| validTraderCnt      | String           | 选定窗口内产生交易的去重有效被邀请人数。 | TVB only |
+| eligibleTraderCnt   | String           | 已交易并产生返佣的去重交易者数（`validTraderCnt` 的子集）。 | TVB only |
 | invitees            | Array of objects | 结果行。同一 `uid` 可能重复出现——窗口内每持有过一个手续费等级即一行，`level` 与各金额按该等级区间计。 |
 | > uid               | String           | 被邀请人的 UID。 |
 | > joinTime          | String           | 建立邀请关系的时间，Unix时间戳的毫秒数格式。 |
@@ -131,7 +131,7 @@ GET /api/v5/affiliate/tvb/invitee/list?periodType=last_30d&page=1&limit=100
 | > affiliateCode     | String           | 被邀请人注册时使用的节点邀请码。 |
 | > firstTradeTime    | String           | 建立关系后的首次交易时间，Unix时间戳的毫秒数格式。未交易时返回 `""`。 |
 | > level             | String           | 被邀请人的交易手续费等级展示名称，例如 `Regular User`、`VIP 1`–`VIP 9`。这是本地化展示名称，并非请求 `feeTier` 过滤器所用的数字代码——请勿将其作为过滤值回传。 |
-| > validVol          | String           | 窗口内的交易量，单位为 `USDC`。 |
-| > eligibleVol       | String           | 窗口内符合条件（可产生返佣）的交易量，单位为 `USDC`。 |
-| > validDepAmt       | String           | 被邀请人在窗口内的入金额，单位为 `USDC`。对无入金查看权限的调用方返回 `""`（掩码）。 |
+| > validVol          | String           | 窗口内的交易量，单位为 `USDC`。 | TVB only |
+| > eligibleVol       | String           | 窗口内符合条件（可产生返佣）的交易量，单位为 `USDC`。 | TVB only |
+| > validDepAmt       | String           | 被邀请人在窗口内的入金额，单位为 `USDC`。对无入金查看权限的调用方返回 `""`（掩码）。 | CPS+TVB both |
 | > note              | String           | 节点对该被邀请人的私有备注。无备注时返回 `""`。 |

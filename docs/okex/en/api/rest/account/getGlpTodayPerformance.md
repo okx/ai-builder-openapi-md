@@ -3,7 +3,7 @@ site: okex
 lang: en
 name: GET / Get GLP today performance
 method: GET
-path: /api/v5/users/glp/today-performance
+path: /api/v5/users/glp/todayperformance
 module: users
 rest: https://www.okx.com
 ws: wss://ws.okx.com:8443
@@ -19,12 +19,12 @@ Retrieve the current day and month-to-date (MTD) GLP performance snapshot for th
 
 #### HTTP Request
 
-`GET /api/v5/users/glp/today-performance`
+`GET /api/v5/users/glp/todayperformance`
 
 > Request Example
 
 ```shell
-GET /api/v5/users/glp/today-performance
+GET /api/v5/users/glp/todayperformance
 ```
 
 #### Request Parameters

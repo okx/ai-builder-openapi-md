@@ -683,16 +683,16 @@ pub struct PmBookDepth {
 
 **连接模型**
 
-Open API 对公共频道和私有频道使用同一个端点： `wss://<host>/ws/v5/business`。公共频道可匿名使用。私有频道在 WS 握手之后需要一次性的 `op: "login"`。
+Open API 对公共频道和私有频道使用同一个端点： `wss://<host>/ws/v6/dex`。公共频道可匿名使用。私有频道在 WS 握手之后需要一次性的 `op: "login"`。
 
 主机：
 
 ```rust
 pub mod ws::endpoints {
-    pub const DEFAULT_WS_HOST: &str = "wss://ws.okx.com:8443";
-    pub const EU_WS_HOST:      &str = "wss://wseea.okx.com";
-    pub const US_WS_HOST:      &str = "wss://wsus.okx.com";
-    pub const BUSINESS_PATH:   &str = "/ws/v5/business";
+    pub const DEFAULT_WS_HOST: &str = "wss://wsdex.okx.com";
+    pub const EU_WS_HOST:      &str = "wss://wsweb3eea.okx.com";
+    pub const US_WS_HOST:      &str = "wss://wsweb3us.okx.com";
+    pub const BUSINESS_PATH:   &str = "/ws/v6/dex";
 }
 ```
 

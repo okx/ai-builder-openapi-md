@@ -1,7 +1,7 @@
 ---
 site: my
 lang: zh
-name: 获取节点业绩概览
+name: 获取 CPS 节点业绩概览
 method: GET
 path: /api/v5/affiliate/performance/summary
 module: affiliate
@@ -10,9 +10,9 @@ ws: wss://wseea.okx.com:8443
 supported: true
 ---
 
-### 获取节点业绩概览 [affiliate-rest-api-get-performance-summary]
+### 获取 CPS 节点业绩概览 [affiliate-rest-api-get-performance-summary]
 
-获取指定时间窗口内节点的业绩聚合指标。
+本节数据适用于使用 CPS 激励模式的节点账户。在 CPS（按销售付费）模式下，节点根据来自适用司法辖区的被邀请人所产生的符合条件的交易手续费获得奖励。该接口返回 CPS 模式下节点账户的整体业绩概览。
 
 #### 限速：3次/s
 #### 限速规则：User ID
@@ -63,13 +63,6 @@ GET /api/v5/affiliate/performance/summary?periodType=total
                     "traderCnt": "9",
                     "vol": "94531.94802",
                     "commission": "3.25142568535855"
-                },
-                {
-                    "commissionCategory": "BSC",
-                    "firstTraderCnt": "0",
-                    "traderCnt": "0",
-                    "vol": "0",
-                    "commission": "0"
                 }
             ]
         }
@@ -79,14 +72,14 @@ GET /api/v5/affiliate/performance/summary?periodType=total
 
 #### 返回参数
 
-| **参数名**            | **类型**          | **描述** |
-| :------------------- | :--------------- | :------- |
+| **参数名**            | **类型**          | **描述** | **数据范围** |
+| :------------------- | :--------------- | :------- | :------------- |
 | uTime                | String           | 数据最近更新时间，Unix时间戳的毫秒数格式。 |
-| inviteeCnt           | String           | 直客总数。 |
-| depAmt               | String           | 累计充值金额，单位为 `USDT`。 |
+| inviteeCnt           | String           | 直客总数。 | CPS+TVB both |
+| depAmt               | String           | 累计充值金额，单位为 `USDC`。 | CPS+TVB both |
 | details              | Array of objects | 按业务类别拆分的明细，每个类别一条。 |
-| > commissionCategory | String           | 返佣计算类别。<br>`SPOT`：现货<br>`DERIVATIVE`：衍生品<br>`BSC`：返佣业务 |
-| > firstTraderCnt     | String           | 在选定窗口内首次交易的直客数（按 `commissionCategory` 维度）。每个直客在生命周期内最多统计一次。 |
-| > traderCnt          | String           | 选定窗口内在该 `commissionCategory` 下产生交易的直客数。按窗口统计。 |
-| > vol                | String           | 选定窗口内该 `commissionCategory` 下的交易量，单位为 `USDT`。按窗口统计——区别于 `/invitee/list`、`/sub-affiliate/list` 中的 `totalVol`（生命周期累计）。 |
-| > commission         | String           | 选定窗口内该 `commissionCategory` 下的返佣，单位为 `USDT`。按窗口统计——区别于其他接口中的 `totalCommission`（生命周期累计）。 |
+| > commissionCategory | String           | 返佣计算类别。<br>`SPOT`：现货<br>`DERIVATIVE`：衍生品<br>根据监管要求，来自 EEA 地区 OKX 用户的衍生品交易不适用返佣。来自符合资格地区的现货和衍生品交易返佣仍完全适用。 |
+| > firstTraderCnt     | String           | 在选定周期内，加入或重新加入节点邀请关系后完成首次交易的被邀请人数。分别按 SPOT 和 DERIVATIVE 统计。只有产生有效返佣的交易才会计入；未产生返佣的交易不计入。<br><br>CPS firstTraderCnt 统计在选定周期内加入或重新加入节点邀请关系后完成首次交易，且该交易产生有效返佣的被邀请人。TVB validFirstTraderCnt 基于符合条件的交易量，不要求交易产生返佣。对于同一批被邀请人，CPS 统计值因此会系统性低于 TVB 统计值。两者不可比较。 | CPS+TVB both |
+| > traderCnt          | String           | 选定周期内发生交易的去重被邀请人数，分别按 SPOT 和 DERIVATIVE 统计。同一被邀请人可能出现在多个类别中。 | CPS+TVB both |
+| > vol                | String           | 节点的被邀请人在选定周期内产生的总交易量，分别按 SPOT 和 DERIVATIVE 统计。这是一般交易量，不是有效交易量或符合条件的交易量。 | CPS+TVB both |
+| > commission         | String           | 选定窗口内该 `commissionCategory` 下的返佣，单位为 `USDC`。按窗口统计——区别于其他接口中的 `totalCommission`（生命周期累计）。 | CPS only |

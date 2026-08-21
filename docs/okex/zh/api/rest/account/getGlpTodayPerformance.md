@@ -3,7 +3,7 @@ site: okex
 lang: zh
 name: 获取 GLP 当日表现
 method: GET
-path: /api/v5/users/glp/today-performance
+path: /api/v5/users/glp/todayperformance
 module: users
 rest: https://www.okx.com
 ws: wss://ws.okx.com:8443
@@ -19,12 +19,12 @@ supported: true
 
 #### HTTP请求
 
-`GET /api/v5/users/glp/today-performance`
+`GET /api/v5/users/glp/todayperformance`
 
 > 请求示例
 
 ```shell
-GET /api/v5/users/glp/today-performance
+GET /api/v5/users/glp/todayperformance
 ```
 
 #### 请求参数

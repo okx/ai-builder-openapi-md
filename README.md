@@ -36,6 +36,7 @@ index/                           # layered lookup tables (primary navigation)
 index.json                       # full machine index (secondary): every endpoint, per-site "supported" + doc path (+ version, generated_at)
 docs/<site>/<lang>/...md         # usually one endpoint per Markdown file
 skills/okx-v5-api/               # pure-Markdown skill (SKILL.md only)
+LICENSE                          # MIT
 ```
 
 - **Sites**: `okex` (Global), `us`, `my` (EEA), `turkey` (Hong Kong is **not**
