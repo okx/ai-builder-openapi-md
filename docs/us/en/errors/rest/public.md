@@ -602,6 +602,7 @@ There is a sub-code format used to further distinguish different scenarios withi
 | 54047 | 200 | You can’t amend this order because an order with the same order ID or client order ID is in speed bump. |
 | 54048 | 200 | You can’t cancel the order because an order with the same order ID or client order ID is in speed bump. |
 | 54049 | 200 | API users can’t place orders that take RPI liquidity now because system is busy. To proceed, set rpiTakerAccess:false. |
+| 54051 | 200 | RPI order rejected. The order value is below the minimum required for RPI orders ({param0} USD). |
 |   54070 | 200 | The current function is not supported. Please update to the latest app version if using the app, or use the attachAlgoOrds array to place orders via Open API. |
 |   54071 | 200 | Due to the platform system upgrade, this order no longer supports modifications. It is recommended to cancel and place a new order. |
 |   54072	         | 	200	                | This contract is currently view-only and not tradable. |

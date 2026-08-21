@@ -12,7 +12,7 @@ supported: true
 
 ### 获取 TVB 被邀请人详情 [affiliate-rest-api-get-tvb-invitee-detail]
 
-通过被邀请人的 UID 查询其单个 TVB（交易量返佣，Trading Volume Bonus）档案——包含身份、KYC、手续费等级，以及 TVB 交易量 / 入金额。所有金额单位均为 `USDC`。
+本节数据适用于采用 TVB 激励模式的节点账户。在 TVB（交易量返佣，Trading Volume Bonus）模式下，奖励根据来自适用司法辖区的被邀请人所产生的符合条件的交易量计算。本接口返回特定被邀请人的 TVB 业绩详情。
 
 #### 限速：3次/s
 #### 限速规则：User ID
@@ -65,8 +65,8 @@ GET /api/v5/affiliate/tvb/invitee/detail?uid=855082962927686909
 
 #### 返回参数
 
-| **参数名**      | **类型** | **描述** |
-| :------------- | :------- | :------- |
+| **参数名**      | **类型** | **描述** | **数据范围** |
+| :------------- | :------- | :------- | :------------- |
 | uid            | String   | 被邀请人的 UID。 |
 | inviterUid     | String   | 被邀请人直接邀请人（邀请该被邀请人的账户）的公开 UID。直接被邀请人时等于节点本身；在 MLRS 下为子节点的 UID。无法解析邀请人时返回 `""`。 |
 | joinTime       | String   | 与该节点建立邀请关系的时间，Unix时间戳的毫秒数格式。 |
@@ -77,6 +77,6 @@ GET /api/v5/affiliate/tvb/invitee/detail?uid=855082962927686909
 | note           | String   | 节点对该被邀请人的私有备注。无备注时返回 `""`。 |
 | firstTradeTime | String   | 建立关系后被邀请人的首次交易时间，Unix时间戳的毫秒数格式。未交易时返回 `""`。 |
 | level          | String   | 被邀请人的交易手续费等级展示名称，例如 `Regular User`、`VIP 1`–`VIP 9`。 |
-| validVol       | String   | 被邀请人的总交易量，单位为 `USDC`。 |
-| eligibleVol    | String   | 符合条件的交易量——产生返佣的子集，单位为 `USDC`。 |
-| validDepAmt    | String   | 被邀请人的总入金额，单位为 `USDC`。对无入金查看权限的调用方返回 `""`（掩码）。 |
+| validVol       | String   | 被邀请人的总交易量，单位为 `USDC`。 | TVB only |
+| eligibleVol    | String   | 符合条件的交易量——产生返佣的子集，单位为 `USDC`。 | TVB only |
+| validDepAmt    | String   | 被邀请人的总入金额，单位为 `USDC`。对无入金查看权限的调用方返回 `""`（掩码）。 | CPS+TVB both |

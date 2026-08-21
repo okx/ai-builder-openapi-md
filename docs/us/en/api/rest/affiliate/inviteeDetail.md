@@ -61,20 +61,20 @@ GET /api/v5/affiliate/invitee/detail?uid=11111111&periodType=last_30d
 
 #### Response parameters
 
-| **Parameter name** | **Type** | **Description**                                                                                                   |
-|:-------------------| :------- |:------------------------------------------------------------------------------------------------------------------|
+| **Parameter name** | **Type** | **Description** |
+|:-------------------| :------- |:------------------------------------------------------------------------------------------------------------------ |
 | inviteeLevel       | String   | Invitee's relative level to the affiliate<br>If the user is a invitee, the level will be `2`.                     |
 | joinTime           | String     | Timestamp that the rebate relationship is established, Unix timestamp in millisecond format, e.g. `1597026383085` |
 | inviteeRebateRate  | String     | Self rebate rate of the invitee (in decimal), e.g. `0.01` represents `1%`                                             |
-| totalCommission    | String     | Total commission earned from the invitee, unit in `USDT`                                                                                                                  |
+| totalCommission    | String     | Total commission earned from the invitee, unit in `USDT` |
 | firstTradeTime     | String  | Timestamp that the first trade is completed after the latest rebate relationship is established with the parent affiliate<br/> Unix timestamp in millisecond format, e.g. 1597026383085<br/>If user has not traded, "" will be returned |
 | level              | String   | Invitee trading fee level, e.g. Lv1                                                                                                                                                                                                     |
-| depAmt             | String   | Accumulated amount of deposit in USDT<br/>If user has not deposited, 0 will be returned                                                                                                                                                 |
-| wdAmt              | String   | Accumulated amount of withdrawal in USDT<br/>If user has not withdrawn, 0 will be returned                                                                                                                                              |
-| volMonth           | String   | Accumulated Trading volume in the current month in USDT<br/>If user has not traded, 0 will be returned                                                                                                                                  |
-| totalVol           | String   | Lifetime accumulated trading volume in USDT<br/>If user has not traded, 0 will be returned                                                                                                                                              |
+| depAmt             | String   | Accumulated amount of deposit in USDT<br/>If user has not deposited, 0 will be returned |
+| wdAmt              | String   | Accumulated amount of withdrawal in USDT<br/>If user has not withdrawn, 0 will be returned |
+| volMonth           | String   | Accumulated Trading volume in the current month in USDT<br/>If user has not traded, 0 will be returned |
+| totalVol           | String   | Lifetime accumulated trading volume in USDT<br/>If user has not traded, 0 will be returned |
 | volPeriod          | String   | Trading volume within the selected `periodType` window, unit in `USDT`. Only returned when `periodType` is supplied in the request; omitted otherwise. If the user has not traded in the window, `0` is returned. |
-| accFee             | String   | Accumulated Amount of trading fee in USDT<br/>If there is no any fee, 0 will be returned                                                                                                                                                |
+| accFee             | String   | Accumulated Amount of trading fee in USDT<br/>If there is no any fee, 0 will be returned |
 | kycTime            | String   | KYC2 verification time. Unix timestamp in millisecond format and the precision is in day<br/>If user has not passed KYC2, "" will be returned                                                                                           |
 | region             | String   | User country or region. e.g. "United Kingdom"                                                                                                                                                                                           |
 | affiliateCode      | String   | Affiliate invite code that the invitee registered/recalled via                                                                                                                                                 |

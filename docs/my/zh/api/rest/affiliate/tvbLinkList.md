@@ -12,7 +12,7 @@ supported: true
 
 ### 获取 TVB 邀请链接列表 [affiliate-rest-api-get-tvb-link-list]
 
-列出节点的 TVB（交易量返佣，Trading Volume Bonus）邀请链接，每一行携带该链接的 TVB 业绩——有效被邀请人、有效及符合条件的交易者、有效及符合条件的交易量，以及累计返佣。分页返回。所有金额单位均为 `USDC`。
+本节数据适用于采用 TVB 激励模式的节点账户。在 TVB（交易量返佣，Trading Volume Bonus）模式下，奖励根据来自适用司法辖区的被邀请人所产生的符合条件的交易量计算。本接口返回与节点账户关联的 TVB 邀请链接。
 
 #### 限速：3次/s
 #### 限速规则：User ID
@@ -85,18 +85,18 @@ GET /api/v5/affiliate/tvb/link/list?linkType=standard
 
 #### 返回参数
 
-| **参数名**         | **类型** | **描述** |
-| :---------------- | :------- | :------- |
+| **参数名**         | **类型** | **描述** | **数据范围** |
+| :---------------- | :------- | :------- | :------------- |
 | totalPage         | String   | 当前过滤条件与 `limit` 下的总页数。与响应中的 `data` 同级。 |
 | channelId         | String   | 链接的渠道 ID。 |
 | channelName       | String   | 链接展示名称。 |
 | linkStatus        | String   | 链接状态。<br>`normal`<br>`abnormal` |
 | joinLink          | String   | 该链接可分享的邀请 URL。 |
 | note              | String   | 用户对该链接自定义的备注。无备注时返回 `""`。 |
-| validInviteeCnt   | String   | 归属该链接的去重有效被邀请人数。无则为 `0`。 |
-| validTraderCnt    | String   | 该链接上的去重有效交易者数。无则为 `0`。 |
-| eligibleTraderCnt | String   | 去重的符合条件交易者数——有效交易者中产生返佣的子集。无则为 `0`。 |
-| validVol          | String   | 该链接上的有效交易量，单位为 `USDC`。无则为 `0`。 |
-| eligibleVol       | String   | 符合条件的交易量——有效交易量中产生返佣的子集（返佣计算基数），单位为 `USDC`。无则为 `0`。 |
-| tradingVolBonus   | String   | 该链接累计的 TVB 返佣，单位为 `USDC`。无则为 `0`。 |
+| validInviteeCnt   | String   | 归属该链接的去重有效被邀请人数。无则为 `0`。 | CPS+TVB both |
+| validTraderCnt    | String   | 该链接上的去重有效交易者数。无则为 `0`。 | TVB only |
+| eligibleTraderCnt | String   | 去重的符合条件交易者数——有效交易者中产生返佣的子集。无则为 `0`。 | TVB only |
+| validVol          | String   | 该链接上的有效交易量，单位为 `USDC`。无则为 `0`。 | TVB only |
+| eligibleVol       | String   | 符合条件的交易量——有效交易量中产生返佣的子集（返佣计算基数），单位为 `USDC`。无则为 `0`。 | TVB only |
+| tradingVolBonus   | String   | 该链接累计的 TVB 返佣，单位为 `USDC`。无则为 `0`。 | TVB only |
 | cTime             | String   | 链接创建时间，Unix时间戳的毫秒数格式。不可用时返回 `""`。 |

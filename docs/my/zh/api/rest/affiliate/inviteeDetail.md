@@ -1,7 +1,7 @@
 ---
 site: my
 lang: zh
-name: 获取被邀请人返佣信息
+name: 获取 CPS 被邀请人返佣信息
 method: GET
 path: /api/v5/affiliate/invitee/detail
 module: affiliate
@@ -10,7 +10,9 @@ ws: wss://wseea.okx.com:8443
 supported: true
 ---
 
-### 获取被邀请人返佣信息 [affiliate-rest-api-get-the-invitee-39-s-detail]
+### 获取 CPS 被邀请人返佣信息 [affiliate-rest-api-get-the-invitee-39-s-detail]
+
+本节数据适用于使用 CPS 激励模式的节点账户。在 CPS（按销售付费）模式下，节点根据来自适用司法辖区的被邀请人所产生的符合条件的交易手续费获得奖励。该接口返回指定被邀请人的 CPS 业绩详情。
 
 #### 限速：3次/s
 #### 限速规则：User ID
@@ -61,20 +63,20 @@ GET /api/v5/affiliate/invitee/detail?uid=11111111&periodType=last_30d
 
 #### 返回参数
 
-| **参数名**           | **类型** | **描述**                                    |
-|:------------------| :------- |:------------------------------------------|
+| **参数名**           | **类型** | **描述** | **数据范围** |
+|:------------------| :------- |:------------------------------------------ | :------------- |
 | inviteeLevel      | String   | 被邀请人的节点层级<br>直客返回`2`                      |
 | joinTime          | String     | 返佣关系建立的时间，Unix时间戳的毫秒数格式，如 `1597026383085` |
 | inviteeRebateRate | String     | 返佣比例(小数形式)，如 `0.01`代表`1%`                 |
-| totalCommission   | String     | 总返佣数量，单位为`USDT`                             |
+| totalCommission   | String     | 总返佣数量，单位为`USDC` | CPS only |
 | firstTradeTime    | String  | 首次交易时间（在最近的返佣关系建立之后）<br/> Unix时间戳的毫秒数格式，如 1597026383085<br/>如果用户没有交易, 返回 "" |
 | level             | String   | 当前在平台上真实交易量的用户等级，如 Lv1                                                     |
-| depAmt            | String   | 累计充值金额，单位为 USDT<br/>如果没有充值, 返回 0                                            |
-| wdAmt             | String   | 累计提现金额，单位为 USDT<br/>如果没有提现, 返回 0                                            |
-| volMonth          | String   | 当月累计交易量，单位为 USDT<br/>如果没有交易, 返回 0                                           |
-| totalVol          | String   | 生命周期累计交易量，单位为 USDT<br/>如果没有交易, 返回 0                                        |
-| volPeriod         | String   | 所选 `periodType` 窗口内的交易量，单位为 `USDT`。仅当请求传入 `periodType` 时返回，否则省略。窗口内无交易时返回 `0`。 |
-| accFee            | String   | 累计交易手续费，单位为 USDT<br/>如果没有交易手续费，返回 0                                         |
+| depAmt            | String   | 累计充值金额，单位为 USDC<br/>如果没有充值, 返回 0 | CPS+TVB both |
+| wdAmt             | String   | 累计提现金额，单位为 USDC<br/>如果没有提现, 返回 0 | CPS+TVB both |
+| volMonth          | String   | 当月累计交易量，单位为 USDC<br/>如果没有交易, 返回 0 | CPS+TVB both |
+| totalVol          | String   | 生命周期累计交易量，单位为 USDC<br/>如果没有交易, 返回 0 | CPS+TVB both |
+| volPeriod         | String   | 所选 `periodType` 窗口内的交易量，单位为 `USDC`。仅当请求传入 `periodType` 时返回，否则省略。窗口内无交易时返回 `0`。 | CPS+TVB both |
+| accFee            | String   | 累计交易手续费，单位为 USDC<br/>如果没有交易手续费，返回 0 | CPS only |
 | kycTime           | String   | KYC2 认证时间. Unix时间戳的毫秒数格式，且精确到天<br/>如果没有通过 KYC2, 返回 ""                       |
 | region            | String   | 国家或地区，如"英国"                                                                 |
 | affiliateCode     | String   | 节点邀请码                                                                       |

@@ -3,7 +3,7 @@ site: okex
 lang: en
 name: GET / Get GLP historical performance
 method: GET
-path: /api/v5/users/glp/historical-performance
+path: /api/v5/users/glp/historicalperformance
 module: users
 rest: https://www.okx.com
 ws: wss://ws.okx.com:8443
@@ -19,13 +19,13 @@ Retrieve daily GLP performance history for a single program. Results are sorted 
 
 #### HTTP Request
 
-`GET /api/v5/users/glp/historical-performance`
+`GET /api/v5/users/glp/historicalperformance`
 
 > Request Example
 
 ```shell
-GET /api/v5/users/glp/historical-performance?program=SPOT
-GET /api/v5/users/glp/historical-performance?program=SPOT&begin=1751299200000&end=1753804800000&limit=31
+GET /api/v5/users/glp/historicalperformance?program=SPOT
+GET /api/v5/users/glp/historicalperformance?program=SPOT&begin=1751299200000&end=1753804800000&limit=31
 ```
 
 #### Request Parameters

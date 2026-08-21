@@ -5,7 +5,7 @@ One table per module under `index/<module>.md`. To look up an endpoint: take the
 | module | endpoints | okex | us | my | turkey |
 |---|--:|--:|--:|--:|--:|
 | account | 56 | 55 | 34 | 31 | 11 |
-| affiliate | 11 | 6 | 1 | 11 | 1 |
+| affiliate | 11 | 6 | 1 | 9 | 1 |
 | asset | 28 | 26 | 25 | 25 | 27 |
 | copytrading | 26 | 26 | 0 | 0 | 0 |
 | fiat | 13 | 13 | 8 | 13 | 8 |
