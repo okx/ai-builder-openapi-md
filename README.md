@@ -13,6 +13,29 @@ deterministic REST endpoint routing/index.
 > carry a `version` (semver) and a `generated_at` timestamp so you can tell which
 > release you are reading.
 
+## Layout
+
+This repository ships a **self-contained skill**: the `okx-v5-api` skill and all
+of its data live together under `skills/okx-v5-api/`. Installing the skill (e.g.
+`npx skills add`) brings the routing tables and the endpoint bodies with it —
+there is nothing else to clone and no path to configure.
+
+```
+skills/okx-v5-api/               # self-contained okx-v5-api skill
+  SKILL.md                       #   the skill (router instructions)
+  sites.json                     #   site -> REST and WS domains (+ version, generated_at)
+  index/                         #   layered lookup tables (primary navigation)
+    modules.md                   #     module list + per-site endpoint counts
+    <module>.md                  #     one table per module: method|path|name|doc|per-site supported
+  index.json                     #   full machine index: every endpoint, per-site "supported" + doc path (+ version, generated_at)
+  docs/<site>/<lang>/...md       #   endpoint bodies (usually one endpoint per file)
+README.md                        # this file
+LICENSE                          # MIT
+```
+
+Other skills may live alongside under `skills/` (e.g. an integration guide); they
+are maintained independently of this generated `okx-v5-api` corpus.
+
 ## Versioning
 
 `sites.json` and `index.json` carry a `version` field using semver
@@ -26,18 +49,7 @@ deterministic REST endpoint routing/index.
 `generated_at` records when the build was produced. Use `version` to check
 compatibility and `generated_at` for freshness.
 
-## What's here
-
-```
-sites.json                       # site -> REST and WS domains (+ version, generated_at)
-index/                           # layered lookup tables (primary navigation)
-  modules.md                     #   module list + per-site endpoint counts
-  <module>.md                    #   one table per module: method|path|name|doc|per-site supported
-index.json                       # full machine index (secondary): every endpoint, per-site "supported" + doc path (+ version, generated_at)
-docs/<site>/<lang>/...md         # usually one endpoint per Markdown file
-skills/okx-v5-api/               # pure-Markdown skill (SKILL.md only)
-LICENSE                          # MIT
-```
+## Content notes
 
 - **Sites**: `okex` (Global), `us`, `my` (EEA), `turkey` (Hong Kong is **not**
   covered). Each site's docs are **flattened and self-contained** — the
@@ -56,8 +68,8 @@ LICENSE                          # MIT
 
 ## Navigation (the `index/` layer)
 
-`index/` is the primary way to find an endpoint. It is plain Markdown — no code,
-no runtime, all local.
+All paths below are relative to `skills/okx-v5-api/`. `index/` is the primary way
+to find an endpoint. It is plain Markdown — no code, no runtime, all local.
 
 - `index/modules.md` lists every module with its total endpoint count and how
   many are supported per site — a quick overview and jump-off point.
@@ -69,6 +81,8 @@ no runtime, all local.
   `index/` tables — they are smaller and easier to scan.
 
 ## For AI agents
+
+All data paths are relative to `skills/okx-v5-api/`.
 
 1. Read `sites.json` to get the target site's `rest` domain. Use that as the REST
    base URL - **never hardcode a single global domain**. `sites.json` also
@@ -93,37 +107,18 @@ no runtime, all local.
 
 ## Skill & install model
 
-The `skills/okx-v5-api/` skill is **pure Markdown** — just `SKILL.md`, no Python,
-no scripts, no runtime dependency, and **no bundled data**. It does not carry its
-own copy of the routing layer. Instead it reads **everything** — `sites.json`,
-`index/`, and the endpoint doc `docs/` — from **this repository, cloned by you**.
+The `skills/okx-v5-api/` skill is **pure Markdown + bundled data** — no Python, no
+scripts, no runtime dependency, and **no network at query time**. Unlike earlier
+releases, the routing layer and the endpoint bodies now travel **with** the skill,
+so there is nothing separate to clone and no `docs_path`/config file to set up.
 
-Installing the skill does **not** install this data repo. Point the skill at
-your clone once via a fixed config file at `~/.okx-v5-api/config.json` with a
-`docs_path` field naming the checkout. The skill then resolves both routing and
-bodies under that path:
+`npx skills add` (or copying the `skills/okx-v5-api/` directory) installs
+`SKILL.md` together with `sites.json`, `index.json`, `index/`, and `docs/`. The
+skill resolves everything **relative to its own directory**:
 
-1. **Route**: from `docs_path`, read `sites.json` + `index/` to find the site
+1. **Route**: read `sites.json` + `index/` (next to `SKILL.md`) to find the site
    domain, per-site support, and the target `doc` path.
-2. **Read the body**: open `docs_path/docs/<site>/<lang>/<doc>`.
-
-If `~/.okx-v5-api/config.json` or the clone is missing, set up the clone and
-point `docs_path` at it before using the skill.
-
-If you have not cloned/downloaded this docs repo yet:
-
-```sh
-git clone https://github.com/okx/ai-builder-openapi-md ~/.okx-v5-api-docs
-mkdir -p ~/.okx-v5-api
-printf '{"docs_path":"%s/.okx-v5-api-docs"}\n' "$HOME" > ~/.okx-v5-api/config.json
-```
-
-If you already cloned/downloaded this repo, run this from the repo root:
-
-```sh
-mkdir -p ~/.okx-v5-api
-printf '{"docs_path":"%s"}\n' "$(pwd)" > ~/.okx-v5-api/config.json
-```
+2. **Read the body**: open `docs/<site>/<lang>/<doc>` under the skill directory.
 
 ## Provenance & disclaimer
 
