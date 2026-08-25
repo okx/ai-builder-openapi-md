@@ -1,42 +1,57 @@
 ---
 name: okx-v5-api
 description: >-
-  REST-first lookup for OKX V5 API definitions - a lightweight router over the
-  local Markdown docs repo. Resolves which REST endpoints exist on which site
-  (okex/Global, us, my, turkey), the correct REST base URL per site, whether a
-  given REST endpoint is supported there, and the per-endpoint params/response/
-  rate limits. WebSocket docs may be included in the docs repo as supplemental
-  Markdown and can be searched when needed, but the deterministic routing/index
-  flow is REST endpoint path based. Use this whenever you need an OKX API's
-  documented definition while writing or reviewing code. Reads everything from a
-  docs repo you set up once (see Setup) - do that before first use.
+  REST-first lookup for OKX V5 API definitions - a lightweight router over a
+  Markdown corpus that ships INSIDE this skill. Resolves which REST endpoints
+  exist on which site (okex/Global, us, my, turkey), the correct REST base URL
+  per site, whether a given REST endpoint is supported there, and the
+  per-endpoint params/response/rate limits. WebSocket docs may be included as
+  supplemental Markdown and can be searched when needed, but the deterministic
+  routing/index flow is REST endpoint path based. Use this whenever you need an
+  OKX API's documented definition while writing or reviewing code. All data is
+  bundled with the skill - no setup, no clone, no network.
 license: MIT
 metadata:
   author: okx
-  version: "0.1.1"
+  version: "0.1.0"
   homepage: "https://www.okx.com"
   expected_data_major: 0
 
 ---
 # OKX V5 API endpoint lookup
 
-A **router** over the OKX V5 API docs. It reads a **docs repo you set up once**
-(see **Setup**): the site table, the routing `index/`, and the per-endpoint
-bodies all live there. The primary lookup flow is for REST endpoints. Given a
-REST endpoint, it resolves the site's REST base URL/domain, whether that endpoint
-is **supported** on the target site, and which doc file holds the
+A **router** over the OKX V5 API docs. The site table, the routing `index/`, and
+the per-endpoint bodies all ship **inside this skill's own directory** — the same
+directory this `SKILL.md` lives in. The primary lookup flow is for REST endpoints:
+given a REST endpoint, it resolves the site's REST base URL/domain, whether that
+endpoint is **supported** on the target site, and which doc file holds the
 params/response/rate-limit details.
 
-WebSocket Markdown can exist in the docs repo as supplemental documentation.
-Search it when needed, but do not assume WebSocket docs have the same
-deterministic REST endpoint-path routing/index.
+WebSocket Markdown can exist in the corpus as supplemental documentation. Search
+it when needed, but do not assume WebSocket docs have the same deterministic REST
+endpoint-path routing/index.
 
-Everything is **local** once the repo is cloned — no network at query time. The
-skill installed by `npx skill add` is just this `SKILL.md`; all data comes from
-the docs repo, so **the repo must be set up before any use — routing included.**
+Everything is **local and self-contained** — no network at query time, and
+**nothing to set up**. `npx skills add` installs `SKILL.md` **together with** its
+data (`sites.json`, `index.json`, `index/`, `docs/`), all under this skill's
+directory.
 
 Sites: `okex` (Global), `us`, `my` (**EEA**, not Malaysia),
 `turkey`. Langs: `en`, `zh`.
+
+## Path resolution — `<skill_dir>`
+
+Throughout this document, **`<skill_dir>`** means **the directory that contains
+this `SKILL.md`**. All data is addressed relative to it:
+
+- `<skill_dir>/sites.json` — site table (REST/WS domains per site)
+- `<skill_dir>/index.json` — authoritative endpoint index
+- `<skill_dir>/index/<module>.md` — per-module routing tables (+ `modules.md` map)
+- `<skill_dir>/docs/<site>/<lang>/...` — per-endpoint bodies
+
+There is no config file and no `docs_path`. If, for some reason,
+`<skill_dir>/sites.json` is not present, the skill install is incomplete —
+reinstall with `npx skills add` (do not try to fetch data from the network).
 
 ## When to use
 
@@ -59,67 +74,17 @@ caller; the protocol below simply stops once the definition is in hand.
 ## Preflight
 
 Do this before touching any doc — routing and bodies alike. Everything here is
-offline (no network).
+offline (no network) and reads only from `<skill_dir>` (see **Path resolution**).
 
-1. **Ensure the docs repo is set up.** Read the **fixed** config
-   `~/.okx-v5-api/config.json` and take its `docs_path`. If the file is
-   **missing**, **not valid JSON**, has an **empty/missing** `docs_path`,
-   `docs_path` is **not absolute**, or that path has **no `sites.json`** inside
-   (`<docs_path>/sites.json`) → the docs are not set up → show **Setup** and stop
-   until fixed. Nothing (not even routing) works before this.
-   If the current workspace already contains `sites.json`, `index.json`, and
-   `docs/`, then the current workspace is already the docs repo. Suggest writing
-   that workspace's absolute path to `~/.okx-v5-api/config.json`; do not clone a
-   second copy unless the user asks.
-2. **Offline major-compat check (local only).** Compare `<docs_path>/sites.json`
-   `version` **major** against this file's `metadata.expected_data_major`. If
-   majors **differ**, warn that skill and docs data are out of sync — paths and
-   layout may not match — and suggest updating whichever side is older
-   (`npx skill` for the skill, `git pull` in the docs repo). Never touches the
-   network.
-
-## Setup
-
-Show this **only when the docs are not set up**. The config path is **fixed** at
-`~/.okx-v5-api/config.json` — not configurable, not an env var. Its content is
-just `{"docs_path":"<absolute path to the docs repo>"}`. `docs_path` **must be
-absolute**.
-
-If the user installed this skill via `npx`/`npm skill add`, that installed only
-the lightweight router. The docs repo still needs to exist locally and be named
-by `docs_path`.
-
-**a) I have not cloned/downloaded the docs repo yet.** Clone the public docs repo
-and point the config at it:
-
-```sh
-git clone https://github.com/okx/ai-builder-openapi-md ~/.okx-v5-api-docs
-mkdir -p ~/.okx-v5-api
-printf '{"docs_path":"%s/.okx-v5-api-docs"}\n' "$HOME" > ~/.okx-v5-api/config.json
-```
-
-**b) I already cloned/downloaded the docs repo.** From the docs repo root, point
-the config at the current directory:
-
-```sh
-mkdir -p ~/.okx-v5-api
-printf '{"docs_path":"%s"}\n' "$(pwd)" > ~/.okx-v5-api/config.json
-```
-
-**c) Let me (the AI) set it up.** With your **explicit consent** (this modifies
-your machine), I'll clone `https://github.com/okx/ai-builder-openapi-md` to the
-default `~/.okx-v5-api-docs` and write the config, then continue. I must ask for
-consent **before** running.
-
-Notes:
-
-- **Default docs location:** `~/.okx-v5-api-docs/` — writable, shared across
-  projects (clone once, reuse everywhere), never a system dir. Clone elsewhere
-  if you like, just point `docs_path` there. **Windows:** `~` = `%USERPROFILE%`.
-- The one-liners assume a plain path/URL. If your `docs_path` or clone URL has
-  quotes, backslashes, spaces, or shell metacharacters, don't paste them raw —
-  write the config by hand as `{"docs_path":"<path>"}` with the value
-  JSON-escaped, or let option (c) write it safely.
+1. **Confirm the data is present.** Check that `<skill_dir>/sites.json` exists. It
+   ships with the skill, so it should always be there; if it is missing, the
+   install is incomplete — tell the user to reinstall via `npx skills add` and
+   stop. Never fetch data from the network.
+2. **Offline major-compat check (local only).** Compare `<skill_dir>/sites.json`
+   `version` **major** against this file's `metadata.expected_data_major`. Because
+   the data ships *with* the skill they should always match; if they somehow
+   differ, warn that the install looks inconsistent and suggest reinstalling the
+   skill. Never touches the network.
 
 ## Query protocol
 
@@ -128,26 +93,26 @@ params, response, domain, `supported`) must come from the files below. If
 something isn't in the docs, or you're unsure, search the docs — do **not** guess
 or fill in from training data (it may be outdated or a hallucination).
 
-Everything reads from `docs_path` (run **Preflight** first). Read the small
+Everything reads from `<skill_dir>` (run **Preflight** first). Read the small
 slices below, in order:
 
-1. **REST domain — `<docs_path>/sites.json` (authoritative).** Look up the site's
+1. **REST domain — `<skill_dir>/sites.json` (authoritative).** Look up the site's
    `rest` base URL there — always read the file, never rely on a remembered
    domain. `sites.json` also carries `ws` domains for supplemental WebSocket docs.
    Domains are site-specific (the values here are
    **illustrative only**; `sites.json` is the source of truth): `us`→`us.okx.com`,
    `my`/EEA→`eea.okx.com`, `turkey`→`tr.okx.com`, `okex`→`www.okx.com`.
    Portfolio-margin/broker endpoints use `rest_pap` / `ws_pap` where present.
-2. **Find the endpoint — `<docs_path>/index/<module>.md`.** The module is the
+2. **Find the endpoint — `<skill_dir>/index/<module>.md`.** The module is the
    **2nd path segment**: `/api/v5/<module>/...` (e.g. `/api/v5/trade/order` →
-   `trade`). Unsure which modules exist? Open `<docs_path>/index/modules.md`
+   `trade`). Unsure which modules exist? Open `<skill_dir>/index/modules.md`
    first. The matching row gives the endpoint `name`, its relative `doc` path, a
    ✓/✗ per site, and a `method` column to disambiguate GET vs POST on the same
    path.
    - **Don't know the path yet?** Start from the need: open
-     `<docs_path>/index/modules.md` to pick the likely module, **or**
+     `<skill_dir>/index/modules.md` to pick the likely module, **or**
      keyword-search the corpus:
-     `rg -i "<keyword>" <docs_path>/index/ <docs_path>/docs/<site>/<lang>/`.
+     `rg -i "<keyword>" <skill_dir>/index/ <skill_dir>/docs/<site>/<lang>/`.
      Search the `zh` bodies for Chinese concepts (e.g. 划转/定投/子账户). Then
      use the matching endpoint's row as above.
 3. **Supported check.** If the site's column is **✗**, the endpoint is **not**
@@ -156,10 +121,10 @@ slices below, in order:
 4. **Read the body.** The module table's `doc` is a **reference** path (right for
    most sites, but the exact per-site/per-lang path can differ — do not blindly
    compose it). For the exact path, look the endpoint up in
-   `<docs_path>/index.json`: find the entry by `method` + `path`, take
-   `sites.<site>.doc.<lang>`, and read `<docs_path>/docs/<site>/<lang>/<that>`.
+   `<skill_dir>/index.json`: find the entry by `method` + `path`, take
+   `sites.<site>.doc.<lang>`, and read `<skill_dir>/docs/<site>/<lang>/<that>`.
    (`index.json` is pretty-printed, so search it **with surrounding context** —
-   e.g. `rg -A 30 '"/api/v5/trade/order"' <docs_path>/index.json`, or a `jq`
+   e.g. `rg -A 30 '"/api/v5/trade/order"' <skill_dir>/index.json`, or a `jq`
    lookup — because the `sites.<site>.doc` values sit a dozen-odd lines *below*
    the matched `path`; the same `path` appears once per method, so match on
    `method` + `path`.) For normal single-endpoint files, the doc's YAML
@@ -168,7 +133,7 @@ slices below, in order:
      or if `index.json` shows several REST endpoints sharing the same `doc` path,
      do **not** read the whole file for one endpoint. First use the generated
      `Endpoint sections` table near the top of the file, or run
-     `rg -n -F "<search key>" <docs_path>/docs/<site>/<lang>/<that>`.
+     `rg -n -F "<search key>" <skill_dir>/docs/<site>/<lang>/<that>`.
      Then read only the matching endpoint section and nearby shared definitions
      until the next endpoint heading. In these files, keep the target
      `method`/`path` from `index.json` or the matched section; file frontmatter
@@ -178,16 +143,17 @@ slices below, in order:
 
 Goal: a place-order REST call targeting **OKX US**.
 
-1. **Domain (`<docs_path>/sites.json`).** `id: us` → `rest: https://us.okx.com`,
+1. **Domain (`<skill_dir>/sites.json`).** `id: us` → `rest: https://us.okx.com`,
    `ws: wss://wsus.okx.com:8443`. Use that, not the global URL.
-2. **Find it (`<docs_path>/index/trade.md`).** Place order is
+2. **Find it (`<skill_dir>/index/trade.md`).** Place order is
    `POST /api/v5/trade/order`, module `trade`. The row:
-   `| POST | /api/v5/trade/order | POST / Place order | api/rest/trade/placeOrder.md | ✓ | ✓ | ✓ | ✓ | ✓ |`
+   `| POST | /api/v5/trade/order | POST / Place order | api/rest/trade/placeOrder.md | ✓ | ✓ | ✓ | ✓ |`
+   (columns: `method | path | name | doc | okex | us | my | turkey`)
 3. **Supported?** The `us` column is `✓` — proceed. (If it were `✗`, US doesn't
    support it — report unsupported, no definition to return.)
 4. **Read the body.** Look up `POST /api/v5/trade/order` in
-   `<docs_path>/index.json` → `sites.us.doc.en` (=`api/rest/trade/placeOrder.md`),
-   then open `<docs_path>/docs/us/en/api/rest/trade/placeOrder.md` for params,
+   `<skill_dir>/index.json` → `sites.us.doc.en` (=`api/rest/trade/placeOrder.md`),
+   then open `<skill_dir>/docs/us/en/api/rest/trade/placeOrder.md` for params,
    request example, response schema, and rate limits. (For `zh` you'd take
    `sites.us.doc.zh`, which here differs — `api/rest/trade/spot/placeOrder.md` —
    so don't reuse the `en` path.)
@@ -199,23 +165,22 @@ That documented definition is the result you're after.
 
 ## Version check (optional, user-triggered)
 
-- **Offline (default).** Report the local `version` (`<docs_path>/sites.json`)
+- **Offline (default).** Report the local `version` (`<skill_dir>/sites.json`)
   and whether it and this file's `metadata.expected_data_major` **majors** match.
   No network.
 - **Online (opt-in).** Only if the user asks to "check for updates" **and**
   network is available: compare the local `version` to the latest published one;
-  if behind, advise `git pull` in the docs repo and/or `npx skill` for the
-  skill. This is the **sole** networked action.
+  if behind, advise reinstalling the skill (`npx skills add`) to get the newer
+  bundled data. This is the **sole** networked action.
 
 Semver: **MAJOR** = breaking layout/schema change (skill must update);
 **MINOR** = endpoints added/changed; **PATCH** = corrections.
 
 ## Notes
 
-- **Duplication.** The cloned docs repo also contains a copy of this skill. That
-  copy is **not** active — Claude Code runs the `npx skill add`-installed
-  `SKILL.md`; the clone is used **only** for its data (`sites.json`, `index/`,
-  `docs/`). Ignore the clone's `SKILL.md`.
+- **Self-contained.** Routing (`sites.json`, `index/`) AND bodies (`docs/`) ship
+  inside this skill's directory. There is no separate docs repo to clone and no
+  `docs_path` to configure — resolve everything relative to `<skill_dir>`.
 - **`my` = EEA**, not Malaysia.
 - **WebSocket docs.** WebSocket Markdown is supplemental search corpus. This
   skill's deterministic routing protocol is REST endpoint path based.
