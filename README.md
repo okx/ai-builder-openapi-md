@@ -29,8 +29,9 @@ skills/okx-v5-api/               # self-contained okx-v5-api skill
     <module>.md                  #     one table per module: method|path|name|doc|per-site supported
   index.json                     #   full machine index: every endpoint, per-site "supported" + doc path (+ version, generated_at)
   docs/<site>/<lang>/...md       #   endpoint bodies (usually one endpoint per file)
+  LICENSE                        #   MIT (bundled so the standalone skill carries its own license)
 README.md                        # this file
-LICENSE                          # MIT
+LICENSE                          # MIT (repo-level)
 ```
 
 Other skills may live alongside under `skills/` (e.g. an integration guide); they
