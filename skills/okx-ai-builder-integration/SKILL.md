@@ -50,17 +50,23 @@ Builder Code, order-producing calls cannot be attributed.
 1. Sign in to OKX and go to the **AI Builder Program** page
    (`https://www.okx.com/agent-tradekit/builder`).
 2. Click **Apply Now** and select **AI Builder** as the application type.
-3. Enter the applicant and project information (project name, project link,
-   project overview).
+3. Enter the applicant and project information (project name, project URL, a
+   brief description). The flow also asks you to confirm an email address.
 4. Read and accept the applicable Terms of Service, then submit the application.
-5. Obtain your **Builder Code** and integration/testing materials from the
-   **AI Builder Dashboard** (or your application approval notice).
+5. You receive your **Builder Code immediately after submitting** the application;
+   you can complete integration and testing while it is under review. The
+   **AI Builder workbench** (the same page) shows its status and your integration
+   materials. OKX also sends a **confirmation email** to your contact address —
+   confirm it, since the oauth-user path's `CLIENT_ID`/`CLIENT_SECRET` are later
+   emailed there (see §3).
 
-**Status:** the Builder Code's activation state and when rebates start are
-governed by the Dashboard status and the applicable terms. A Builder Code that is
-not yet **Activated** can still be used for technical integration and testing;
-only rebates depend on activation. Do not gate integration or testing on
-activation.
+**Status** (per the official guide — verify there): review takes about **1–2
+business days**. A Builder Code that is not yet **Activated** can already be used
+for technical integration and testing; eligible trades start counting toward
+commission only after the application is approved and the code is **Activated**;
+commission is then settled **hourly (T+1 hour)**. Final rebate eligibility follows
+the Dashboard status and the applicable terms. Do not gate integration or testing
+on activation.
 
 Do not invent any application URL, form, or approval step beyond the above; for
 anything more specific, point the user to the official guide. If the user already
@@ -115,27 +121,67 @@ account/surface **setup**; §5 covers turning the demo into the user's own code.
   passphrases. **Gate:** the mcp-user demo defines a one-read-only-call connect
   check; if it fails, stop and have the user connect/authorize in the app. Keep
   it.
-- **oauth-user** — Take the user into the AI Builder workbench
-  (`https://www.okx.com/agent-tradekit/builder`) and open **Settings** to
-  configure their OAuth & Fast API info: app name and OAuth logo (set during
-  application, editable here), app URLs and the OAuth-exempt IP allowlist (up to
-  10 IPs), and **enable Fast API** (this path uses it) with the user IP
-  allowlist (up to 200 IPs). Obtain the `CLIENT_ID` / `CLIENT_SECRET` from the
-  workbench, and register the **exact** `redirect_uri` (a mismatch fails
-  authorization). Exact current steps + error handling live in the demo's
-  `INTEGRATION_GUIDE.md` / `PITFALLS.md`. **Gate:** the OAuth flow can't run
-  without `CLIENT_ID` / `CLIENT_SECRET` and a registered `redirect_uri`.
+- **oauth-user** — Fast API is the OAuth-based capability that lets your service
+  create and hold an API key **scoped to the permissions the user authorizes**, per
+  end user, without them
+  hand-copying credentials; the generated key is long-lived and IP-restricted to
+  your own servers (see `https://www.okx.com/help/almost-api-launch`). Take the
+  user into the AI Builder workbench (`https://www.okx.com/agent-tradekit/builder`)
+  and open **Settings** to configure their OAuth & Fast API info: app name and
+  OAuth logo; the **app URLs — this is where you register the exact `redirect_uri`**
+  (a mismatch fails authorization; required even if the help guide omits it); the
+  OAuth-exempt IP allowlist (up to 10 IPs); and **enable Fast API** (this path uses
+  it) with the user IP allowlist (up to 200 IPs). After you confirm your email, OKX
+  emails your `CLIENT_ID` / `CLIENT_SECRET` to that address (if your workbench
+  Settings also displays them, it's the same pair). Exact current steps +
+  error handling live in the demo's `INTEGRATION_GUIDE.md` / `PITFALLS.md`.
+  **Gate:** the OAuth flow can't run without `CLIENT_ID` / `CLIENT_SECRET` and a
+  registered `redirect_uri`. (OKX docs and error messages call this the OAuth
+  **Broker** flow — same thing; Fast API is enabled from your AI Builder
+  application, there is no separate "Broker" program to apply for.)
 
 ## §4. Get the demo (reading index)
 
 Each demo folder has a consistent shape: `README.md` (entry) + an **artifact**
 (code for openapi/oauth; `SKILL.md` for cli/mcp) + a `For real integration`
-section. Two ways to get it — either works for any type:
+section.
 
-- **View on GitHub** (no shell needed): open/fetch the file, e.g.
-  `https://github.com/okx/builder-integration-demo/blob/github-main/demos/<type>/README.md`. For a fetch tool
-  that needs raw content, use `https://github.com/okx/builder-integration-demo/raw/github-main/demos/<type>/…`.
-- **Download** (shell available): clone at the pinned ref (`metadata.demo_repo_ref`, currently `github-main`).
+### Which mechanism applies — gauge your environment first
+
+Whether you can clone depends on your **environment** (do you actually have a
+shell / filesystem tool?), not on the user type — judge by the tools you have, not
+the host's product name.
+
+- **No shell / no filesystem tool** (typical of chat hosts — the ChatGPT app, a
+  plain Claude Desktop session, …) — you cannot clone. **View/fetch** files from
+  GitHub for everything (URL template below). The code-based paths (openapi-user,
+  oauth-user) have to run on a machine with a terminal (VPS / local / server),
+  which a chat host isn't — so **don't pretend to clone**: show the user the code
+  and steps and walk them through cloning and running it in **their own dev
+  environment** (you give the commands, they run them).
+- **Shell available** (Claude Code, terminal / coding agents):
+  - **cli-user / mcp-user** — the artifact is a `SKILL.md`; just **view/fetch** it,
+    no clone needed.
+  - **openapi-user / oauth-user** — you'll run the code, so **clone** it:
+    1. First check the **user's current working directory** (where the session
+       runs — not the skill's install dir) for an existing clone
+       (`test -d ./okx-ai-builder-demo/demos`, or a path you cloned earlier **this
+       session**) → reuse it.
+    2. If none, **ask the user** whether they've already cloned
+       `builder-integration-demo` and where (`test -d <path>/demos` — or the dir
+       they chose — to confirm).
+    3. If not, **ask where to clone**, suggesting a default under the user's
+       working directory (`./okx-ai-builder-demo`); clone there **with the
+       pinned-ref command below** after they confirm.
+    4. Remember the path **for this session only**; a new session has no memory —
+       re-confirm, never guess.
+
+**Templates:**
+
+- **View/fetch** (no shell): open/fetch e.g.
+  `https://github.com/okx/builder-integration-demo/blob/github-main/demos/<type>/README.md`;
+  for raw content use `.../raw/github-main/demos/<type>/…`.
+- **Clone** (shell) at the pinned ref (`metadata.demo_repo_ref`, currently `github-main`):
   ```sh
   git clone --depth 1 --branch github-main https://github.com/okx/builder-integration-demo okx-ai-builder-demo
   # or just one demo (sparse):
@@ -147,10 +193,10 @@ Per type, read this, then go to §5:
 
 | Type | Read | Get it |
 |---|---|---|
-| openapi-user | `demos/openapi-user/README.md` → the code | view or download |
-| oauth-user | `demos/oauth-user/README.md` → `INTEGRATION_GUIDE.md` + `PITFALLS.md` → backend code | view or download |
-| cli-user | `demos/cli-user/README.md` → `demos/cli-user/SKILL.md` (the artifact) | view or download |
-| mcp-user | `demos/mcp-user/README.md` → `demos/mcp-user/SKILL.md` (the artifact) | view or download |
+| openapi-user | `demos/openapi-user/README.md` → the code | clone (see flow) |
+| oauth-user | `demos/oauth-user/README.md` → `INTEGRATION_GUIDE.md` + `PITFALLS.md` → backend code | clone (see flow) |
+| cli-user | `demos/cli-user/README.md` → `demos/cli-user/SKILL.md` (the artifact) | view/fetch |
+| mcp-user | `demos/mcp-user/README.md` → `demos/mcp-user/SKILL.md` (the artifact) | view/fetch |
 
 If the repo layout differs from what this skill describes, **trust the repo** and
 tell the user this skill may be stale.
@@ -174,6 +220,8 @@ as-is. Flow:
    - **Do not copy** tests-as-reference, `.env.example`, `AGENTS.md`, or demo docs.
 3. Put real deliverables in the **user's own project directory**. The only hard
    rule is: never write anything into **this guide skill's own install directory**.
+   (No-shell host: you can't write files — hand the user the finished code and the
+   commands to save/run it in their own dev environment.)
    (For cli/mcp the deliverable is itself a skill file — see step 4.)
 4. **cli-user/mcp-user**: the artifact is the demo's `SKILL.md`. Use it to
    configure the real `okx` CLI / OKX MCP for the user. When you hand the user
@@ -201,6 +249,14 @@ file- or path-specific.
 
 - **Attribution.** Attach AI Builder Code on every order-producing call **whose
   surface exposes it** — verify from the command's `--help` or the tool schema.
+  (Order-producing = a call that **creates** an order or position — single or
+  batch **place**, algo orders, trading-bot creation (grid/DCA/recurring),
+  close-position, spread/copy/block trades, convert trade, and (raw OpenAPI only)
+  on-chain earn purchase. **Amend and cancel do not carry `tag`** — attribution is
+  set at placement — *unless that endpoint's schema explicitly accepts it* (see the
+  reference doc);
+  read/query/config calls do not either. Canonical per-surface endpoint list is
+  the demo repo's `docs/AI_BUILDER_CODE_SUPPORT_REFERENCE.md`.)
   Parameter name is per surface: `--ai-builder-code` (openapi-user script),
   `--aiBuilderCode` (cli-user CLI flag), `aiBuilderCode` (mcp-user MCP tool arg),
   `AI_BUILDER_CODE` env → order `tag` (oauth-user). **Never rename the OKX request
@@ -209,14 +265,16 @@ file- or path-specific.
   rather than placing an unattributed order.
 - **AI Builder Code format.** It is **not a secret** (do not lock it in a secret
   manager or refuse to put it in a CLI flag). Case-sensitive, 1–16 alphanumeric
-  (`A–Z a–z 0–9`). Use the user's value; never invent one. Keep the demos'
-  validation gate.
+  (`A–Z a–z 0–9`); the demos validate this — keep that gate. Use the user's
+  value; never invent one.
 - **Least-privilege API keys.** Wherever the user supplies an OKX API key
   (openapi-user, and a cli-user on an API-key profile), enable **read + trade
   permissions only — never withdrawal**, and use a demo/simulated key first.
 - **Security.** Never put `client_secret` / `secretKey` / `passphrase` in frontend
-  code, logs, or committed files; real `.env` is local-only; production uses a
-  secret manager. Default to simulated trading; the openapi client defaults
+  code, **prompts**, logs, or committed files; real `.env` is local-only;
+  production uses a secret manager. (oauth-user, holding end users' keys: store
+  each user's key on the backend **encrypted and isolated per user**.)
+  Default to simulated trading; the openapi client defaults
   `simulated=True` — pass `simulated=False` (and a live key) only for production.
 - **Don't ship demo shortcuts.** e.g. the oauth demo's `MOCK` test switch spans
   three files — `backend/okx_client.py` (fakes order acceptance), `backend/app.py`
@@ -251,6 +309,15 @@ memory.** Use the first option available to you (do not run detection commands):
 Installing `okx-v5-api` is optional and improves the experience; never require it
 mid-task or block on it.
 
+**Availability comes from the docs, never memory; never hard-code which endpoints
+are live vs retired.** Distinguish two cases: (a) **absent from a mirrored copy that may lag**
+((1)/(2)) — treat as *unverified*, escalate to (3) the live docs before concluding
+anything (a newly added endpoint may just lag the snapshot); (b) a **deprecation /
+decommissioned / 已停用 notice** (EN or 中文) on the live page — treat as retired,
+don't implement it. If you still can't confirm an endpoint in any source, or the
+page shows a deprecation notice, have the **user confirm on the live docs before
+going live**.
+
 ## §8. Self-check (routing fixture)
 
 Sanity-check your routing with these four prompts. Each should resolve to the
@@ -261,7 +328,7 @@ listed type, artifact, attribution parameter, and prerequisite gate:
 | "I run my own bot on my VPS and sign OKX requests myself" | openapi-user | `demos/openapi-user/` code | `--ai-builder-code` → `tag` | API key (read+trade, no withdraw) configured |
 | "I want my terminal/agent to trade my account via the `okx` command" | cli-user | `demos/cli-user/SKILL.md` | `--aiBuilderCode` | OKX Trade CLI installed + version OK |
 | "My ChatGPT/Claude app trades my account through OKX MCP" | mcp-user | `demos/mcp-user/SKILL.md` | `aiBuilderCode` | OKX connected in the host (read-only call ok) |
-| "My service trades my end users' accounts from my server" | oauth-user | `demos/oauth-user/` backend | `AI_BUILDER_CODE` env → `tag` | `CLIENT_ID`/`CLIENT_SECRET` from the workbench |
+| "My service trades my end users' accounts from my server" | oauth-user | `demos/oauth-user/` backend | `AI_BUILDER_CODE` env → `tag` | `CLIENT_ID`/`CLIENT_SECRET` (emailed) + exact `redirect_uri` registered |
 
 ## Notes
 
