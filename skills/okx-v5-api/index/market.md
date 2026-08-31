@@ -24,7 +24,6 @@ Supported per site (✓ = available, ✗ = not on that site). The `doc` column i
 | GET | /api/v5/market/open-oracle | Get oracle | api/rest/market/oracle.md | ✗ | ✗ | ✗ | ✓ |
 | GET | /api/v5/market/option/instrument-family-trades | GET / Option trades by instrument family | api/rest/market/optionTrades.md | ✓ | ✓ | ✗ | ✗ |
 | GET | /api/v5/market/platform-24-volume | GET / 24H total volume | api/rest/market/24Volume.md | ✓ | ✗ | ✗ | ✓ |
-| GET | /api/v5/market/pm-books | 2.3 Get order book | predictionMarket/outcomes_rest_api.md | ✓ | ✓ | ✓ | ✓ |
 | GET | /api/v5/market/sprd-candles | Get candlesticks | api/rest/sprd/getCandleSticks.md | ✓ | ✗ | ✗ | ✗ |
 | GET | /api/v5/market/sprd-history-candles | Get candlesticks history | api/rest/sprd/getCandleSticksHistory.md | ✓ | ✗ | ✗ | ✗ |
 | GET | /api/v5/market/sprd-ticker | Get ticker (Public) | api/rest/sprd/getTicker_new.md | ✓ | ✗ | ✗ | ✗ |

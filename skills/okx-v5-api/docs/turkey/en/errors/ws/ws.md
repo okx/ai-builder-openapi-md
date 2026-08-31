@@ -58,3 +58,4 @@ Error Code from 60000 to 64002
 | 4007           | API key has been updated or deleted. Please reconnect. |
 | 4008           | The number of subscribed channels exceeds the maximum limit. |
 | 4009           | The number of subscription channels for this connection exceeds the limit |
+| 4013           | Compliance status has been updated. Please reconnect. |
