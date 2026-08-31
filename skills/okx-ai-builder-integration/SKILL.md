@@ -106,7 +106,10 @@ gates below (they hold regardless of what the screens look like). This section i
 account/surface **setup**; §5 covers turning the demo into the user's own code.
 
 - **openapi-user** — Take the user to their own OKX account's API management page
-  (`https://www.okx.com/account/my-api`) and walk them through creating an API key
+  and walk them through creating an API key — for demo-trading tests create a
+  **demo trading** key at `https://www.okx.com/account/my-api?go-demo-trading=1`
+  (demo-trading keys are separate from live keys); create a normal key at
+  `https://www.okx.com/account/my-api` only for live
   (key permissions + storage rules: see §6 — Least-privilege API keys + Security). **Gate:** no order at all —
   demo or live — until a key is configured, and keep the demo's
   `--confirm-live-order` gate on every live write. **Account mode:** before the
@@ -223,7 +226,9 @@ as-is. Flow:
    - **Copy verbatim** the files that demo marks so (e.g. openapi-user's signing
      client `okx_openapi_client.py`). Do not re-implement HMAC signing by hand.
      Note: oauth-user has **no** copy-verbatim file — its `backend/okx_client.py`
-     is **Adapt** (plain OAuth + signing code; no test switches to strip).
+     is **Adapt**: adapt the request wrappers and OAuth/Fast API flow, but reuse
+     the signing helpers as-is — keep `_sign`/`_now_iso_ms` byte-for-byte, don't
+     hand-write signing here either. No test switches to strip.
    - **Adapt** the example logic to the user's strategy/business.
    - **Do not copy** tests-as-reference, `.env.example`, `AGENTS.md`, or demo docs.
 3. Put real deliverables in the **user's own project directory**. The only hard
