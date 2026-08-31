@@ -7,6 +7,7 @@ Supported per site (✓ = available, ✗ = not on that site). The `doc` column i
 | GET | /api/v5/public/block-trades | Get public single-leg transactions of block trades | api/rest/market/blockTrades_new.md | ✓ | ✗ | ✗ | ✗ |
 | GET | /api/v5/public/convert-contract-coin | Unit convert | api/rest/public/unitConvert.md | ✓ | ✓ | ✗ | ✗ |
 | GET | /api/v5/public/delivery-exercise-history | Get delivery/exercise history | api/rest/public/deliveryExerciseHistory.md | ✓ | ✓ | ✓ | ✗ |
+| GET | /api/v5/public/delta-hedge-currencies | Get Delta hedge currencies | api/rest/public/deltaHedgeCurrencies.md | ✓ | ✗ | ✗ | ✗ |
 | GET | /api/v5/public/discount-rate-interest-free-quota | Get discount rate and interest-free quota | api/rest/public/discountRateFreeInterest.md | ✓ | ✓ | ✗ | ✗ |
 | GET | /api/v5/public/economic-calendar | Get economic calendar data | api/rest/public/economicCalendar.md | ✓ | ✗ | ✗ | ✓ |
 | GET | /api/v5/public/estimated-price | Get estimated delivery/exercise price | api/rest/public/estimatedPrice.md | ✓ | ✓ | ✓ | ✗ |
