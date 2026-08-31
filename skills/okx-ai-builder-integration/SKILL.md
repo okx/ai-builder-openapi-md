@@ -33,9 +33,9 @@ steps in order.
 - Demos home (public): `https://github.com/okx/builder-integration-demo` (ref: `metadata.demo_repo_ref`, currently `github-main`)
 - OKX API definitions (endpoints beyond a demo): see §7.
 
-> If the linked repo does not yet contain `demos/openapi-user`, `demos/cli-user`,
-> `demos/mcp-user`, and `demos/oauth-user`, its four-user-type content is not
-> published yet — tell the user and do not fabricate demo contents.
+> Treat the repo's `docs/USER_TYPES.md` as the authoritative routing table. If the
+> repo layout differs from what this skill describes, trust the repo (it may have
+> evolved) and tell the user this skill may be stale — never fabricate demo contents.
 
 ## §1. Apply for AI Builder (do this first)
 
