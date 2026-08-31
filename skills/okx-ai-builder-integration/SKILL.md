@@ -69,7 +69,10 @@ the Dashboard status and the applicable terms. Do not gate integration or testin
 on activation.
 
 Do not invent any application URL, form, or approval step beyond the above; for
-anything more specific, point the user to the official guide. If the user already
+anything more specific, point the user to the official guide. If you cannot open
+web pages, rely on the steps transcribed above and tell the user they may have
+changed — point them to the official guide URL to confirm; never block the
+application flow just because you cannot fetch the page. If the user already
 has an AI Builder Code, proceed to §2.
 
 ## §2. Identify the user type
@@ -106,7 +109,12 @@ account/surface **setup**; §5 covers turning the demo into the user's own code.
   (`https://www.okx.com/account/my-api`) and walk them through creating an API key
   (key permissions + storage rules: see §6 — Least-privilege API keys + Security). **Gate:** no order at all —
   demo or live — until a key is configured, and keep the demo's
-  `--confirm-live-order` gate on every live write.
+  `--confirm-live-order` gate on every live write. **Account mode:** before the
+  first order, read `GET /api/v5/account/config` and branch on `acctLv` — it
+  decides the spot `tdMode` and whether SWAP is usable at all (`acctLv=1` is
+  spot-only, no swap). Never hard-code `tdMode` or assume swap works; derive both
+  from `acctLv`. The same account-mode check applies to the other self-account
+  surfaces.
 - **cli-user** — In the user's terminal, walk them through installing the OKX
   Trade CLI (a current version that supports `--aiBuilderCode`; currently
   `npm i -g @okx_ai/okx-trade-cli` — confirm against the Agent Trade Kit install
@@ -215,7 +223,7 @@ as-is. Flow:
    - **Copy verbatim** the files that demo marks so (e.g. openapi-user's signing
      client `okx_openapi_client.py`). Do not re-implement HMAC signing by hand.
      Note: oauth-user has **no** copy-verbatim file — its `backend/okx_client.py`
-     is **Adapt**, and its `MOCK`/`_mock_*` branches must be deleted first.
+     is **Adapt** (plain OAuth + signing code; no test switches to strip).
    - **Adapt** the example logic to the user's strategy/business.
    - **Do not copy** tests-as-reference, `.env.example`, `AGENTS.md`, or demo docs.
 3. Put real deliverables in the **user's own project directory**. The only hard
@@ -262,7 +270,13 @@ file- or path-specific.
   `AI_BUILDER_CODE` env → order `tag` (oauth-user). **Never rename the OKX request
   field `tag`; never invent an alternate flag; never fall back to a raw `tag`
   argument on CLI/MCP.** If the selected surface cannot carry it, say so and stop
-  rather than placing an unattributed order.
+  rather than placing an unattributed order. **Fail loud, never default:** a
+  missing or invalid Builder Code must stop the order-producing call with an
+  explicit error — never fall back to a default or empty value. How the value is
+  supplied is per surface: self-account passes it as an explicit argument (the
+  openapi-user script deliberately does not read it from an env var, since a stray
+  env value could silently mis-attribute orders); oauth-user loads `AI_BUILDER_CODE`
+  from server-side config at startup. See the openapi-user README for the rationale.
 - **AI Builder Code format.** It is **not a secret** (do not lock it in a secret
   manager or refuse to put it in a CLI flag). Case-sensitive, 1–16 alphanumeric
   (`A–Z a–z 0–9`); the demos validate this — keep that gate. Use the user's
@@ -276,11 +290,11 @@ file- or path-specific.
   each user's key on the backend **encrypted and isolated per user**.)
   Default to simulated trading; the openapi client defaults
   `simulated=True` — pass `simulated=False` (and a live key) only for production.
-- **Don't ship demo shortcuts.** e.g. the oauth demo's `MOCK` test switch spans
-  three files — `backend/okx_client.py` (fakes order acceptance), `backend/app.py`
-  (bypasses the OAuth config validation gate), and `frontend/index.html` (skips
-  real OAuth + suppresses the live-order confirm) — strip **all** of it before
-  production (see that demo's Copy vs Adapt notes).
+- **Don't ship demo shortcuts.** Demos carry test-only scaffolding (offline test
+  stubs, `.env.example`, tests-as-reference, demo docs) that must not go to
+  production. A production build must never contain a code path that fakes order
+  acceptance or suppresses a live-order confirmation. Follow each demo's Copy vs
+  Adapt notes for what to keep vs strip.
 - **Demo ≠ product.** Always read the demo's `For real integration` / `PITFALLS`
   before going live (backend key storage, error-code checks, other-site
   differences, rate limits).
@@ -317,6 +331,15 @@ decommissioned / 已停用 notice** (EN or 中文) on the live page — treat as
 don't implement it. If you still can't confirm an endpoint in any source, or the
 page shows a deprecation notice, have the **user confirm on the live docs before
 going live**.
+
+**Simulated (demo) trading uses the same host as live**, switched by the
+`x-simulated-trading: 1` header — there is no separate "simulated host". The demo
+defaults to the Global REST host (`https://www.okx.com`); OKX also documents the
+Global REST host as `openapi.okx.com` (both work for Global). When you look
+something up in the docs, take **paths and fields**, not the base host — the demo
+already sets a working one. The only legitimate base-host change is the user's
+**registered site** (e.g. US/AU → `us.okx.com`, EU → `eea.okx.com`; the demo's
+supported sites are selected via `OKX_SITE`).
 
 ## §8. Self-check (routing fixture)
 
