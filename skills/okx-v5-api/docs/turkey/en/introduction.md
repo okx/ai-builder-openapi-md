@@ -583,7 +583,9 @@ For Trading-related APIs (place order, cancel order, and amend order) the follow
 
 - Rate limits for Options are defined based on the Instrument Family level. Refer to the [Get instruments](/docs-v5/en/#public-data-rest-api-get-instruments) endpoint to view Instrument Family information.
 
-- Rate limits for a multiple order endpoint and a single order endpoint are also independent, with the exception being when there is only one order sent to a multiple order endpoint, the order will be counted as a single order and adopt the single order rate limit. 
+- Rate limits for a multiple order endpoint and a single order endpoint are also independent, with the exception being when there is only one order sent to a multiple order endpoint, the order will be counted as a single order and adopt the single order rate limit.
+
+- An order can have at most 3 amend requests in progress at the same time. A further amend request submitted while 3 are still in progress is rejected with error code 51513.
 
 ### Sub-account rate limit
 
