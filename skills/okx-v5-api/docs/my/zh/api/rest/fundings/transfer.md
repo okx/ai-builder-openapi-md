@@ -12,7 +12,7 @@ supported: true
 
 ### 资金划转 [funding-account-rest-api-funds-transfer]
 
-调用时，API Key 需要有交易权限。
+调用时，API Key 需要有划转权限。
 
 支持母账户的资金账户划转到交易账户，母账户到子账户的资金账户和交易账户划转。
 

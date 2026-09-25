@@ -58,7 +58,7 @@ print(result)
 | ccy       | String | Yes         | Currency, e.g. `BTC`                                                                                                                                                                                                                         |
 | amt       | String | Yes         | Purchase/redemption amount                                                                                                                                                                                                                   |
 | side      | String | Yes         | Action type. <br>`purchase`: purchase saving shares <br>`redempt`: redeem saving shares                                                                                                                                                      |
-| rate      | String | Conditional | Annual purchase rate, e.g. `0.1` represents `10%`<br>Only applicable to purchase saving shares<br>The interest rate of the new subscription will cover the interest rate of the last subscription<br>The rate value range is between 1% and 365% |
+| rate      | String | No          | Annual purchase rate, e.g. `0.1` represents `10%`<br>Only applicable to purchase saving shares<br>The interest rate of the new subscription will cover the interest rate of the last subscription<br>The rate value range is between 1% and 365% |
 
 > Response Example
 

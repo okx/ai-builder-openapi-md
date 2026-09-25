@@ -9,7 +9,7 @@ One table per module under `index/<module>.md`. To look up an endpoint: take the
 | asset | 28 | 26 | 25 | 25 | 27 |
 | copytrading | 26 | 26 | 0 | 0 | 0 |
 | fiat | 13 | 13 | 8 | 13 | 8 |
-| finance | 57 | 55 | 0 | 12 | 0 |
+| finance | 56 | 54 | 0 | 11 | 0 |
 | market | 26 | 25 | 15 | 15 | 11 |
 | public | 29 | 29 | 18 | 12 | 3 |
 | rfq | 20 | 20 | 0 | 0 | 0 |

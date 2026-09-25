@@ -12,7 +12,7 @@ supported: true
 
 ### Funds transfer
 
-Only API keys with `Trade` privilege can call this endpoint.
+Only API keys with `Transfer` privilege can call this endpoint.
 
 This endpoint supports the transfer of funds between your funding account and trading account, and from the master account to sub-accounts.
 
