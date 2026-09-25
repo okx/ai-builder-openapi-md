@@ -1,7 +1,7 @@
 {
-  "version": "0.2.0",
-  "generated_at": "2026-08-27T11:03:09+00:00",
-  "endpoint_count": 406,
+  "version": "0.3.0",
+  "generated_at": "2026-09-23T09:47:07+00:00",
+  "endpoint_count": 405,
   "endpoints": [
     {
       "method": "GET",
@@ -8722,34 +8722,6 @@
           "doc": {
             "en": "api/rest/savings/purchaseRedempt.md",
             "zh": "api/rest/savings/purchaseRedempt.md"
-          }
-        },
-        "turkey": {
-          "supported": false
-        }
-      }
-    },
-    {
-      "method": "POST",
-      "path": "/api/v5/finance/savings/set-lending-rate",
-      "name": "POST / Set lending rate",
-      "module": "finance",
-      "sites": {
-        "okex": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/savings/setLendingRate.md",
-            "zh": "api/rest/savings/setLendingRate.md"
-          }
-        },
-        "us": {
-          "supported": false
-        },
-        "my": {
-          "supported": true,
-          "doc": {
-            "en": "api/rest/savings/setLendingRate.md",
-            "zh": "api/rest/savings/setLendingRate.md"
           }
         },
         "turkey": {

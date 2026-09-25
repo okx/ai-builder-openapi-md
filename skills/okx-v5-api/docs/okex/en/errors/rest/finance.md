@@ -58,3 +58,7 @@ Error Code from 51700 to 51799
 | 51774	       | 200	               | OKUSD API is under maintenance	                                                                 |
 | 51784	       | 200	               | Client order ID is being processed	                                                              |
 | 51785	       | 200	               | The collateral currency does not match the E-Mode pair	                                         |
+| 51787 | 200 | The repayment order does not exist or is not active |
+| 51788 | 200 | The repayment amount exceeds the order's current outstanding liability |
+| 51789 | 200 | The funding account balance is insufficient for repayment |
+| 51790 | 200 | The repayment currency does not match the order's borrow currency |

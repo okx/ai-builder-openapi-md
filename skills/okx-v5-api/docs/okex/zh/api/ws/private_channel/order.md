@@ -257,6 +257,7 @@ asyncio.run(main())
             "cancelSource": "",
             "isTpLimit": "false",
             "uTime": "1654084353264",
+            "riskBypassResult": "",
             "linkedAlgoOrd": {
                 "algoId": ""
             }
@@ -363,6 +364,7 @@ asyncio.run(main())
 | > msg                   | String          | 错误消息，默认为""                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | > tradeQuoteCcy | String	 | 用于交易的计价币种。 |
 | > outcome | String | 用户交易的市场结果方向。<br>`yes`<br>`no`<br>仅适用于 `EVENTS` |
+| > riskBypassResult | String | 仅适用于特定用户。详情请联系您的客户经理（RM）。不适用时返回 `""` |
 
 <aside class="notice">
 对于市价委托，订单频道推送消息会出现状态为“完全成交”，但最新成交数量 (fillSz) 为 0 的情况。
