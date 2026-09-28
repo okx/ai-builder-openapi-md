@@ -48,7 +48,6 @@ Supported per site (✓ = available, ✗ = not on that site). The `doc` column i
 | POST | /api/v5/finance/okusd/redeem | POST / Redeem OKUSD | api/rest/okusd/redeem.md | ✓ | ✗ | ✗ | ✗ |
 | POST | /api/v5/finance/okusd/subscribe | POST / Subscribe OKUSD | api/rest/okusd/subscribe.md | ✓ | ✗ | ✗ | ✗ |
 | POST | /api/v5/finance/savings/purchase-redempt | POST / Savings purchase/redemption | api/rest/savings/purchaseRedempt.md | ✓ | ✗ | ✓ | ✗ |
-| POST | /api/v5/finance/savings/set-lending-rate | POST / Set lending rate | api/rest/savings/setLendingRate.md | ✓ | ✗ | ✓ | ✗ |
 | POST | /api/v5/finance/sfp/dcd/quote | POST / Request for quote | api/rest/dcd/quote.md | ✓ | ✗ | ✗ | ✗ |
 | POST | /api/v5/finance/sfp/dcd/redeem | POST / Redeem | api/rest/dcd/redeem.md | ✓ | ✗ | ✗ | ✗ |
 | POST | /api/v5/finance/sfp/dcd/redeem-quote | POST / Request for redeem quote | api/rest/dcd/redeemQuote.md | ✓ | ✗ | ✗ | ✗ |

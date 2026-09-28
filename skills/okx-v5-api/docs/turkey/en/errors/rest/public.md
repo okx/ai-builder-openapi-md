@@ -113,6 +113,7 @@ There is a sub-code format used to further distinguish different scenarios withi
 | 	50120	        |	200	|	 This API key doesn't have permission to use this function                                	|
 | 	50121	        |	200	|	 You can't access our services through the IP address ({param0})               	|
 | 	50122	        |	200	|	 Order amount must exceed minimum amount               	|
+| 	50123	        |	200	|	 This API Key does not have trading permission for the Crypto.               	|
 
 #### Trade Class
 
