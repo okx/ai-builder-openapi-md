@@ -37,6 +37,7 @@ Supported per site (✓ = available, ✗ = not on that site). The `doc` column i
 | GET | /api/v5/account/subtypes | Get bill types | api/rest/account/getBillTypes.md | ✓ | ✓ | ✓ | ✗ |
 | GET | /api/v5/account/trade-fee | Get fee rates | api/rest/account/tradeFee.md | ✓ | ✓ | ✓ | ✓ |
 | POST | /api/v5/account/account-level-switch-preset | Preset account mode switch | api/rest/account/preSetAccountLevel.md | ✓ | ✗ | ✗ | ✗ |
+| POST | /api/v5/account/activate-feature | Activate feature | api/rest/account/activateFeature.md | ✓ | ✗ | ✗ | ✓ |
 | POST | /api/v5/account/activate-option | Activate option | api/rest/account/activateOption.md | ✓ | ✓ | ✗ | ✗ |
 | POST | /api/v5/account/bills-history-archive | Apply bills details (since 2021) | api/rest/account/billSince2021.md | ✓ | ✓ | ✓ | ✗ |
 | POST | /api/v5/account/demo-adjust-balance | Adjust demo account balance | api/rest/account/demoAdjustBalance.md | ✓ | ✓ | ✓ | ✓ |

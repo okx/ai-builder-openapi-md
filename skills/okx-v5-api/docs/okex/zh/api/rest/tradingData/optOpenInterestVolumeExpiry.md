@@ -6,7 +6,7 @@ method: GET
 path: /api/v5/rubik/stat/option/open-interest-volume-expiry
 module: rubik
 rest: https://www.okx.com
-ws: wss://ws.okx.com:8443
+ws: wss://ws.okx.com
 supported: true
 ---
 

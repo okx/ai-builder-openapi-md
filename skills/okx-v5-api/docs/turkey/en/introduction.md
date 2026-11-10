@@ -463,8 +463,24 @@ Users are encouraged to establish a new connection to prevent any disruptions ca
     "connId": "a4d3ae55"
 }
 ```
+
+- WebSocket port 8443 retirement<br>
+
+When a connection is established on port 8443, the notification message will be sent once after the handshake succeeds, indicating that port 8443 will soon be retired. The connection stays open.
+Users are encouraged to migrate to port 443.
+
+> Response Example
+
+```json
+{
+    "event": "notice",
+    "code": "64010",
+    "msg": "WebSocket port 8443 will be retired soon. Please migrate to port 443.",
+    "connId": "d7d6f1f5"
+}
+```
 <br><br>
-The feature is supported by WebSocket Public (/ws/v5/public) and Private (/ws/v5/private) for now.
+The `notice` message type is supported by all WebSocket endpoints (/ws/v5/public, /ws/v5/private, and /ws/v5/business).
 
 ## Account mode
 To facilitate your trading experience, please set the appropriate account mode before starting trading.
@@ -478,9 +494,9 @@ You need to set on the Web/App for the first set of every account mode.
 The Production Trading URL:  
 
 - REST: `https://tr.okx.com`  
-- Public WebSocket: `wss://ws.okx.com:8443/ws/v5/public`  
-- Private WebSocket: `wss://ws.okx.com:8443/ws/v5/private`
-- Business WebSocket: `wss://ws.okx.com:8443/ws/v5/business`
+- Public WebSocket: `wss://ws.okx.com/ws/v5/public`  
+- Private WebSocket: `wss://ws.okx.com/ws/v5/private`
+- Business WebSocket: `wss://ws.okx.com/ws/v5/business`
 
 ## Transaction Timeouts
 

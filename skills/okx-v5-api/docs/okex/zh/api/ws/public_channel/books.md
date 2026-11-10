@@ -7,16 +7,17 @@ type: guide
 
 ### WS / 深度频道 [order-book-trading-market-data-ws-order-book-channel]
 
-获取深度数据。在提前挂单阶段，best ask的价格有机会低于best bid。`books`是400档频道，`books5`是5档频道， `bbo-tbt`是先1档后实时推送的频道，`books-l2-tbt`是先400档后实时推送的频道，`books50-l2-tbt`是先50档后实时推的频道；
+获取深度数据。在提前挂单阶段，best ask的价格有机会低于best bid。`books`是400档频道，`books5`是5档频道， `bbo-tbt`是先1档后实时推送的频道，`bbo-rpi-tbt`是仅含RPI订单、先1档后实时推送的频道，`books-l2-tbt`是先400档后实时推送的频道，`books50-l2-tbt`是先50档后实时推的频道；
 
 - `books` 首次推400档快照数据，以后增量推送，每100毫秒推送一次变化的数据<br>
 - `books-elp`（已弃用，请使用 `books-rpi`）仅推送ELP订单，首次推400档快照数据，以后增量推送，每100毫秒推送一次变化的数据<br>
 - `books-rpi`：合并有机和 RPI 深度。初始全量推送 400 档，之后每 100ms 推送增量。无 `checksum`，排序依赖 `seqId`/`prevSeqId`。每个 `asks`/`bids` 元素为 `[price, totalQty, nonRpiQty, count]`。取代 `books-elp`。
 - `books5` 首次推5档快照数据，以后定量推送，每100毫秒当5档快照数据有变化推送一次5档数据<br>
 - `bbo-tbt` 首次推1档快照数据，以后定量推送，每10毫秒当1档快照数据有变化推送一次1档数据<br>
+- `bbo-rpi-tbt` 仅推送RPI订单，首次推1档快照数据，以后定量推送，每10毫秒当1档快照数据有变化推送一次1档数据<br>
 - `books-l2-tbt` 首次推400档快照数据，以后增量推送，每10毫秒推送一次变化的数据<br>
 - `books50-l2-tbt` 首次推50档快照数据，以后增量推送，每10毫秒推送一次变化的数据
-- 单个连接、交易产品维度，深度频道的推送顺序固定为：bbo-tbt -> books-l2-tbt -> books50-l2-tbt -> books -> books-elp -> books-rpi -> books5。
+- 单个连接、交易产品维度，深度频道的推送顺序固定为：bbo-tbt -> bbo-rpi-tbt -> books-l2-tbt -> books50-l2-tbt -> books -> books-elp -> books-rpi -> books5。
 - 在相同连接下，用户将无法为相同交易产品同时订阅 `books-l2-tbt` 以及 `books50-l2-tbt/books`频道
   - 更多细节，请参阅更新日志 [2024-07-17] (/docs-v5/log_zh/#2024-07-17)
 
@@ -53,7 +54,7 @@ def callbackFunc(message):
     print(message)
 
 async def main():
-    ws = WsPublicAsync(url="wss://wspap.okx.com:8443/ws/v5/public")
+    ws = WsPublicAsync(url="wss://wspap.okx.com/ws/v5/public")
     await ws.start()
     args = [
       {
@@ -78,7 +79,7 @@ asyncio.run(main())
 | id     | String | 否       | 消息的唯一标识。<br>用户提供，返回参数中会返回以便于找到相应的请求。<br>字母（区分大小写）与数字的组合，可以是纯字母、纯数字且长度必须要在1-32位之间。 |
 | op        | String | 是       | 操作<br>`subscribe`<br>`unsubscribe`                                            |
 | args    | Array of objects  | 是       | 请求订阅的频道列表                                                                     |
-| > channel | String | 是       | 频道名<br>`books`<br>`books5`<br>`bbo-tbt`<br>`books-l2-tbt`<br>`books50-l2-tbt` |
+| > channel | String | 是       | 频道名<br>`books`<br>`books5`<br>`bbo-tbt`<br>`bbo-rpi-tbt`<br>`books-l2-tbt`<br>`books50-l2-tbt` |
 | > instId  | String | 是       | 产品ID                                                                          |
 
 > 返回示例
@@ -204,9 +205,9 @@ asyncio.run(main())
 | > instId    | String   | 产品ID                                                       |
 | action    | String   | 推送数据动作，增量推送数据还是全量推送数据<br>`snapshot`：全量  <br>` update`：增量 |
 | data     | Array of objects    | 订阅的数据                                                   |
-| > asks      | Array of Arrays    | 卖方深度                                                     |
-| > bids      | Array of Arrays    | 买方深度                                                     |
-| > ts        | String   | 数据更新时间戳，Unix时间戳的毫秒数格式，如 `1597026383085` <br>例外： 对于`bbo-tbt` 频道，`ts` 为撮合引擎触发时的时间戳 |
+| > asks      | Array of Arrays    | 卖方深度<br>对于 `bbo-rpi-tbt`，仅返回RPI订单，包含隐藏的RPI订单。卖方无RPI订单时返回 `[]`。                                                     |
+| > bids      | Array of Arrays    | 买方深度<br>对于 `bbo-rpi-tbt`，仅返回RPI订单，包含隐藏的RPI订单。买方无RPI订单时返回 `[]`。                                                     |
+| > ts        | String   | 数据更新时间戳，Unix时间戳的毫秒数格式，如 `1597026383085` <br>例外： 对于`bbo-tbt` 和 `bbo-rpi-tbt` 频道，`ts` 为撮合引擎触发时的时间戳 |
 | > checksum  | Integer  | <del>检验和</del>（已弃用）。该字段仍会在 `books`、`books-l2-tbt`、`books50-l2-tbt` 推送中保留，但其值固定为 `0`，不应再用于数据完整性校验。请改用 `seqId/prevSeqId` 校验数据的连续性和准确性。 |
 | > prevSeqId | Integer | 上一个推送的序列号。仅适用 `books`，`books-l2-tbt`，`books50-l2-tbt` |
 | > seqId     | Integer | 推送的序列号 （下方注解）        |
@@ -230,6 +231,16 @@ asks和bids值数组举例说明： ["411.8", "10", "0", "4"]<br>
 <aside class="notice">
 `books/books5/bbo-tbt/books-l2-tbt/books50-l2-tbt`不包含ELP订单<br>
 `books-elp`仅返回 ELP 订单，包含有效部分及无效部分（无效部分指 ELP 买单价格高于非 ELP 订单最佳买单价；或 ELP 卖单价格低于非 ELP 订单最佳卖单价）。用户需根据非 ELP 订单的最佳买/卖价区分有效部分和无效部分。
+</aside>
+
+<aside class="notice">
+`books-rpi` 仅返回可见的 RPI 订单。<br>
+`bbo-rpi-tbt` 仅返回 RPI 订单，包含可见部分及隐藏部分。隐藏部分指价格高于有机最佳卖价的 RPI 买单、价格低于有机最佳买价的 RPI 卖单，或在有机买卖价差内相互交叉的 RPI 买单和卖单。用户可根据 `bbo-tbt` 的有机最佳买/卖价区分可见部分和隐藏部分。<br>
+`bbo-rpi-tbt` 的 asks 和 bids 值数组举例说明：["111.06", "55", "0", "2"]<br>
+- 111.06为深度价格<br>
+- 55为此价格的 RPI 订单总量（合约交易为张数，现货/币币杠杆为交易币的数量）<br>
+- 0该字段已弃用(始终为0)<br>
+- 2为此价格的 RPI 订单个数
 </aside>
 
 #### 序列号
@@ -269,6 +280,33 @@ asks和bids值数组举例说明： ["411.8", "10", "0", "4"]<br>
       ],
       "ts": "1670324386802",
 	  "seqId": 363996337
+    }
+  ]
+}
+```
+
+> bbo-rpi-tbt 频道推送示例
+
+```json
+{
+  "arg": {
+    "channel": "bbo-rpi-tbt",
+    "instId": "BTC-USDT-SWAP"
+  },
+  "data": [
+    {
+      "asks": [
+        [
+          "67855.2","0.5","0","1"
+        ]
+      ],
+      "bids": [
+        [
+          "67858.1","1.2","0","2"
+        ]
+      ],
+      "ts": "1792022400010",
+      "seqId": 363996337
     }
   ]
 }

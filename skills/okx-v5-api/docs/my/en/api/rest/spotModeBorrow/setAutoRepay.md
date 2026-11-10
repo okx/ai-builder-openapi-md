@@ -6,7 +6,7 @@ method: POST
 path: /api/v5/account/set-auto-repay
 module: account
 rest: https://eea.okx.com
-ws: wss://wseea.okx.com:8443
+ws: wss://wseea.okx.com
 supported: true
 ---
 

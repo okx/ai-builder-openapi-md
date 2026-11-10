@@ -6,7 +6,7 @@ method: POST
 path: /api/v5/account/bills-history-archive
 module: account
 rest: https://us.okx.com
-ws: wss://wsus.okx.com:8443
+ws: wss://wsus.okx.com
 supported: true
 ---
 
@@ -14,7 +14,7 @@ supported: true
 
 申请自 2021 年 2 月 1 日以来的账单数据，不包括当前季度。
 
-#### 限速：1次/10s
+#### 限速：12 次/天
 #### 限速规则：User ID
 #### HTTP 请求
 

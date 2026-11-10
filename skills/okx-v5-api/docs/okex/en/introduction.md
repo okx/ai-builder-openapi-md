@@ -471,8 +471,24 @@ Users are encouraged to establish a new connection to prevent any disruptions ca
     "connId": "a4d3ae55"
 }
 ```
+
+- WebSocket port 8443 retirement<br>
+
+When a connection is established on port 8443, the notification message will be sent once after the handshake succeeds, indicating that port 8443 will soon be retired. The connection stays open.
+Users are encouraged to migrate to port 443.
+
+> Response Example
+
+```json
+{
+    "event": "notice",
+    "code": "64010",
+    "msg": "WebSocket port 8443 will be retired soon. Please migrate to port 443.",
+    "connId": "d7d6f1f5"
+}
+```
 <br><br>
-The feature is supported by WebSocket Public (/ws/v5/public) and Private (/ws/v5/private) for now.
+The `notice` message type is supported by all WebSocket endpoints (/ws/v5/public, /ws/v5/private, /ws/v5/business, and /ws/v5/public-sbe).
 
 ## Account mode
 To facilitate your trading experience, please set the appropriate account mode before starting trading.
@@ -486,9 +502,9 @@ You need to set on the Web/App for the first set of every account mode.
 The Production Trading URL:  
 
 - REST: `https://openapi.okx.com`  
-- Public WebSocket: `wss://ws.okx.com:8443/ws/v5/public`  
-- Private WebSocket: `wss://ws.okx.com:8443/ws/v5/private`
-- Business WebSocket: `wss://ws.okx.com:8443/ws/v5/business`
+- Public WebSocket: `wss://ws.okx.com/ws/v5/public`  
+- Private WebSocket: `wss://ws.okx.com/ws/v5/private`
+- Business WebSocket: `wss://ws.okx.com/ws/v5/business`
 
 ## Demo Trading Services  
 
@@ -497,9 +513,9 @@ Currently, the API works for Demo Trading, but some functions are not supported,
 The Demo Trading URL:  
 
 - REST: `https://openapi.okx.com`  
-- Public WebSocket: `wss://wspap.okx.com:8443/ws/v5/public`  
-- Private WebSocket: `wss://wspap.okx.com:8443/ws/v5/private`  
-- Business WebSocket: `wss://wspap.okx.com:8443/ws/v5/business`
+- Public WebSocket: `wss://wspap.okx.com/ws/v5/public`  
+- Private WebSocket: `wss://wspap.okx.com/ws/v5/private`  
+- Business WebSocket: `wss://wspap.okx.com/ws/v5/business`
 
 OKX account can be used for login on Demo Trading. If you already have an OKX account, you can log in directly.
 
@@ -525,16 +541,6 @@ OK-ACCESS-TIMESTAMP: 2020-03-28T12:21:41.274Z
 
 x-simulated-trading: 1
 ```
-
-### Demo Trading Explorer
-
-You need to sign in to your OKX account before accessing the explorer. The interface only allow access to the demo trading environment.
-
-- Clicking `Try it out` button in Parameters Panel and editing request parameters.
-
-- Clicking `Execute` button to send your request. You can check response in Responses panel.
-
-Try [demo trading explorer](/demo-trading-explorer/v5/en)
 
 ## General Info
 

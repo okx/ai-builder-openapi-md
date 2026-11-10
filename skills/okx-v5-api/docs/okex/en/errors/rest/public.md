@@ -614,6 +614,7 @@ There is a sub-code format used to further distinguish different scenarios withi
 |   54079	         | 	200	                | Dynamic change is available only for futures trading in futures mode or multi-currency mode. Note that when selecting dynamic change, the trigger price can only be calculated using the last price. |
 | 54092 | 200 | Action Required: Please accept the TradFi Perps disclaimer on Web or App by attempting to place a TradFi Perp trade via the frontend. Each account, including sub-accounts, must separately accept the disclaimer before API trading is enabled |
 | 54094 | 200 | Order rejected. The cool-off period is active for the current instId. |
+| 54109 | 200 | You haven’t activated trading for this pair. Log in to the OKX App or website and click "Trade" on this pair’s trading page to activate it, or activate it via the designated API endpoint, then try again. |
 
 #### Data class
 
