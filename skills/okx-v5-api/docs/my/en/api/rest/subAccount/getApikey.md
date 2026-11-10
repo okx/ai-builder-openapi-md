@@ -6,7 +6,7 @@ method: GET
 path: /api/v5/users/subaccount/apikey
 module: users
 rest: https://eea.okx.com
-ws: wss://wseea.okx.com:8443
+ws: wss://wseea.okx.com
 supported: true
 ---
 

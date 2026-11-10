@@ -6,7 +6,7 @@ method: GET
 path: /api/v5/trade/one-click-repay-history
 module: trade
 rest: https://www.okx.com
-ws: wss://ws.okx.com:8443
+ws: wss://ws.okx.com
 supported: true
 ---
 

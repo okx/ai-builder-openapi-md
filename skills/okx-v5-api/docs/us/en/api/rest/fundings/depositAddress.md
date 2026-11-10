@@ -6,7 +6,7 @@ method: GET
 path: /api/v5/asset/deposit-address
 module: asset
 rest: https://us.okx.com
-ws: wss://wsus.okx.com:8443
+ws: wss://wsus.okx.com
 supported: true
 ---
 

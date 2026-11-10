@@ -6,7 +6,7 @@ method: GET
 path: /api/v5/market/books-sbe
 module: market
 rest: https://www.okx.com
-ws: wss://ws.okx.com:8443
+ws: wss://ws.okx.com
 supported: true
 ---
 
@@ -31,8 +31,8 @@ SBE XML schema 已经发布：
 
 * `bbo-tbt` 频道**无用户等级限制**，但需登录后方可订阅；`trades` 与 `books-l2-tbt` 频道在实盘环境仅对交易费等级 **VIP4 及以上** 用户开放，其他用户接入将收到错误码64003。在模拟盘环境仅对交易费等级 **VIP1** 及以上 用户开放。<br>
 * SBE 频道将使用新的 WebSocket URL。<br>
-  实盘交易：`wss://ws.okx.com:8443/ws/v5/public-sbe`<br>
-  模拟盘交易：`wss://wspap.okx.com:8443/ws/v5/public-sbe` <br>
+  实盘交易：`wss://ws.okx.com/ws/v5/public-sbe`<br>
+  模拟盘交易：`wss://wspap.okx.com/ws/v5/public-sbe` <br>
 * 同一个连接上会同时存在 JSON 和 SBE 格式的数据，可以通过 WebSocket 帧类型区分。opcode `1` 表示 JSON，opcode `2` 表示 SBE。<br>
 * 价格和数量将会使用尾数和指数来表示。例如，尾数为 123456，指数为 -4，表示 12.3456（实际值 = 尾数 * 10 ^ 指数）。<br>
 * [获取交易产品基础信息](/docs-v5/zh/#public-data-rest-api-get-instruments) 接口会新增整数类型的 `instIdCode` 字段，SBE 协议将会使用该字段代表交易产品，用户需要将 `instIdCode` 映射为 `instId`. 请注意 `instIdCode` 在交易产品重新上币时会发生改变，然而，`instIdCode` 在 `instId` 重命名时保持不变。<br>

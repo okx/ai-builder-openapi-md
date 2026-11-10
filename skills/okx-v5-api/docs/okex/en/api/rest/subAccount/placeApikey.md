@@ -6,7 +6,7 @@ method: POST
 path: /api/v5/users/subaccount/apikey
 module: users
 rest: https://www.okx.com
-ws: wss://ws.okx.com:8443
+ws: wss://ws.okx.com
 supported: true
 ---
 

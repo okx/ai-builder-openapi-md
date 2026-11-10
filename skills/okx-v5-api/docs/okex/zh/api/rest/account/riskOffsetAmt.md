@@ -6,7 +6,7 @@ method: POST
 path: /api/v5/account/set-riskOffset-amt
 module: account
 rest: https://www.okx.com
-ws: wss://ws.okx.com:8443
+ws: wss://ws.okx.com
 supported: true
 ---
 

@@ -6,7 +6,7 @@ method: POST
 path: /api/v5/users/subaccount/modify-apikey
 module: users
 rest: https://www.okx.com
-ws: wss://ws.okx.com:8443
+ws: wss://ws.okx.com
 supported: true
 ---
 
@@ -73,7 +73,7 @@ print(result)
 		"subAcct": "yongxu",
 		"label": "v5",
         "apiKey": "******",
-		"perm": "read,trade",
+		"perm": "read_only,trade",
 		"ip": "1.1.1.1",
 		"ts": "1597026383085"
 	}]

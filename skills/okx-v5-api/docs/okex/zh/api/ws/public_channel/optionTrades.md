@@ -37,7 +37,7 @@ def callbackFunc(message):
     print(message)
 
 async def main():
-    ws = WsPublicAsync(url="wss://wspap.okx.com:8443/ws/v5/public")
+    ws = WsPublicAsync(url="wss://wspap.okx.com/ws/v5/public")
     await ws.start()
     args = [{
         "channel": "option-trades",

@@ -6,7 +6,7 @@ method: GET
 path: /api/v5/sprd/orders-history
 module: sprd
 rest: https://www.okx.com
-ws: wss://ws.okx.com:8443
+ws: wss://ws.okx.com
 supported: true
 ---
 
@@ -52,7 +52,7 @@ print(result)
 | state     | String | No       | State <br>`canceled` <br>`filled`                                                                                                           |
 | beginId   | String | No       | Start order ID the request to begin with. Pagination of data to return records newer than the requested order Id, not including beginId |
 | endId     | String | No       | End order ID the request to end with. Pagination of data to return records earlier than the requested order Id, not including endId     |
-| begin     | String | No       | Filter with a begin timestamp. Unix timestamp format in milliseconds, e.g. `1597026383085`. Date older than 7 days will be truncated.     |
+| begin     | String | No       | Filter with a begin timestamp. Unix timestamp format in milliseconds, e.g. `1597026383085`                                                |
 | end       | String | No       | Filter with an end timestamp. Unix timestamp format in milliseconds, e.g. `1597026383085`                                                 |
 | limit     | String | No       | Number of results per request. The maximum is 100. The default is 100                                                                   |
 

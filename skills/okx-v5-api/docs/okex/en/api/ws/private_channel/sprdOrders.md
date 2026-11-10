@@ -7,8 +7,8 @@ type: guide
 
 ## WebSocket Private Channel
 
-- Production Trading URL: `wss://ws.okx.com:8443/ws/v5/business`
-- Demo Trading URL: `wss://wspap.okx.com:8443/ws/v5/business` 
+- Production Trading URL: `wss://ws.okx.com/ws/v5/business`
+- Demo Trading URL: `wss://wspap.okx.com/ws/v5/business`
 
 ### Order channel
 
@@ -45,7 +45,7 @@ async def main():
         apiKey = "YOUR_API_KEY",
         passphrase = "YOUR_PASSPHRASE",
         secretKey = "YOUR_SECRET_KEY",
-        url = "wss://ws.okx.com:8443/ws/v5/business",
+        url = "wss://ws.okx.com/ws/v5/business",
         useServerTime=False
     )
     await ws.start()
@@ -91,7 +91,7 @@ async def main():
         apiKey = "YOUR_API_KEY",
         passphrase = "YOUR_PASSPHRASE",
         secretKey = "YOUR_SECRET_KEY",
-        url = "wss://ws.okx.com:8443/ws/v5/business",
+        url = "wss://ws.okx.com/ws/v5/business",
         useServerTime=False
     )
     await ws.start()

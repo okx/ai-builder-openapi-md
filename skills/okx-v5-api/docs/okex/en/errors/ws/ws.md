@@ -9,7 +9,7 @@ type: guide
 
 ### Public
 
-Error Code from 60000 to 64002
+Error Code from 60000 to 64010
 
 #### General Class
 
@@ -43,6 +43,7 @@ Error Code from 60000 to 64002
 | 64004 | Subscribe to both {channelName} and books-l2-tbt for {instId} is not allowed. Unsubscribe books-l2-tbt first. |
 | 	64007	        | 	 Operation {0} failed due to WebSocket internal error. Please try again later.                                                      	 |
 | 	64008	        | 	 The connection will soon be closed for a service upgrade. Please reconnect.                                                      	 |
+| 	64010	        | 	 WebSocket port 8443 will be retired soon. Please migrate to port 443.                                                      	 |
 
 #### Close Frame
 

@@ -7,8 +7,8 @@ type: guide
 
 ## WebSocket公共频道 [spread-trading-websocket-public-channel]
 
-- 实盘地址: `wss://ws.okx.com:8443/ws/v5/business`
-- 模拟盘地址: `wss://wspap.okx.com:8443/ws/v5/business` 
+- 实盘地址: `wss://ws.okx.com/ws/v5/business`
+- 模拟盘地址: `wss://wspap.okx.com/ws/v5/business`
 
 ### 深度频道 [spread-trading-websocket-public-channel-order-book-channel]
 
@@ -47,7 +47,7 @@ def callbackFunc(message):
     print(message)
 
 async def main():
-    ws = WsPublicAsync(url="wss://wspap.okx.com:8443/ws/v5/business")
+    ws = WsPublicAsync(url="wss://wspap.okx.com/ws/v5/business")
     await ws.start()
     args = [
         {
@@ -89,7 +89,7 @@ def callbackFunc(message):
     print(message)
 
 async def main():
-    ws = WsPublicAsync(url="wss://wspap.okx.com:8443/ws/v5/business")
+    ws = WsPublicAsync(url="wss://wspap.okx.com/ws/v5/business")
     await ws.start()
     args = [
         {

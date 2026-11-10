@@ -6,7 +6,7 @@ method: GET
 path: /api/v5/trade/fills-history
 module: trade
 rest: https://tr.okx.com
-ws: wss://ws.okx.com:8443
+ws: wss://ws.okx.com
 supported: true
 ---
 

@@ -6,7 +6,7 @@ method: POST
 path: /api/v5/account/bills-history-archive
 module: account
 rest: https://us.okx.com
-ws: wss://wsus.okx.com:8443
+ws: wss://wsus.okx.com
 supported: true
 ---
 
@@ -14,7 +14,7 @@ supported: true
 
 Apply for bill data since 1 February, 2021 except for the current quarter.
 
-#### Rate Limit: 1 request per 10 seconds
+#### Rate Limit: 12 requests per day
 #### Rate limit rule: User ID
 #### HTTP Request
 
