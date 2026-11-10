@@ -6,7 +6,7 @@ method: GET
 path: /api/v5/market/books-sbe
 module: market
 rest: https://www.okx.com
-ws: wss://ws.okx.com:8443
+ws: wss://ws.okx.com
 supported: true
 ---
 
@@ -31,8 +31,8 @@ The SBE XML schema is now available for download:
 
 * The `bbo-tbt` channel is **available to users of any trading fee tier** but requires login. The `trades` and `books-l2-tbt` channels are restricted to users with a trading fee tier of **VIP4** or above in the live trading environment. Other users will receive error code 64003. In the demo trading environment, these channels require **VIP1** or above.<br>
 * SBE channels will use a new WebSocket URL.<br>
-  Live trading: `wss://ws.okx.com:8443/ws/v5/public-sbe`<br>
-  Demo trading: `wss://wspap.okx.com:8443/ws/v5/public-sbe` <br>
+  Live trading: `wss://ws.okx.com/ws/v5/public-sbe`<br>
+  Demo trading: `wss://wspap.okx.com/ws/v5/public-sbe` <br>
 * Both JSON and SBE format data will be available on the same connection, distinguishable by WebSocket frame type. opcode `1` indicates JSON, while opcode `2` indicates SBE.<br>
 * Prices and quantities will be encoded as exponential decimals, using a signed integer mantissa and signed exponent. For example, a mantissa of 123456 and a exponent of -4 represents 12.3456 (actual value = mantissa * 10 ^ exponent).<br>
 * The SBE protocol will use `instIdCode` , an integer will be provided by [Get instruments](/docs-v5/en/#public-data-rest-api-get-instruments) to represent trading instruments. Users must map `instIdCode` to `instId`, noting that `instIdCode` will change if a trading symbol is relisted, but `instIdCode` will remains unchanged when `instId` is renamed.<br>

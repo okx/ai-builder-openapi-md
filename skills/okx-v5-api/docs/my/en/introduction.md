@@ -37,7 +37,7 @@ If you do not agree to the Agreement, you must immediately cease all use of the 
 - Please take 1 minute to help us improve: [API Satisfaction Survey](https://forms.gle/Ehou2xFv5GE1xUGr9)
 - If you have any API-related inquiries, you can reach out to us by scanning the code below via the OKX APP.
 
-<p><img src="images/APISupport.jpeg" alt="API Technical Support QR Code" style="max-width: 300px; display: block; margin: 20px auto;" /></p>
+<p><img src="images/APISupportUSEEA.jpeg" alt="API Technical Support QR Code" style="max-width: 300px; display: block; margin: 20px auto;" /></p>
 
 ## API key Creation
 
@@ -463,8 +463,24 @@ Users are encouraged to establish a new connection to prevent any disruptions ca
     "connId": "a4d3ae55"
 }
 ```
+
+- WebSocket port 8443 retirement<br>
+
+When a connection is established on port 8443, the notification message will be sent once after the handshake succeeds, indicating that port 8443 will soon be retired. The connection stays open.
+Users are encouraged to migrate to port 443.
+
+> Response Example
+
+```json
+{
+    "event": "notice",
+    "code": "64010",
+    "msg": "WebSocket port 8443 will be retired soon. Please migrate to port 443.",
+    "connId": "d7d6f1f5"
+}
+```
 <br><br>
-The feature is supported by WebSocket Public (/ws/v5/public) and Private (/ws/v5/private) for now.
+The `notice` message type is supported by all WebSocket endpoints (/ws/v5/public, /ws/v5/private, and /ws/v5/business).
 
 ## Account mode
 To facilitate your trading experience, please set the appropriate account mode before starting trading.
@@ -478,9 +494,9 @@ You need to set on the Web/App for the first set of every account mode.
 The Production Trading URL:  
 
 - REST: `https://eea.okx.com`  
-- Public WebSocket: `wss://wseea.okx.com:8443/ws/v5/public`  
-- Private WebSocket: `wss://wseea.okx.com:8443/ws/v5/private`
-- Business WebSocket: `wss://wseea.okx.com:8443/ws/v5/business`
+- Public WebSocket: `wss://wseea.okx.com/ws/v5/public`  
+- Private WebSocket: `wss://wseea.okx.com/ws/v5/private`
+- Business WebSocket: `wss://wseea.okx.com/ws/v5/business`
 
 ## Demo Trading Services  
 
@@ -489,9 +505,9 @@ Currently, the API works for Demo Trading, but some functions are not supported,
 The Demo Trading URL:  
 
 - REST: `https://eea.okx.com`  
-- Public WebSocket: `wss://wseeapap.okx.com:8443/ws/v5/public`  
-- Private WebSocket: `wss://wseeapap.okx.com:8443/ws/v5/private`  
-- Business WebSocket: `wss://wseeapap.okx.com:8443/ws/v5/business`
+- Public WebSocket: `wss://wseeapap.okx.com/ws/v5/public`  
+- Private WebSocket: `wss://wseeapap.okx.com/ws/v5/private`  
+- Business WebSocket: `wss://wseeapap.okx.com/ws/v5/business`
 
 OKX account can be used for login on Demo Trading. If you already have an OKX account, you can log in directly.
 

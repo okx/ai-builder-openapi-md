@@ -6,7 +6,7 @@ method: GET
 path: /api/v5/market/books-full
 module: market
 rest: https://eea.okx.com
-ws: wss://wseea.okx.com:8443
+ws: wss://wseea.okx.com
 supported: true
 ---
 

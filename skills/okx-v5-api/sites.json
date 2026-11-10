@@ -1,41 +1,41 @@
 {
-  "version": "0.3.0",
-  "generated_at": "2026-09-23T09:47:07+00:00",
+  "version": "0.4.0",
+  "generated_at": "2026-11-03T11:44:04+00:00",
   "sites": [
     {
       "id": "okex",
       "label": "OKX Global",
       "rest": "https://www.okx.com",
-      "ws": "wss://ws.okx.com:8443",
+      "ws": "wss://ws.okx.com",
       "rest_pap": "https://openapi.okx.com",
-      "ws_pap": "wss://wspap.okx.com:8443",
+      "ws_pap": "wss://wspap.okx.com",
       "docs_dir": "docs/okex"
     },
     {
       "id": "us",
       "label": "OKX US",
       "rest": "https://us.okx.com",
-      "ws": "wss://wsus.okx.com:8443",
+      "ws": "wss://wsus.okx.com",
       "rest_pap": "https://us.okx.com",
-      "ws_pap": "wss://wsuspap.okx.com:8443",
+      "ws_pap": "wss://wsuspap.okx.com",
       "docs_dir": "docs/us"
     },
     {
       "id": "my",
       "label": "OKX EEA",
       "rest": "https://eea.okx.com",
-      "ws": "wss://wseea.okx.com:8443",
+      "ws": "wss://wseea.okx.com",
       "rest_pap": "https://eea.okx.com",
-      "ws_pap": "wss://wseeapap.okx.com:8443",
+      "ws_pap": "wss://wseeapap.okx.com",
       "docs_dir": "docs/my"
     },
     {
       "id": "turkey",
       "label": "OKX Turkey",
       "rest": "https://tr.okx.com",
-      "ws": "wss://ws.okx.com:8443",
+      "ws": "wss://ws.okx.com",
       "rest_pap": "https://www.okx.com",
-      "ws_pap": "wss://wspap.okx.com:8443",
+      "ws_pap": "wss://wspap.okx.com",
       "docs_dir": "docs/turkey"
     }
   ]

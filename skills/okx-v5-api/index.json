@@ -1,7 +1,7 @@
 {
-  "version": "0.3.0",
-  "generated_at": "2026-09-23T09:47:07+00:00",
-  "endpoint_count": 405,
+  "version": "0.4.0",
+  "generated_at": "2026-11-03T11:44:04+00:00",
+  "endpoint_count": 409,
   "endpoints": [
     {
       "method": "GET",
@@ -7264,6 +7264,78 @@
     },
     {
       "method": "GET",
+      "path": "/api/v5/users/glp/v2/details",
+      "name": "GET / Get GLP v2 assessment details",
+      "module": "users",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/account/getGlpV2Details.md",
+            "zh": "api/rest/account/getGlpV2Details.md"
+          }
+        },
+        "us": {
+          "supported": false
+        },
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/users/glp/v2/history/performance",
+      "name": "GET / Get GLP v2 performance history",
+      "module": "users",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/account/getGlpV2HistoryPerformance.md",
+            "zh": "api/rest/account/getGlpV2HistoryPerformance.md"
+          }
+        },
+        "us": {
+          "supported": false
+        },
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v5/users/glp/v2/overview",
+      "name": "GET / Get GLP v2 overview",
+      "module": "users",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/account/getGlpV2Overview.md",
+            "zh": "api/rest/account/getGlpV2Overview.md"
+          }
+        },
+        "us": {
+          "supported": false
+        },
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": false
+        }
+      }
+    },
+    {
+      "method": "GET",
       "path": "/api/v5/users/partner/if-rebate",
       "name": "Get the user's affiliate rebate information",
       "module": "users",
@@ -7379,6 +7451,34 @@
         },
         "turkey": {
           "supported": false
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v5/account/activate-feature",
+      "name": "Activate feature",
+      "module": "account",
+      "sites": {
+        "okex": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/account/activateFeature.md",
+            "zh": "api/rest/account/activateFeature.md"
+          }
+        },
+        "us": {
+          "supported": false
+        },
+        "my": {
+          "supported": false
+        },
+        "turkey": {
+          "supported": true,
+          "doc": {
+            "en": "api/rest/account/activateFeature.md",
+            "zh": "api/rest/account/activateFeature.md"
+          }
         }
       }
     },

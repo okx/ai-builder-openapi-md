@@ -6,7 +6,7 @@ method: GET
 path: /api/v5/fiat/buy-sell/currency-pair
 module: fiat
 rest: https://eea.okx.com
-ws: wss://wseea.okx.com:8443
+ws: wss://wseea.okx.com
 supported: true
 ---
 

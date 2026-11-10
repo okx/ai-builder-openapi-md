@@ -6,7 +6,7 @@ method: GET
 path: /api/v5/users/subaccount/apikey
 module: users
 rest: https://tr.okx.com
-ws: wss://ws.okx.com:8443
+ws: wss://ws.okx.com
 supported: true
 ---
 

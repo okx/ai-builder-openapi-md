@@ -7,6 +7,9 @@ Supported per site (✓ = available, ✗ = not on that site). The `doc` column i
 | GET | /api/v5/users/entrust-subaccount-list | Get custody trading sub-account list | api/rest/subAccount/getEntrustSubAccountList.md | ✓ | ✗ | ✗ | ✗ |
 | GET | /api/v5/users/glp/historicalperformance | GET / Get GLP historical performance | api/rest/account/getGlpHistoricalPerformance.md | ✓ | ✗ | ✗ | ✗ |
 | GET | /api/v5/users/glp/todayperformance | GET / Get GLP today performance | api/rest/account/getGlpTodayPerformance.md | ✓ | ✗ | ✗ | ✗ |
+| GET | /api/v5/users/glp/v2/details | GET / Get GLP v2 assessment details | api/rest/account/getGlpV2Details.md | ✓ | ✗ | ✗ | ✗ |
+| GET | /api/v5/users/glp/v2/history/performance | GET / Get GLP v2 performance history | api/rest/account/getGlpV2HistoryPerformance.md | ✓ | ✗ | ✗ | ✗ |
+| GET | /api/v5/users/glp/v2/overview | GET / Get GLP v2 overview | api/rest/account/getGlpV2Overview.md | ✓ | ✗ | ✗ | ✗ |
 | GET | /api/v5/users/partner/if-rebate | Get the user's affiliate rebate information | api/rest/affiliate/ifRebate.md | ✗ | ✗ | ✗ | ✓ |
 | GET | /api/v5/users/subaccount/apikey | Query the API Key of a sub-account | api/rest/subAccount/getApikey.md | ✓ | ✓ | ✓ | ✓ |
 | GET | /api/v5/users/subaccount/list | Get sub-account list | api/rest/subAccount/subAccountList.md | ✓ | ✓ | ✓ | ✓ |

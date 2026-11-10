@@ -6,7 +6,7 @@ method: POST
 path: /api/v5/trade/batch-orders
 module: trade
 rest: https://tr.okx.com
-ws: wss://ws.okx.com:8443
+ws: wss://ws.okx.com
 supported: true
 ---
 

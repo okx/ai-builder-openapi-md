@@ -6,7 +6,7 @@ method: GET
 path: /api/v5/public/discount-rate-interest-free-quota
 module: public
 rest: https://us.okx.com
-ws: wss://wsus.okx.com:8443
+ws: wss://wsus.okx.com
 supported: true
 ---
 

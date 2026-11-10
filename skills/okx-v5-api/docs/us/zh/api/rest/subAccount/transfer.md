@@ -6,7 +6,7 @@ method: POST
 path: /api/v5/asset/subaccount/transfer
 module: asset
 rest: https://us.okx.com
-ws: wss://wsus.okx.com:8443
+ws: wss://wsus.okx.com
 supported: true
 ---
 

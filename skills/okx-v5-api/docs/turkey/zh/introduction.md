@@ -443,8 +443,23 @@ WebSocket有一种消息类型(event=`notice`)。 <br><br>
     "connId": "a4d3ae55"
 }
 ```
+
+- WebSocket 8443 端口下线
+
+通过 8443 端口建立连接时，握手成功后会推送一次信息，告知用户 8443 端口即将下线。连接不会断开。用户需尽快迁移至 443 端口。
+
+> 返回示例
+
+```json
+{
+    "event": "notice",
+    "code": "64010",
+    "msg": "WebSocket port 8443 will be retired soon. Please migrate to port 443.",
+    "connId": "d7d6f1f5"
+}
+```
 <br><br>
-目前支持WebSocket公共频道(/ws/v5/public)和私有频道(/ws/v5/private)。
+`notice` 消息类型目前支持所有WebSocket端点（/ws/v5/public、/ws/v5/private和/ws/v5/business）。
 
 ## 账户模式 [overview-account-mode]
 为了方便您的交易体验，请在开始交易前设置适当的账户模式。
@@ -458,9 +473,9 @@ WebSocket有一种消息类型(event=`notice`)。 <br><br>
 实盘API交易地址如下：  
 
 - REST：`https://tr.okx.com`  
-- WebSocket公共频道：`wss://ws.okx.com:8443/ws/v5/public`  
-- WebSocket私有频道：`wss://ws.okx.com:8443/ws/v5/private`
-- WebSocket业务频道：`wss://ws.okx.com:8443/ws/v5/business`
+- WebSocket公共频道：`wss://ws.okx.com/ws/v5/public`  
+- WebSocket私有频道：`wss://ws.okx.com/ws/v5/private`
+- WebSocket业务频道：`wss://ws.okx.com/ws/v5/business`
 
 ## 交易时效性 [overview-transaction-timeouts]
 

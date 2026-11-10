@@ -6,7 +6,7 @@ method: POST
 path: /api/v5/copytrading/amend-profit-sharing-ratio
 module: copytrading
 rest: https://www.okx.com
-ws: wss://ws.okx.com:8443
+ws: wss://ws.okx.com
 supported: true
 ---
 

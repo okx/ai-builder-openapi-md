@@ -9,16 +9,17 @@ type: guide
 
 Retrieve order book data. Best ask price may be lower than the best bid price during the pre-open period.<br>
 
-Use `books` for 400 depth levels, `books5` for 5 depth levels, `bbo-tbt` tick-by-tick 1 depth level, `books50-l2-tbt` tick-by-tick 50 depth levels, and `books-l2-tbt` for tick-by-tick 400 depth levels. <br>
+Use `books` for 400 depth levels, `books5` for 5 depth levels, `bbo-tbt` tick-by-tick 1 depth level, `bbo-rpi-tbt` tick-by-tick 1 depth level of RPI orders only, `books50-l2-tbt` tick-by-tick 50 depth levels, and `books-l2-tbt` for tick-by-tick 400 depth levels. <br>
 
 - `books`: 400 depth levels will be pushed in the initial full snapshot. Incremental data will be pushed every 100 ms for the changes in the order book during that period of time. <br>
 - `books-elp`: (Deprecated; use `books-rpi`) only push ELP orders. 400 depth levels will be pushed in the initial full snapshot. Incremental data will be pushed every 100 ms for the changes in the order book during that period of time. <br>
 - `books-rpi`: consolidated organic and RPI depth. 400 depth levels will be pushed in the initial full snapshot. Incremental data will be pushed every 100 ms. No `checksum`; sequencing relies on `seqId`/`prevSeqId`. Each `asks`/`bids` element is `[price, totalQty, nonRpiQty, count]`. Supersedes `books-elp`.
 - `books5`: 5 depth levels snapshot will be pushed in the initial push. Snapshot data will be pushed every 100 ms when there are changes in the 5 depth levels snapshot.<br>
 - `bbo-tbt`: 1 depth level snapshot will be pushed in the initial push. Snapshot data will be pushed every 10 ms when there are changes in the 1 depth level snapshot. <br>
+- `bbo-rpi-tbt`: only push RPI orders. 1 depth level snapshot will be pushed in the initial push. Snapshot data will be pushed every 10 ms when there are changes in the 1 depth level snapshot. <br>
 - `books-l2-tbt`: 400 depth levels will be pushed in the initial full snapshot. Incremental data will be pushed every 10 ms for the changes in the order book during that period of time. <br>
 - `books50-l2-tbt`: 50 depth levels will be pushed in the initial full snapshot. Incremental data will be pushed every 10 ms for the changes in the order book during that period of time.
-- The push sequence for order book channels within the same connection and trading symbols is fixed as: bbo-tbt -> books-l2-tbt -> books50-l2-tbt -> books -> books-elp -> books-rpi -> books5.
+- The push sequence for order book channels within the same connection and trading symbols is fixed as: bbo-tbt -> bbo-rpi-tbt -> books-l2-tbt -> books50-l2-tbt -> books -> books-elp -> books-rpi -> books5.
 - Users can not simultaneously subscribe to `books-l2-tbt` and `books50-l2-tbt/books` channels for the same trading symbol. 
   - For more details, please refer to the changelog [2024-07-17] (/docs-v5/log_en/#2024-07-17)
 
@@ -58,7 +59,7 @@ def callbackFunc(message):
     print(message)
 
 async def main():
-    ws = WsPublicAsync(url="wss://wspap.okx.com:8443/ws/v5/public")
+    ws = WsPublicAsync(url="wss://wspap.okx.com/ws/v5/public")
     await ws.start()
     args = [
       {
@@ -83,7 +84,7 @@ asyncio.run(main())
 | id        | String | No       | Unique identifier of the message  <br>Provided by client. It will be returned in response message for identifying the corresponding request. <br>A combination of case-sensitive alphanumerics, all numbers, or all letters of up to 32 characters. |
 | op        | String | Yes      | Operation<br>`subscribe`<br>`unsubscribe`<br>                                          |
 | args    | Array of objects  | Yes      | List of subscribed channels                                                            |
-| > channel | String | Yes      | Channel name<br>`books`<br>`books5`<br>`bbo-tbt`<br>`books50-l2-tbt`<br>`books-l2-tbt` |
+| > channel | String | Yes      | Channel name<br>`books`<br>`books5`<br>`bbo-tbt`<br>`bbo-rpi-tbt`<br>`books50-l2-tbt`<br>`books-l2-tbt` |
 | > instId  | String | Yes      | Instrument ID                                                                          |
 
 > Response Example
@@ -214,9 +215,9 @@ asyncio.run(main())
 | > instId      | String   | Instrument ID                                                                                           |
 | action      | String   | Push data action, incremental data or full snapshot. <br>`snapshot`: full  <br>` update`: incremental |
 | data        | Array of objects    | Subscribed data                                                                                         |
-| > asks        | Array of Arrays    | Order book on sell side                                                                                 |
-| > bids        | Array of Arrays    | Order book on buy side                                                                                  |
-| > ts          | String   | Order book generation time, Unix timestamp format in milliseconds, e.g. `1597026383085` <br>Exception: For the `bbo-tbt` channel, `ts` is the timestamp when the book is generated by matching engine. |
+| > asks        | Array of Arrays    | Order book on sell side<br>For `bbo-rpi-tbt`, only RPI orders are returned, including hidden RPI orders. Returns `[]` when there is no RPI order on the sell side.                                                                                 |
+| > bids        | Array of Arrays    | Order book on buy side<br>For `bbo-rpi-tbt`, only RPI orders are returned, including hidden RPI orders. Returns `[]` when there is no RPI order on the buy side.                                                                                  |
+| > ts          | String   | Order book generation time, Unix timestamp format in milliseconds, e.g. `1597026383085` <br>Exception: For the `bbo-tbt` and `bbo-rpi-tbt` channels, `ts` is the timestamp when the book is generated by matching engine. |
 | > checksum    | Integer  | <del>Checksum</del> (Deprecated). The field remains in the push for `books`, `books-l2-tbt`, and `books50-l2-tbt`, but its value is fixed to `0` and must no longer be used for integrity verification. Please use `seqId/prevSeqId` to verify data continuity and accuracy. |
 | > prevSeqId   | Integer  | Sequence ID of the last sent message. Only applicable to `books`, `books-l2-tbt`, `books50-l2-tbt` |
 | > seqId       | Integer  | Sequence ID of the current message, implementation details below |
@@ -240,6 +241,16 @@ The order book data will be updated around once a second during the call auction
 <aside class="notice">
 `books/books5/bbo-tbt/books-l2-tbt/books50-l2-tbt` don't return ELP orders<br>
 `books-elp` only return ELP orders, including both valid and invalid parts (invalid parts means ELP buy orders with a price higher than best bid of non-ELP orders; or ELP sell orders with a price lower than best ask of non-ELP orders). Users should distinguish valid and invalid parts using the best bid/ask price of non-ELP orders.
+</aside>
+
+<aside class="notice">
+`books-rpi` returns visible RPI orders only.<br>
+`bbo-rpi-tbt` only returns RPI orders, including both visible and hidden parts. Hidden parts are RPI buy orders priced above the organic best ask, RPI sell orders priced below the organic best bid, or RPI buy and sell orders crossing each other within the organic spread. Use the organic best bid/ask from `bbo-tbt` to distinguish visible from hidden parts.<br>
+An example of the array of asks and bids values for `bbo-rpi-tbt`: ["111.06", "55", "0", "2"]<br>
+- "111.06" is the depth price<br>
+- "55" is the quantity of RPI orders at the price (number of contracts for derivatives, quantity in base currency for Spot and Spot Margin)<br>
+- "0" is part of a deprecated feature and it is always "0"<br>
+- "2" is the number of RPI orders at the price.
 </aside>
 
 #### Sequence ID
@@ -278,6 +289,33 @@ Exceptions:<br>
         ]
       ],
       "ts": "1670324386802",
+      "seqId": 363996337
+    }
+  ]
+}
+```
+
+> Push Data Example of bbo-rpi-tbt channel
+
+```json
+{
+  "arg": {
+    "channel": "bbo-rpi-tbt",
+    "instId": "BTC-USDT-SWAP"
+  },
+  "data": [
+    {
+      "asks": [
+        [
+          "67855.2","0.5","0","1"
+        ]
+      ],
+      "bids": [
+        [
+          "67858.1","1.2","0","2"
+        ]
+      ],
+      "ts": "1792022400010",
       "seqId": 363996337
     }
   ]

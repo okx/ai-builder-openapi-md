@@ -7,8 +7,8 @@ type: guide
 
 ## WebSocket私有频道 [spread-trading-websocket-private-channel]
 
-- 实盘地址: `wss://ws.okx.com:8443/ws/v5/business`
-- 模拟盘地址: `wss://wspap.okx.com:8443/ws/v5/business` 
+- 实盘地址: `wss://ws.okx.com/ws/v5/business`
+- 模拟盘地址: `wss://wspap.okx.com/ws/v5/business`
 
 ### 订单频道 [spread-trading-websocket-private-channel-order-channel]
 
@@ -47,7 +47,7 @@ async def main():
         apiKey = "YOUR_API_KEY",
         passphrase = "YOUR_PASSPHRASE",
         secretKey = "YOUR_SECRET_KEY",
-        url = "wss://ws.okx.com:8443/ws/v5/business",
+        url = "wss://ws.okx.com/ws/v5/business",
         useServerTime=False
     )
     await ws.start()
@@ -95,7 +95,7 @@ async def main():
         apiKey = "YOUR_API_KEY",
         passphrase = "YOUR_PASSPHRASE",
         secretKey = "YOUR_SECRET_KEY",
-        url = "wss://ws.okx.com:8443/ws/v5/business",
+        url = "wss://ws.okx.com/ws/v5/business",
         useServerTime=False
     )
     await ws.start()

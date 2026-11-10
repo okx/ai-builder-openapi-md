@@ -6,7 +6,7 @@ method: GET
 path: /api/v5/trade/one-click-repay-currency-list-v2
 module: trade
 rest: https://eea.okx.com
-ws: wss://wseea.okx.com:8443
+ws: wss://wseea.okx.com
 supported: true
 ---
 
